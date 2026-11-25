@@ -1084,216 +1084,251 @@ a {
   right: max(12px, env(safe-area-inset-right, 0px));
 }
 
-/* ---------- 8. Interactive 3D Envelope & Wedding Gift (hadiah) ---------- */
+/* ---------- 8. Digital envelope and gift address ---------- */
 .pf-gift-card {
+  display: grid;
+  gap: 16px;
   max-width: 420px;
   margin: 0 auto;
 }
 
-.pf-envelope-stage {
-  position: relative;
-  width: min(82%, 260px);
-  aspect-ratio: 25 / 16;
-  margin: 28px auto 12px;
-  perspective: 900px;
+.pf-gift-option {
+  min-width: 0;
+  padding: clamp(16px, 5vw, 24px);
+  border: 1px solid var(--line, #d6c2ad);
+  border-radius: 16px;
+  background: var(--surface, #fff);
 }
 
-.pf-envelope {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
+.pf-gift-heading {
+  margin: 0;
+  font: 600 24px/1.15 var(--font-display, Georgia, serif);
 }
 
-.pf-envelope-back {
-  position: absolute;
-  inset: 0;
-  border-radius: var(--radius, 10px);
-  background: var(--surface, #ffffff);
-  border: 1px solid var(--line, rgba(176, 139, 106, 0.35));
-}
-
-.pf-envelope-letter {
-  position: absolute;
-  inset: 10px 14px 16px;
-  z-index: 1;
-  border-radius: var(--radius, 8px);
-  background: var(--bg, #fdfaf6);
-  border: 1px solid var(--accent, #b08b6a);
+.pf-gift-toggle {
   display: grid;
-  align-content: center;
   justify-items: center;
-  gap: 2px;
-  padding: 8px;
-  opacity: 0;
-  transform: translateY(8px);
-  transition: transform 650ms var(--ease, ease), opacity 300ms ease;
-}
-
-.pf-envelope-front {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  border-radius: 0 0 10px 10px;
-  background: var(--surface, #ffffff);
-  clip-path: polygon(0 28%, 50% 66%, 100% 28%, 100% 100%, 0 100%);
-}
-
-.pf-envelope-flap {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  transform-origin: 50% 0;
-  transform: rotateX(0deg);
-  background: var(--surface, #ffffff);
-  clip-path: polygon(0 0, 100% 0, 50% 64%);
-  transition: transform 650ms var(--ease, ease);
-}
-
-.pf-envelope-stage.is-open .pf-envelope-flap,
-#hadiah.is-open .pf-envelope-flap {
-  transform: rotateX(180deg);
-  z-index: 0;
-}
-
-.pf-envelope-stage.is-open .pf-envelope-letter,
-#hadiah.is-open .pf-envelope-letter {
-  opacity: 1;
-  transform: translateY(-50%);
-}
-
-#gift-toggle {
-  position: relative;
-  z-index: 4;
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  padding: 0;
+  gap: 16px;
+  width: min(100%, 252px);
+  margin: clamp(58px, 22vw, 82px) auto 0;
+  padding: 0 0 3px;
   border: 0;
+  border-radius: 12px;
+  color: inherit;
   background: transparent;
   cursor: pointer;
 }
 
-.pf-envelope-seal-disc {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
+.pf-envelope-stage {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.75;
+  perspective: 700px;
+  isolation: isolate;
+}
+
+.pf-envelope-back,
+.pf-envelope-front,
+.pf-envelope-flap {
+  position: absolute;
+  inset: 0;
+  border-radius: 9px;
+}
+
+.pf-envelope-letter {
+  position: absolute;
+  inset: 10% 9% 13%;
+  z-index: 1;
+  display: grid;
+  align-content: start;
+  justify-items: center;
+  gap: 2px;
+  padding: 7px;
+  border-radius: 5px;
   overflow: hidden;
+  opacity: 0;
+  transform: translateY(12%);
+  transition: transform 280ms var(--ease, ease), opacity 160ms ease 110ms;
+}
+
+.pf-envelope-front {
+  z-index: 2;
+  clip-path: polygon(0 23%, 50% 52%, 100% 23%, 100% 100%, 0 100%);
+}
+
+.pf-envelope-flap {
+  height: 54%;
+  z-index: 3;
+  transform-origin: top;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transition: transform 450ms ease-in-out 160ms, z-index 0s 385ms;
+}
+
+.pf-envelope-seal-disc {
+  position: absolute;
   display: grid;
   place-items: center;
+  z-index: 4;
+  top: 53%;
+  left: 50%;
+  width: clamp(38px, 12vw, 50px);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  transition: opacity 160ms ease 430ms;
 }
 
-.pf-wax-seal {
+.pf-envelope-seal-disc img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
-.pf-gift-cards,
+.pf-gift-toggle[aria-expanded="true"] .pf-envelope-flap {
+  z-index: 0;
+  transform: rotateX(140deg);
+  transition-delay: 90ms, 315ms;
+}
+
+.pf-gift-toggle[aria-expanded="true"] .pf-envelope-letter {
+  opacity: 1;
+  transform: translateY(-38%);
+  transition-delay: 350ms, 310ms;
+}
+
+.pf-gift-toggle[aria-expanded="true"] .pf-envelope-seal-disc {
+  opacity: 0;
+  transition-delay: 0ms;
+}
+
+.pf-envelope-cta-label {
+  display: grid;
+  place-items: center;
+  min-height: 44px;
+  padding: 6px 18px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 13px;
+}
+
 .lk-gift-cards {
   display: grid;
-  gap: 14px;
-  margin-top: 20px;
+  gap: 12px;
+  margin-top: 18px;
   text-align: left;
 }
 
-.pf-address-recipient {
+.lk-bank-card,
+.lk-address-card {
+  display: grid;
+  justify-items: start;
+  min-width: 0;
+  gap: 8px;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.lk-bank-card {
+  width: min(100%, 320px);
+  margin-inline: auto;
+}
+
+.pf-bank-face {
+  display: grid;
+  grid-template-rows: auto 1fr auto auto;
+  align-items: center;
+  gap: 7px;
+  width: 100%;
+  min-height: 144px;
+  aspect-ratio: 1.586;
+  padding: clamp(13px, 4vw, 19px);
+  border: 1px solid rgba(241, 218, 166, .44);
+  border-radius: 12px;
+  color: #fff7e8;
+  background: #303c2b;
+  isolation: isolate;
+}
+
+.pf-bank-chip {
+  position: relative;
+  width: 31px;
+  height: 23px;
+  border: 1px solid #d8be85;
+  border-radius: 4px;
+  background:
+    linear-gradient(to bottom, transparent 31%, #685a3e 32% 35%, transparent 36% 64%, #685a3e 65% 68%, transparent 69%),
+    linear-gradient(125deg, #8f754b, #ecd6a4 42%, #bf9d61);
+}
+
+.pf-bank-chip::after {
+  content: "";
+  position: absolute;
+  inset: -1px 8px;
+  border: 1px solid #7b6745;
+  border-radius: 5px;
+  background: linear-gradient(120deg, #b89962, #eed7a7 55%, #c8a76c);
+}
+
+.lk-bank-card .lk-copy-btn {
+  justify-self: end;
+}
+
+.lk-bank-name,
+.lk-bank-num,
+.lk-bank-holder,
+.lk-address-text,
+.pf-address-recipient,
+.pf-address-note {
   margin: 0;
+}
+
+.lk-bank-name {
+  font: 700 15px/1.15 var(--font-body, sans-serif);
+  text-align: right;
+}
+
+.lk-bank-num {
+  font-size: clamp(15px, 4.5vw, 21px);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .07em;
+  user-select: text;
+}
+
+.lk-bank-holder {
+  font-size: 11px;
+  line-height: 1.25;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.lk-address-text,
+.pf-address-note {
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.lk-address-text {
+  white-space: pre-line;
+  user-select: text;
+}
+
+.pf-address-recipient {
   font-size: 13px;
   font-weight: 600;
 }
 
-.pf-address-note {
-  margin: 0;
-  font-size: 12px;
-  font-style: italic;
-  color: var(--text-muted, #6a5f58);
-}
-
-.lk-bank-card {
-  position: relative;
-  padding: 20px;
-  background: var(--surface, #ffffff);
-  border: 1px solid var(--line, rgba(176, 139, 106, 0.35));
-  border-radius: var(--radius, 12px);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.lk-bank-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.lk-bank-chip {
-  width: 30px;
-  height: 20px;
-  border: 1px solid var(--accent, #b08b6a);
-  border-radius: 3px;
-  opacity: 0.7;
-}
-
-.lk-bank-name {
-  font-family: var(--font-display, Georgia, serif);
-  font-size: 20px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent, #b08b6a);
-}
-
-.lk-bank-num {
-  margin: 2px 0 0;
-  font-size: 18px;
-  letter-spacing: 0.12em;
-  font-variant-numeric: tabular-nums;
-  color: var(--text, #2f2a26);
-}
-
-.lk-bank-bottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.lk-bank-holder {
-  margin: 0;
-  font-size: 12px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text-muted, #6a5f58);
-}
-
 .lk-copy-btn {
-  min-height: 36px;
-  padding: 6px 14px;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  flex: none;
+  min-height: 44px;
+  margin-top: 4px;
 }
 
-.lk-address-card {
-  text-align: center;
-  align-items: center;
-}
-
-.lk-address-title {
-  margin: 0;
-  font-family: var(--font-display, Georgia, serif);
-  font-size: 20px;
-  color: var(--accent, #b08b6a);
-}
-
-.lk-address-text {
-  margin: 0;
-  font-size: 13.5px;
-  line-height: 1.65;
-  color: var(--text, #2f2a26);
-  max-width: 36ch;
+@media (prefers-reduced-motion: reduce) {
+  .pf-envelope-letter,
+  .pf-envelope-flap,
+  .pf-envelope-seal-disc {
+    transition: none;
+  }
 }
 
 /* ---------- 9. RSVP & Buku Ucapan (rsvp) ---------- */
