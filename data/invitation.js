@@ -78,7 +78,7 @@ window.INVITATION_DATA = {
       { nama: "Blush Petal", hex: "#E5B8BE" },
       { nama: "Burgundy", hex: "#6B1F2E" }
     ],
-    ilustrasi: "assets/dress-code.svg"
+    ilustrasi: "assets/dress-code.webp"
   },
 
   cerita: [
@@ -86,21 +86,21 @@ window.INVITATION_DATA = {
       bab: "Bab I",
       tanggal: "Oktober 2021",
       kota: "Bandung",
-      judul: "Bab I · Pertemuan di Balik Rintik Hujan",
+      judul: "Pertemuan di Balik Rintik Hujan",
       deskripsi: "Sebuah sore di halaman perpustakaan kota mempertemukan kami lewat buku sketsa yang tertinggal dan secangkir teh hangat yang tak sengaja dibagi."
     },
     {
       bab: "Bab II",
       tanggal: "Juli 2024",
       kota: "Bogor",
-      judul: "Bab II · Tumbuh dalam Musim yang Tenang",
+      judul: "Tumbuh dalam Musim yang Tenang",
       deskripsi: "Dari perjalanan akhir pekan menyusuri kebun raya hingga percakapan panjang tentang masa depan, kami belajar merawat sabar dan saling menjadi rumah."
     },
     {
       bab: "Bab III",
       tanggal: "Mei 2026",
       kota: "Bogor",
-      judul: "Bab III · Ikatan Restu Dua Keluarga",
+      judul: "Ikatan Restu Dua Keluarga",
       deskripsi: "Di bawah naungan doa orang tua dan orang-orang terdekat, kami memantapkan langkah untuk merangkai kehidupan bersama dalam sakinah."
     }
   ],
@@ -108,34 +108,29 @@ window.INVITATION_DATA = {
   galeri: [
     {
       src: "assets/garden-scene.svg",
-      alt: "Suasana taman botani berhiaskan bunga pastel yang bermekaran",
+      alt: "Ilustrasi jamuan taman dengan meja panjang, bunga pastel, dan pergola mawar",
       caption: "Di antara rimbun daun dan cahaya pagi, sebuah janji mulai bersemi.",
       featured: true
     },
     {
       src: "assets/venue-villa.svg",
-      alt: "Pendopo dan halaman asri Villa Taman Asri Heritage di Ciawi, Bogor",
-      caption: "Beranda tenang tempat dua keluarga kelak saling bertaut doa."
-    },
-    {
-      src: "assets/frame-hero.jpg",
-      alt: "Bingkai ilustrasi bunga pastel bernuansa klasik",
-      caption: "Sekuntum harap yang kami jaga dengan penuh kelembutan."
-    },
-    {
-      src: "assets/floral-divider.jpg",
-      alt: "Rangkaian bunga mawar pastel dan dedaunan sage",
-      caption: "Setiap kelopak menyimpan cerita tentang syukur dan kesetiaan."
-    },
-    {
-      src: "assets/dress-code.svg",
-      alt: "Inspirasi busana Garden Heritage Attire bernuansa lembut",
-      caption: "Warna-warna teduh yang memeluk hangat perayaan hari bahagia."
+      alt: "Ilustrasi cat air Villa Taman Asri Heritage",
+      caption: "Villa Taman Asri Heritage, tempat kedua keluarga bersatu dalam doa."
     },
     {
       src: "assets/botanical-corner.jpg",
-      alt: "Detail ornamen dedaunan dan kuntum bunga di sudut taman",
-      caption: "Ketenangan alam Bogor yang menjadi saksi langkah baru kami."
+      alt: "Rangkaian bunga anggrek dan mawar taman bernuansa pastel",
+      caption: "Rangkaian anggrek dan mawar taman yang menjadi simbol kehangatan hari bahagia."
+    },
+    {
+      src: "assets/dress-code.svg",
+      alt: "Ilustrasi palet busana Garden Heritage Attire",
+      caption: "Harmoni warna pastel taman: cream, sage moss, dusty rose, dan burgundy."
+    },
+    {
+      src: "assets/floral-divider.jpg",
+      alt: "Detail pita sutra dan rangkaian bunga botani",
+      caption: "Detail pita sutra dan sulur botani sebagai pengikat kenangan."
     }
   ],
 

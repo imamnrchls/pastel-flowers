@@ -26,7 +26,7 @@
     save_date: "Simpan Tanggal",
     view_location: "Google Maps",
     add_calendar: "Simpan ke Kalender",
-    copy_account: "Salin",
+    copy_account: "Salin Nomor",
     copied: "Tersalin",
     copy_address: "Salin Alamat",
     event_passed: "Acara telah berlangsung"
@@ -325,7 +325,7 @@
     toastTimer = setTimeout(() => toast.classList.remove("is-show"), 2400);
   }
 
-  async function copyToClipboard(text, btn, copiedLabel) {
+  async function copyToClipboard(text, label, copiedLabel) {
     let ok = true;
     try {
       await navigator.clipboard.writeText(text);
@@ -343,19 +343,18 @@
         ok = false;
       }
       ta.remove();
+      label.closest("button")?.focus({ preventScroll: true });
     }
 
     if (ok) {
-      showToast(`${copiedLabel}: ${text}`);
-      if (btn) {
-        const prev = btn.dataset.origLabel || btn.textContent;
-        btn.dataset.origLabel = prev;
-        btn.textContent = `${copiedLabel} ✓`;
-        clearTimeout(btn._copyTimer);
-        btn._copyTimer = setTimeout(() => {
-          btn.textContent = prev;
-        }, 1800);
-      }
+      showToast(copiedLabel);
+      const originalLabel = label.dataset.origLabel || label.textContent;
+      label.dataset.origLabel = originalLabel;
+      label.textContent = copiedLabel;
+      clearTimeout(label._copyTimer);
+      label._copyTimer = setTimeout(() => {
+        label.textContent = originalLabel;
+      }, 1800);
     } else {
       showToast("Gagal menyalin. Silakan salin manual.");
     }
@@ -600,7 +599,7 @@
     bgLayer.setAttribute("data-depth", "0.14");
     bgLayer.setAttribute("aria-hidden", "true");
     const frameImg = el("img", "pf-hero-frame-img");
-    frameImg.src = (data.hero && data.hero.frame) || "assets/frame-hero.jpg";
+    frameImg.src = (data.hero && data.hero.frame) || "assets/frame-hero.webp";
     frameImg.alt = "";
     frameImg.decoding = "async";
     bgLayer.append(frameImg);
@@ -768,7 +767,9 @@
     const eyebrow = el("p", "lk-section-eyebrow", "Bride & Groom");
     eyebrow.setAttribute("data-reveal", "up");
     const title = el("h2", "lk-section-title", labels.couple_title);
+    title.id = "mempelai-title";
     title.setAttribute("data-reveal", "up");
+    sec.setAttribute("aria-labelledby", title.id);
     sec.append(eyebrow, title);
 
     const ornaments = theme.ornaments || {};
@@ -911,7 +912,18 @@
         cell.setAttribute("aria-label", `Hari Pernikahan, ${d} ${monthName} ${year}`);
         const badge = el("span", "pf-cal-heart");
         badge.setAttribute("aria-hidden", "true");
-        badge.append(ICONS.heart());
+        // Keep the heart badge compact at the top-right rim so it never clips the date digits.
+        badge.style.top = "-5px";
+        badge.style.right = "-5px";
+        badge.style.width = "16px";
+        badge.style.height = "16px";
+        badge.style.zIndex = "2";
+        badge.style.color = "var(--accent-rose, #C98D96)";
+        const heartSvg = ICONS.heart();
+        heartSvg.style.width = "13px";
+        heartSvg.style.height = "13px";
+        heartSvg.style.filter = "drop-shadow(0 1px 2px rgba(22, 4, 9, 0.35))";
+        badge.append(heartSvg);
         cell.append(badge, el("span", "pf-cal-num", String(d)));
       } else {
         cell.append(el("span", "pf-cal-num", String(d)));
@@ -942,7 +954,9 @@
     const eyebrow = el("p", "lk-section-eyebrow", "Save the Date");
     eyebrow.setAttribute("data-reveal", "up");
     const title = el("h2", "lk-section-title", labels.events_title);
+    title.id = "acara-title";
     title.setAttribute("data-reveal", "up");
+    sec.setAttribute("aria-labelledby", title.id);
     sec.append(eyebrow, title);
 
     // Monthly Visual Calendar
@@ -952,19 +966,43 @@
     // Event Cards
     if (events.length) {
       const list = el("div", "lk-events-list");
+      const schedule = events.length > 1 ? el("ol", "pf-event-program-list") : null;
+      const eventDates = events.map((ev) =>
+        fmtDateID(getEventStart(ev)) || [ev.hari, ev.tanggal_angka, ev.bulan_tahun].filter(Boolean).join(" ")
+      );
+      const showDates = new Set(eventDates).size > 1;
 
-      events.forEach((ev) => {
+      events.forEach((ev, index) => {
         const card = el("article", "lk-event-card pf-event-card");
         card.setAttribute("data-reveal", "up");
 
         const iconWrap = el("div", "lk-event-icon");
         const jenis = String(ev.jenis || "").toLowerCase();
-        iconWrap.append(jenis === "akad" || jenis === "pemberkatan" ? ICONS.rings() : ICONS.champagne());
+        const eventIcon = jenis === "akad" || jenis === "pemberkatan" ? ICONS.rings : ICONS.champagne;
+        iconWrap.append(eventIcon());
 
         const startIso = getEventStart(ev);
         const endIso = getEventEnd(ev);
         const timeText = ev.waktu || fmtTimeRangeWIB(startIso, endIso);
         const venueText = getEventVenue(ev);
+
+        if (schedule) {
+          card.id = `acara-detail-${index + 1}`;
+          card.tabIndex = -1;
+
+          const row = el("li");
+          const link = el("a", "pf-event-program-link");
+          link.href = `#${card.id}`;
+          const copy = el("span", "pf-event-program-copy");
+          const timing = [showDates && eventDates[index], timeText].filter(Boolean).join(" · ");
+          copy.append(el("strong", null, getEventTitle(ev)));
+          if (timing) copy.append(el("span", "pf-event-program-time", timing));
+          const arrow = el("span", "pf-event-program-arrow");
+          arrow.setAttribute("aria-hidden", "true");
+          link.append(eventIcon(), copy, arrow);
+          row.append(link);
+          schedule.append(row);
+        }
 
         let dateNode;
         if (ev.hari && ev.tanggal_angka && ev.bulan_tahun) {
@@ -1040,11 +1078,19 @@
         list.append(card);
       });
 
+      if (schedule) {
+        const program = el("nav", "pf-event-program");
+        program.setAttribute("aria-labelledby", "pf-event-program-title");
+        const programTitle = el("h3", null, "Rangkaian Acara");
+        programTitle.id = "pf-event-program-title";
+        program.append(programTitle, schedule);
+        sec.append(program);
+      }
       sec.append(list);
     }
 
     // Vintage botanical villa illustration
-    const villaSrc = (data.villa_ilustrasi && String(data.villa_ilustrasi).trim()) || "assets/venue-villa.svg";
+    const villaSrc = (data.villa_ilustrasi && String(data.villa_ilustrasi).trim()) || "assets/venue-villa.webp";
     const villaFig = el("figure", "pf-villa-figure");
     villaFig.setAttribute("data-reveal", "rise");
     const villaImg = el("img", "pf-venue-img pf-villa-img");
@@ -1079,7 +1125,9 @@
     const eyebrow = el("p", "lk-section-eyebrow", "Attire Guide");
     eyebrow.setAttribute("data-reveal", "up");
     const title = el("h2", "lk-section-title", labels.dress_code_title);
+    title.id = "dresscode-title";
     title.setAttribute("data-reveal", "up");
+    sec.setAttribute("aria-labelledby", title.id);
     sec.append(eyebrow, title);
 
     const card = el("div", "lk-dresscode pf-dresscode-card");
@@ -1158,7 +1206,9 @@
     const eyebrow = el("p", "lk-section-eyebrow", "Our Journey");
     eyebrow.setAttribute("data-reveal", "up");
     const title = el("h2", "lk-section-title", labels.story_title);
+    title.id = "cerita-title";
     title.setAttribute("data-reveal", "up");
+    sec.setAttribute("aria-labelledby", title.id);
     sec.append(eyebrow, title);
 
     const timeline = el("div", "lk-timeline pf-timeline");
@@ -1184,6 +1234,63 @@
   }
 
   /* ---------- 7. Section: galeri (Jendela Kenangan + 2-col Grid + Lightbox) ---------- */
+  function ensureGalleryPlateStyles() {
+    if (document.getElementById("pf-gallery-plate-style")) return;
+    const style = document.createElement("style");
+    style.id = "pf-gallery-plate-style";
+    style.textContent = [
+      ".lk-gallery-grid .lk-gallery-item.pf-gallery-plate {",
+      "  display: flex;",
+      "  flex-direction: column;",
+      "  align-items: stretch;",
+      "  justify-content: flex-start;",
+      "  aspect-ratio: auto;",
+      "  height: 100%;",
+      "  padding: 7px 7px 11px;",
+      "  text-align: center;",
+      "  overflow: hidden;",
+      "}",
+      ".pf-gallery-plate-media {",
+      "  display: block;",
+      "  position: relative;",
+      "  width: 100%;",
+      "  aspect-ratio: 4 / 3;",
+      "  min-height: 120px;",
+      "  overflow: hidden;",
+      "  border-radius: 9px;",
+      "  background: var(--bg-parchment, #FAF6EE);",
+      "  flex-shrink: 0;",
+      "}",
+      ".lk-gallery-grid .lk-gallery-item.pf-gallery-plate .pf-gallery-plate-media img {",
+      "  position: absolute;",
+      "  inset: 0;",
+      "  display: block;",
+      "  width: 100%;",
+      "  height: 100%;",
+      "  object-fit: contain;",
+      "  padding: 6px;",
+      "  mix-blend-mode: multiply;",
+      "  border-radius: 9px;",
+      "}",
+      ".lk-gallery-grid .lk-gallery-item.pf-gallery-plate .pf-gallery-plate-media img.pf-gallery-img--svg {",
+      "  object-fit: contain;",
+      "  padding: 6px;",
+      "  box-sizing: border-box;",
+      "}",
+      ".pf-gallery-plate-caption {",
+      "  display: block;",
+      "  margin-top: 8px;",
+      "  padding: 0 3px;",
+      "  font-family: var(--font-display, Georgia, serif);",
+      "  font-style: italic;",
+      "  font-size: 12.5px;",
+      "  line-height: 1.38;",
+      "  color: var(--ink-muted, #5F6554);",
+      "}"
+    ].join("\n");
+    document.head.append(style);
+  }
+
   function renderGaleri(data, theme, labels) {
     const gallery = Array.isArray(data.galeri)
       ? data.galeri
@@ -1196,7 +1303,8 @@
                   sizes: item && item.sizes ? String(item.sizes).trim() : "",
                   alt: (item && item.alt) || `Momen ${idx + 1}`,
                   caption: (item && item.caption) || "",
-                  featured: Boolean(item && item.featured)
+                  featured: Boolean(item && item.featured),
+                  contain: item && item.fit === "contain"
                 }
           )
           .filter((item) => item.src)
@@ -1204,19 +1312,23 @@
 
     if (!gallery.length) return null;
 
+    ensureGalleryPlateStyles();
+
     const sec = el("section", "lk-section pf-galeri");
     sec.id = "galeri";
 
     const eyebrow = el("p", "lk-section-eyebrow", "Moments");
     eyebrow.setAttribute("data-reveal", "up");
     const title = el("h2", "lk-section-title", labels.gallery_title);
+    title.id = "galeri-title";
     title.setAttribute("data-reveal", "up");
+    sec.setAttribute("aria-labelledby", title.id);
     sec.append(eyebrow, title);
 
     // Featured Arched "Jendela Kenangan" Preview
     const featuredIdx = Math.max(0, gallery.findIndex((g) => g.featured));
     const featuredItem = gallery[featuredIdx];
-    const featuredBtn = el("button", "pf-gallery-featured");
+    const featuredBtn = el("button", featuredItem.contain ? "pf-gallery-featured pf-gallery-featured--contain" : "pf-gallery-featured");
     featuredBtn.type = "button";
     featuredBtn.setAttribute("data-reveal", "zoom");
     featuredBtn.setAttribute("aria-label", `Jendela Kenangan: Perbesar ${featuredItem.alt}`);
@@ -1225,7 +1337,7 @@
     setImageWithSvgFallback(featImg, featuredItem.src);
     if (featuredItem.srcset) featImg.srcset = featuredItem.srcset;
     featImg.alt = featuredItem.alt;
-    featImg.loading = "lazy";
+    featImg.loading = "eager";
     featImg.decoding = "async";
 
     const featMeta = el("span", "pf-gallery-featured-meta");
@@ -1238,33 +1350,40 @@
     featuredBtn.addEventListener("click", () => openLightbox(gallery, featuredIdx, featuredBtn));
     sec.append(featuredBtn);
 
-    // 2-Column Gallery Grid
+    // 2-Column Gallery Grid (curated botanical Polaroid plates, excluding featured item)
     const grid = el("div", "lk-gallery-grid pf-gallery-grid");
     gallery.forEach((item, idx) => {
-      const btn = el("button", "lk-gallery-item");
+      if (idx === featuredIdx) return;
+      const itemClass = item.contain
+        ? "lk-gallery-item pf-gallery-plate pf-gallery-item--contain"
+        : "lk-gallery-item pf-gallery-plate";
+      const btn = el("button", itemClass);
       btn.type = "button";
       btn.setAttribute("data-reveal", "up");
       btn.setAttribute("aria-label", `Perbesar ${item.alt}`);
 
+      const media = el("span", "pf-gallery-plate-media");
       const img = el("img");
       setImageWithSvgFallback(img, item.src);
       if (item.srcset) img.srcset = item.srcset;
       if (item.sizes) img.sizes = item.sizes;
+      if (/\.svg(\?.*)?$/i.test(item.src)) img.classList.add("pf-gallery-img--svg");
       img.alt = item.alt;
-      img.loading = "lazy";
+      img.loading = "eager";
       img.decoding = "async";
+      media.append(img);
 
-      btn.append(img);
-      if (item.caption) {
-        const cap = el("span", "lk-gallery-cap", item.caption);
-        cap.setAttribute("aria-hidden", "true");
+      btn.append(media);
+      const plateCaptionText = item.caption || item.alt;
+      if (plateCaptionText) {
+        const cap = el("span", "pf-gallery-plate-caption", plateCaptionText);
         btn.append(cap);
       }
       btn.addEventListener("click", () => openLightbox(gallery, idx, btn));
       grid.append(btn);
     });
 
-    sec.append(grid);
+    if (grid.childElementCount) sec.append(grid);
     return sec;
   }
 
@@ -1283,7 +1402,7 @@
           alamat: rawGift ? String(rawGift).trim() : "",
           catatan: ""
         };
-    const giftCopyText = [giftObj.penerima, giftObj.alamat].filter(Boolean).join(" — ");
+    const giftCopyText = [giftObj.penerima, giftObj.alamat].filter(Boolean).join("\n");
 
     if (!accounts.length && !giftObj.alamat) return null;
 
@@ -1298,113 +1417,100 @@
       sec.append(divWrap);
     }
 
-    const eyebrow = el("p", "lk-section-eyebrow", "Wedding Gift");
-    eyebrow.setAttribute("data-reveal", "up");
     const title = el("h2", "lk-section-title", labels.gift_title);
-    title.setAttribute("data-reveal", "up");
-    const lead = el("p", "lk-lead", "Doa restu Anda merupakan karunia terindah bagi kami. Apabila berkenan memberikan tanda kasih, silakan ketuk segel amplop di bawah ini.");
-    lead.setAttribute("data-reveal", "up");
-    sec.append(eyebrow, title, lead);
+    title.id = "hadiah-title";
+    sec.setAttribute("aria-labelledby", title.id);
+    const lead = el("p", "lk-lead", "Doa restu Anda merupakan karunia terindah bagi kami. Jika berkenan, Anda dapat mengirim tanda kasih melalui pilihan di bawah.");
+    sec.append(title, lead);
 
-    const giftCard = el("div", "pf-gift-card lk-gift-block");
+    const giftCard = el("div", "pf-gift-card");
     giftCard.setAttribute("data-reveal", "rise");
 
-    // 3D Envelope Stage matching theme.js & theme.css
-    const envStage = el("div", "pf-envelope-stage");
-    const env = el("div", "pf-envelope");
-    const envBack = el("div", "pf-envelope-back");
-    const envLetter = el("div", "pf-envelope-letter");
-    const letterNames = el("span", "pf-envelope-letter-names");
-    buildNamesSpans(letterNames, data);
-    envLetter.append(
-      el("span", "pf-envelope-letter-note", "Tanda Kasih untuk"),
-      letterNames
-    );
-    const envFront = el("div", "pf-envelope-front");
-    const envFlap = el("div", "pf-envelope-flap");
-    env.append(envBack, envLetter, envFront, envFlap);
-    envStage.append(env);
-
-    // Toggle button (#gift-toggle) with antique brass wax seal
-    const toggleBtn = el("button", "pf-gift-toggle");
-    toggleBtn.id = "gift-toggle";
-    toggleBtn.type = "button";
-    toggleBtn.setAttribute("aria-expanded", "false");
-    toggleBtn.setAttribute("aria-controls", "gift-list");
-
-    const sealDisc = el("span", "pf-envelope-seal-disc");
-    sealDisc.setAttribute("aria-hidden", "true");
-    if (typeof ornaments.waxSealImg === "function") {
-      sealDisc.append(ornaments.waxSealImg());
-    } else {
-      const sealImg = el("img", "pf-wax-seal");
-      sealImg.src = "assets/wax-seal.jpg";
-      sealImg.alt = "";
-      sealImg.loading = "lazy";
-      sealImg.decoding = "async";
-      sealDisc.append(sealImg);
+    function copyButton(text, action, description) {
+      const button = el("button", "lk-btn lk-copy-btn");
+      button.type = "button";
+      if (description) button.setAttribute("aria-label", `${action} ${description}`);
+      const label = el("span", null, action);
+      button.append(ICONS.copy(), label);
+      button.addEventListener("click", () => copyToClipboard(text, label, labels.copied));
+      return button;
     }
-    const ctaLabel = el("span", "pf-envelope-cta-label", "Buka Amplop");
-    toggleBtn.append(sealDisc, ctaLabel);
 
-    // Bank Account & Gift Address Cards (#gift-list)
-    const cards = el("div", "lk-gift-cards pf-gift-list");
-    cards.id = "gift-list";
-    cards.hidden = true;
+    if (accounts.length) {
+      const digital = el("div", "pf-gift-option pf-gift-digital");
+      digital.append(el("h3", "pf-gift-heading", "Amplop Digital"));
 
-    accounts.forEach((acc) => {
-      const card = el("div", "lk-bank-card");
-      const top = el("div", "lk-bank-top");
-      top.append(el("span", "lk-bank-chip"), el("span", "lk-bank-name", acc.bank || "Bank"));
+      const toggle = el("button", "pf-gift-toggle");
+      toggle.id = "gift-toggle";
+      toggle.type = "button";
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("aria-controls", "gift-list");
 
-      const num = el("p", "lk-bank-num", acc.no_rekening);
+      const stage = el("span", "pf-envelope-stage");
+      stage.setAttribute("aria-hidden", "true");
+      const letter = el("span", "pf-envelope-letter");
+      const names = el("span", "pf-envelope-letter-names");
+      buildNamesSpans(names, data);
+      letter.append(el("span", "pf-envelope-letter-note", "Tanda kasih untuk"), names);
 
-      const bottom = el("div", "lk-bank-bottom");
-      bottom.append(el("p", "lk-bank-holder", `a.n. ${acc.atas_nama || ""}`));
+      const seal = el("span", "pf-envelope-seal-disc");
+      if (typeof ornaments.waxSealImg === "function") {
+        seal.append(ornaments.waxSealImg());
+      } else {
+        const image = el("img", "pf-wax-seal");
+        image.src = "assets/wax-seal.webp";
+        image.alt = "";
+        seal.append(image);
+      }
 
-      const copyBtn = el("button", "lk-btn lk-copy-btn");
-      copyBtn.type = "button";
-      copyBtn.append(ICONS.copy(), document.createTextNode(labels.copy_account));
-      const cleanDigits = String(acc.no_rekening).replace(/\s+/g, "");
-      copyBtn.addEventListener("click", () => copyToClipboard(cleanDigits, copyBtn, labels.copied));
+      stage.append(
+        el("span", "pf-envelope-back"),
+        letter,
+        el("span", "pf-envelope-front"),
+        el("span", "pf-envelope-flap"),
+        seal
+      );
+      const toggleLabel = el("span", "pf-envelope-cta-label", "Buka Amplop");
+      toggle.append(stage, toggleLabel);
 
-      bottom.append(copyBtn);
-      card.append(top, num, bottom);
-      cards.append(card);
-    });
+      const cards = el("div", "lk-gift-cards");
+      cards.id = "gift-list";
+      cards.hidden = true;
+      accounts.forEach((acc) => {
+        const card = el("div", "lk-bank-card");
+        const bank = acc.bank || "Bank";
+        const number = String(acc.no_rekening);
+        const face = el("div", "pf-bank-face");
+        const chip = el("span", "pf-bank-chip");
+        chip.setAttribute("aria-hidden", "true");
+        face.append(el("h4", "lk-bank-name", bank), chip, el("p", "lk-bank-num", number));
+        if (acc.atas_nama) face.append(el("p", "lk-bank-holder", acc.atas_nama));
+        card.append(face, copyButton(number.replace(/\s+/g, ""), labels.copy_account, bank));
+        cards.append(card);
+      });
+
+      toggle.addEventListener("click", () => {
+        const open = cards.hidden;
+        toggle.setAttribute("aria-expanded", String(open));
+        toggleLabel.textContent = open ? "Tutup Amplop" : "Buka Amplop";
+        cards.hidden = !open;
+      });
+      digital.append(toggle, cards);
+      giftCard.append(digital);
+    }
 
     if (giftObj.alamat) {
-      const addrCard = el("div", "lk-bank-card lk-address-card");
-      const icoWrap = el("div", "lk-event-icon");
-      icoWrap.style.marginBottom = "0";
-      icoWrap.append(ICONS.gift());
-
-      const copyAddrBtn = el("button", "lk-btn lk-copy-btn");
-      copyAddrBtn.type = "button";
-      copyAddrBtn.append(ICONS.copy(), document.createTextNode(labels.copy_address));
-      copyAddrBtn.addEventListener("click", () => copyToClipboard(giftCopyText, copyAddrBtn, labels.copied));
-
-      addrCard.append(icoWrap, el("h3", "lk-address-title", "Kirim Kado Fisik"));
-      if (giftObj.penerima) addrCard.append(el("p", "pf-address-recipient", `Penerima: ${giftObj.penerima}`));
-      addrCard.append(el("p", "lk-address-text", giftObj.alamat));
-      if (giftObj.catatan) addrCard.append(el("p", "pf-address-note", giftObj.catatan));
-      addrCard.append(copyAddrBtn);
-      cards.append(addrCard);
+      const address = el("div", "pf-gift-option lk-address-card");
+      const icon = el("span", "pf-address-icon");
+      icon.append(ICONS.gift());
+      address.append(icon, el("h3", "pf-gift-heading", "Kirim Kado Fisik"));
+      if (giftObj.penerima) address.append(el("p", "pf-address-recipient", `Penerima: ${giftObj.penerima}`));
+      address.append(el("p", "lk-address-text", giftObj.alamat));
+      if (giftObj.catatan) address.append(el("p", "pf-address-note", giftObj.catatan));
+      address.append(copyButton(giftCopyText, labels.copy_address));
+      giftCard.append(address);
     }
 
-    // Fallback binding only when theme.enhanceMotion is not provided
-    if (typeof theme.enhanceMotion !== "function") {
-      toggleBtn.addEventListener("click", () => {
-        const nextOpen = toggleBtn.getAttribute("aria-expanded") !== "true";
-        toggleBtn.setAttribute("aria-expanded", String(nextOpen));
-        sec.classList.toggle("is-open", nextOpen);
-        envStage.classList.toggle("is-open", nextOpen);
-        ctaLabel.textContent = nextOpen ? "Tutup Amplop" : "Buka Amplop";
-        cards.hidden = !nextOpen;
-      });
-    }
-
-    giftCard.append(envStage, toggleBtn, cards);
     sec.append(giftCard);
     return sec;
   }
@@ -1525,7 +1631,9 @@
     const eyebrow = el("p", "lk-section-eyebrow", "RSVP");
     eyebrow.setAttribute("data-reveal", "up");
     const title = el("h2", "lk-section-title", labels.rsvp_title);
+    title.id = "rsvp-title";
     title.setAttribute("data-reveal", "up");
+    sec.setAttribute("aria-labelledby", title.id);
     const lead = el("p", "lk-lead", "Kehadiran serta doa restu Anda sangat berarti bagi kami. Mohon konfirmasi kehadiran melalui formulir di bawah ini.");
     lead.setAttribute("data-reveal", "up");
     sec.append(eyebrow, title, lead);
@@ -1880,7 +1988,12 @@
       data.catatan_keluarga || "";
 
     const body = el("div", "pf-closing-body");
-    if (closingTitle) body.append(el("h2", "lk-section-title pf-closing-title", closingTitle));
+    if (closingTitle) {
+      const title = el("h2", "lk-section-title pf-closing-title", closingTitle);
+      title.id = "penutup-title";
+      sec.setAttribute("aria-labelledby", title.id);
+      body.append(title);
+    }
     if (closingText) body.append(el("p", "lk-closing-text", closingText));
     if (closingSignoff) body.append(el("p", "lk-closing-signoff", closingSignoff));
 
