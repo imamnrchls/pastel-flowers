@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300" width="640" height="300" role="img" aria-label="Ilustrasi cat air dan etsa botani Villa Taman Asri Heritage">
+  <defs>
+    <!-- Soft watercolor sky & garden aura washes (fades to transparent for parchment card) -->
+    <radialGradient id="skyWash" cx="50%" cy="46%" r="52%">
+      <stop offset="0%" stop-color="#EBD9BC" stop-opacity="0.52"/>
+      <stop offset="52%" stop-color="#E5E1CE" stop-opacity="0.30"/>
+      <stop offset="85%" stop-color="#E5E1CE" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#F5EFE4" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="groundWash" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#B9C1A3" stop-opacity="0.40"/>
+      <stop offset="65%" stop-color="#D4D2BC" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#F5EFE4" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Roof terracotta-rose-sepia watercolor gradient -->
+    <linearGradient id="roofWash" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#C9988B"/>
+      <stop offset="55%" stop-color="#B78378"/>
+      <stop offset="100%" stop-color="#9B6B62"/>
+    </linearGradient>
+
+    <linearGradient id="wingRoofWash" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#BF8F83"/>
+      <stop offset="100%" stop-color="#9A6B63"/>
+    </linearGradient>
+
+    <!-- Villa limestone-parchment facade gradient -->
+    <linearGradient id="stuccoWash" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FBF6EC"/>
+      <stop offset="55%" stop-color="#F1E7D4"/>
+      <stop offset="100%" stop-color="#E2D4BC"/>
+    </linearGradient>
+
+    <linearGradient id="stuccoShadow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#D6C7AC"/>
+      <stop offset="100%" stop-color="#E7DBC4"/>
+    </linearGradient>
+
+    <!-- Window glass warm interior glow -->
+    <linearGradient id="windowGlass" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#5B6148" stop-opacity="0.82"/>
+      <stop offset="55%" stop-color="#8A8869" stop-opacity="0.65"/>
+      <stop offset="100%" stop-color="#CBB388" stop-opacity="0.72"/>
+    </linearGradient>
+
+    <!-- Cypress olive-moss wash -->
+    <linearGradient id="cypressWash" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#65754C"/>
+      <stop offset="50%" stop-color="#4F5D3A"/>
+      <stop offset="100%" stop-color="#354328"/>
+    </linearGradient>
+
+    <linearGradient id="cypressLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7A8A5F"/>
+      <stop offset="100%" stop-color="#4A5836"/>
+    </linearGradient>
+
+    <!-- Soft sage shrub wash -->
+    <radialGradient id="sageBush" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#A6B390"/>
+      <stop offset="60%" stop-color="#7D8D67"/>
+      <stop offset="100%" stop-color="#596845"/>
+    </radialGradient>
+
+    <!-- Gravel garden pathway -->
+    <linearGradient id="pathWash" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#E0D3BC" stop-opacity="0.90"/>
+      <stop offset="70%" stop-color="#EAE0CD" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#F5EFE4" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Antique gold metal trim -->
+    <linearGradient id="goldTrim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D4B87C"/>
+      <stop offset="50%" stop-color="#B5945B"/>
+      <stop offset="100%" stop-color="#8F713F"/>
+    </linearGradient>
+
+    <!-- Delicate organic edge filter for watercolor washes -->
+    <filter id="wcSoft" x="-8%" y="-8%" width="116%" height="116%">
+      <feGaussianBlur stdDeviation="2.2"/>
+    </filter>
+  </defs>
+
+  <!-- 1. Atmospheric Watercolor Backdrop Washes (no hard frame, transparent outer edge) -->
+  <g id="backdrop-wash">
+    <ellipse cx="320" cy="145" rx="285" ry="125" fill="url(#skyWash)"/>
+    <ellipse cx="320" cy="252" rx="295" ry="42" fill="url(#groundWash)"/>
+    <!-- Soft misty distant trees behind villa -->
+    <path d="M90,235 Q105,180 125,195 Q142,165 162,190 Q175,185 182,235 Z" fill="#8C9978" opacity="0.28" filter="url(#wcSoft)"/>
+    <path d="M458,235 Q470,175 492,192 Q510,162 530,192 Q545,185 554,235 Z" fill="#8C9978" opacity="0.28" filter="url(#wcSoft)"/>
+  </g>
+
+  <!-- 2. Flanking Tall Cypress Trees (Back Layer) -->
+  <g id="cypress-trees-back" stroke="#354328" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Far Left Slim Cypress -->
+    <path d="M84,238 C81,208 82,162 88,118 C91,98 94,85 96,76 C98,85 101,98 104,118 C110,162 111,208 108,238 Z"
+          fill="url(#cypressLight)" stroke-width="0.95" opacity="0.92"/>
+    <path d="M96,86 L96,236 M90,132 Q96,126 102,135 M88,162 Q96,154 104,164 M87,194 Q96,186 105,196"
+          fill="none" stroke="#354328" stroke-width="0.65" opacity="0.55"/>
+
+    <!-- Far Right Slim Cypress -->
+    <path d="M532,238 C529,208 530,162 536,118 C539,98 542,85 544,76 C546,85 549,98 552,118 C558,162 559,208 556,238 Z"
+          fill="url(#cypressLight)" stroke-width="0.95" opacity="0.92"/>
+    <path d="M544,86 L544,236 M538,132 Q544,126 550,135 M536,162 Q544,154 552,164 M535,194 Q544,186 553,196"
+          fill="none" stroke="#354328" stroke-width="0.65" opacity="0.55"/>
+  </g>
+
+  <!-- 3. Left & Right Classical Side Wings / Arcades -->
+  <g id="villa-wings" stroke="#3E3D29" stroke-linejoin="round" stroke-linecap="round">
+    <!-- Left Wing Body -->
+    <rect x="140" y="152" width="56" height="84" fill="url(#stuccoShadow)" stroke-width="1"/>
+    <!-- Left Wing Hipped Roof -->
+    <polygon points="134,152 152,128 196,128 196,152" fill="url(#wingRoofWash)" stroke-width="1"/>
+    <path d="M138,146 L195,146 M143,140 L195,140 M148,134 L195,134" stroke="#5A3E36" stroke-width="0.55" opacity="0.55"/>
+    <!-- Left Wing Cornice -->
+    <rect x="137" y="150" width="60" height="4" fill="#EFE5D2" stroke-width="0.8"/>
+    <!-- Left Wing Arched Gallery Window -->
+    <path d="M156,228 L156,184 A12,12 0 0,1 180,184 L180,228 Z" fill="url(#windowGlass)" stroke-width="0.9"/>
+    <path d="M153,228 L153,184 A15,15 0 0,1 183,184 L183,228" fill="none" stroke="#5C553D" stroke-width="0.65"/>
+    <line x1="168" y1="172" x2="168" y2="228" stroke="#F5EFE4" stroke-width="0.7" opacity="0.7"/>
+    <line x1="156" y1="196" x2="180" y2="196" stroke="#F5EFE4" stroke-width="0.7" opacity="0.7"/>
+    <line x1="156" y1="212" x2="180" y2="212" stroke="#F5EFE4" stroke-width="0.7" opacity="0.7"/>
+
+    <!-- Right Wing Body -->
+    <rect x="444" y="152" width="56" height="84" fill="url(#stuccoShadow)" stroke-width="1"/>
+    <!-- Right Wing Hipped Roof -->
+    <polygon points="444,152 444,128 488,128 506,152" fill="url(#wingRoofWash)" stroke-width="1"/>
+    <path d="M445,146 L502,146 M445,140 L497,140 M445,134 L492,134" stroke="#5A3E36" stroke-width="0.55" opacity="0.55"/>
+    <!-- Right Wing Cornice -->
+    <rect x="443" y="150" width="60" height="4" fill="#EFE5D2" stroke-width="0.8"/>
+    <!-- Right Wing Arched Gallery Window -->
+    <path d="M460,228 L460,184 A12,12 0 0,1 484,184 L484,228 Z" fill="url(#windowGlass)" stroke-width="0.9"/>
+    <path d="M457,228 L457,184 A15,15 0 0,1 487,184 L487,228" fill="none" stroke="#5C553D" stroke-width="0.65"/>
+    <line x1="472" y1="172" x2="472" y2="228" stroke="#F5EFE4" stroke-width="0.7" opacity="0.7"/>
+    <line x1="460" y1="196" x2="484" y2="196" stroke="#F5EFE4" stroke-width="0.7" opacity="0.7"/>
+    <line x1="460" y1="212" x2="484" y2="212" stroke="#F5EFE4" stroke-width="0.7" opacity="0.7"/>
+  </g>
+
+  <!-- 4. Main Symmetrical 2-Story Heritage Villa -->
+  <g id="villa-main" stroke="#3E3D29" stroke-linejoin="round" stroke-linecap="round">
+    <!-- Main Facade Wall -->
+    <rect x="194" y="102" width="252" height="134" fill="url(#stuccoWash)" stroke-width="1.15"/>
+    <!-- Corner Quoins / Stone Pilasters -->
+    <rect x="194" y="102" width="10" height="134" fill="#E8DCC7" stroke-width="0.8"/>
+    <rect x="436" y="102" width="10" height="134" fill="#E8DCC7" stroke-width="0.8"/>
+    <!-- Central Risalit Projection -->
+    <rect x="278" y="96" width="84" height="140" fill="#F8F1E3" stroke-width="1"/>
+    <!-- Horizontal Stringcourse Moldings -->
+    <rect x="191" y="100" width="258" height="5" fill="#EFE4D0" stroke-width="0.85"/>
+    <rect x="192" y="164" width="256" height="4" fill="#E9DEC8" stroke-width="0.8"/>
+
+    <!-- Tiled Hipped Roof & Pediment -->
+    <polygon points="182,100 222,56 418,56 458,100" fill="url(#roofWash)" stroke-width="1.15"/>
+    <!-- Roof Ridge Cresting & Finials -->
+    <line x1="222" y1="56" x2="418" y2="56" stroke="#5A3E36" stroke-width="1.4"/>
+    <circle cx="222" cy="54" r="2.2" fill="url(#goldTrim)" stroke-width="0.6"/>
+    <circle cx="418" cy="54" r="2.2" fill="url(#goldTrim)" stroke-width="0.6"/>
+    <!-- Delicate Etched Roof Tile Courses -->
+    <g stroke="#64423A" stroke-width="0.55" opacity="0.55" fill="none">
+      <line x1="214" y1="65" x2="426" y2="65"/>
+      <line x1="206" y1="74" x2="434" y2="74"/>
+      <line x1="198" y1="83" x2="442" y2="83"/>
+      <line x1="190" y1="92" x2="450" y2="92"/>
+      <!-- Vertical tile seams -->
+      <path d="M235,56 L220,100 M255,56 L245,100 M275,56 L270,100 M365,56 L370,100 M385,56 L395,100 M405,56 L420,100"/>
+    </g>
+
+    <!-- Symmetrical Chimneys -->
+    <rect x="234" y="42" width="12" height="16" fill="#E8DCC7" stroke-width="0.85"/>
+    <rect x="232" y="40" width="16" height="3" fill="#C9988B" stroke-width="0.7"/>
+    <rect x="394" y="42" width="12" height="16" fill="#E8DCC7" stroke-width="0.85"/>
+    <rect x="392" y="40" width="16" height="3" fill="#C9988B" stroke-width="0.7"/>
+
+    <!-- Central Classical Triangular Pediment -->
+    <polygon points="274,98 320,66 366,98" fill="#F2E8D6" stroke-width="1.1"/>
+    <polygon points="282,95 320,71 358,95" fill="#E7DAC3" stroke-width="0.7"/>
+    <!-- Pediment Botanical Medallion & Crest -->
+    <circle cx="320" cy="86" r="6" fill="none" stroke="url(#goldTrim)" stroke-width="0.9"/>
+    <circle cx="320" cy="86" r="2.5" fill="#C98D96" stroke="#6B1F2E" stroke-width="0.5"/>
+    <path d="M320,66 L320,57 M317,61 Q320,56 323,61" fill="none" stroke="url(#goldTrim)" stroke-width="1"/>
+
+    <!-- UPPER STORY: 5 Symmetrical Arched Windows -->
+    <!-- Upper Left Outer Window (x=218..238) -->
+    <g>
+      <path d="M217,156 L217,125 A10,10 0 0,1 237,125 L237,156 Z" fill="url(#windowGlass)" stroke-width="0.85"/>
+      <line x1="227" y1="115" x2="227" y2="156" stroke="#F5EFE4" stroke-width="0.65" opacity="0.75"/>
+      <line x1="217" y1="133" x2="237" y2="133" stroke="#F5EFE4" stroke-width="0.65" opacity="0.75"/>
+      <line x1="217" y1="145" x2="237" y2="145" stroke="#F5EFE4" stroke-width="0.65" opacity="0.75"/>
+      <!-- Olive-moss shutters -->
+      <rect x="210" y="124" width="6.5" height="32" fill="#6D7B57" stroke-width="0.7"/>
+      <rect x="237.5" y="124" width="6.5" height="32" fill="#6D7B57" stroke-width="0.7"/>
+      <rect x="214" y="156" width="26" height="3" fill="#DDD0B8" stroke-width="0.7"/>
+    </g>
+
+    <!-- Upper Left Inner Window (x=252..272) -->
+    <g>
+      <path d="M251,156 L251,125 A10,10 0 0,1 271,125 L271,156 Z" fill="url(#windowGlass)" stroke-width="0.85"/>
+      <line x1="261" y1="115" x2="261" y2="156" stroke="#F5EFE4" stroke-width="0.65" opacity="0.75"/>
+      <line x1="251" y1="133" x2="271" y2="133" stroke="#F5EFE4" stroke-width="0.65" opacity="0.75"/>
+      <line x1="251" y1="145" x2="271" y2="145" stroke="#F5EFE4" stroke-width="0.65" opacity="0.75"/>
+      <rect x="244" y="124" width="6.5" height="32" fill="#6D7B57" stroke-width="0.7"/>
+      <rect x="271.5" y="124" width="6.5" height="32" fill="#6D7B57" stroke-width="0.7"/>
+      <rect x="248" y="156" width="26" height="3" fill="#DDD0B8" stroke-width="0.7"/>
+    </g>
+
+    <!-- Upper Center French Door Window + Wrought-Iron Juliet Balcony (x=305..335) -->
+    <g>
+      <path d="M306,162 L306,123 A14,14 0 0,1 334,123 L334,162 Z" fill="url(#windowGlass)" stroke-width="0.95"/>
+      <path d="M303,162 L303,123 A17,17 0 0,1 337,123 L337,162" fill="none" stroke="#5C553D" stroke-width="0.65"/>
+      <!-- Keystone -->
+      <polygon points="318,104 322,104 321,109 319,109" fill="#DDD0B8" stroke-width="0.6"/>
+      <line x1="320" y1="109" x2="320" y2="162" stroke="#F5EFE4" stroke-width="0.75" opacity="0.8"/>
+      <line x1="306" y1="126" x2="334" y2="126" stroke="#F5EFE4" stroke-width="0.7" opacity="0.8"/>
+      <line x1="306" y1="142" x2="334" y2="142" stroke="#F5EFE4" stroke-width="0.7" opacity="0.8"/>
+      <!-- Juliet Balcony Railing -->
+      <rect x="299" y="162" width="42" height="3.5" fill="#E6DAC4" stroke-width="0.75"/>
+      <g stroke="#354328" stroke-width="0.85" fill="none">
+        <line x1="302" y1="150" x2="338" y2="150"/>
+        <line x1="302" y1="150" x2="302" y2="162"/>
+        <line x1="311" y1="150" x2="311" y2="162"/>
+        <line x1="320" y1="150" x2="320" y2="162"/>
+        <line x1="329" y1="150" x2="329" y2="162"/>
+        <line x1="338" y1="150" x2="338" y2="162"/>
+        <circle cx="306.5" cy="156" r="2.4"/>
+        <circle cx="315.5" cy="156" r="2.4"/>
+        <circle cx="324.5" cy="156" r="2.4"/>
+        <circle cx="333.5" cy="156" r="2.4"/>
+      </g>
+    </g>
+
+    <!-- Upper Right Inner Window -->
+    <g>
+      <path d="M369,156 L369,125 A10,10 0 0,1 389,125 L389,156 Z" fill="url(#windowGlass)" stroke-width="0.85"/>
+      <line x1="379" y1="115" x2="379" y2="156" stroke="#F5EFE4" stroke-width="0.65" opacity="0.75"/>
+      <line x1="369" y1="133" x2="389" y2="133" stroke="#F5EFE4" stroke-width="0.65" opacity="0.75"/>
+      <line x1="369" y1="145" x2="389" y2="145" stroke="#F5EFE4" stroke-width="0.65" opacity="0.75"/>
+      <rect x="362" y="124" width="6.5" height="32" fill="#6D7B57" stroke-width="0.7"/>
+      <rect x="389.5" y="124" width="6.5" height="32" fill="#6D7B57" stroke-width="0.7"/>
+      <rect x="366" y="156" width="26" height="3" fill="#DDD0B8" stroke-width="0.7"/>
+    </g>
+
+    <!-- Upper Right Outer Window -->
+    <g>
+      <path d="M403,156 L403,125 A10,10 0 0,1 423,125 L423,156 Z" fill="url(#windowGlass)" stroke-width="0.85"/>
+      <line x1="413" y1="115" x2="413" y2="156" stroke="#F5EFE4" stroke-width="0.65" opacity="0.75"/>
+      <line x1="403" y1="133" x2="423" y2="133" stroke="#F5EFE4" stroke-width="0.65" opacity="0.75"/>
+      <line x1="403" y1="145" x2="423" y2="145" stroke="#F5EFE4" stroke-width="0.65" opacity="0.75"/>
+      <rect x="396" y="124" width="6.5" height="32" fill="#6D7B57" stroke-width="0.7"/>
+      <rect x="423.5" y="124" width="6.5" height="32" fill="#6D7B57" stroke-width="0.7"/>
+      <rect x="400" y="156" width="26" height="3" fill="#DDD0B8" stroke-width="0.7"/>
+    </g>
+
+    <!-- LOWER STORY: Arched Windows & Grand Entrance -->
+    <!-- Lower Left Arched Bays -->
+    <path d="M214,230 L214,191 A13,13 0 0,1 240,191 L240,230 Z" fill="url(#windowGlass)" stroke-width="0.9"/>
+    <line x1="227" y1="178" x2="227" y2="230" stroke="#F5EFE4" stroke-width="0.7" opacity="0.75"/>
+    <line x1="214" y1="196" x2="240" y2="196" stroke="#F5EFE4" stroke-width="0.7" opacity="0.75"/>
+    <line x1="214" y1="212" x2="240" y2="212" stroke="#F5EFE4" stroke-width="0.7" opacity="0.75"/>
+
+    <path d="M248,230 L248,191 A13,13 0 0,1 274,191 L274,230 Z" fill="url(#windowGlass)" stroke-width="0.9"/>
+    <line x1="261" y1="178" x2="261" y2="230" stroke="#F5EFE4" stroke-width="0.7" opacity="0.75"/>
+    <line x1="248" y1="196" x2="274" y2="196" stroke="#F5EFE4" stroke-width="0.7" opacity="0.75"/>
+    <line x1="248" y1="212" x2="274" y2="212" stroke="#F5EFE4" stroke-width="0.7" opacity="0.75"/>
+
+    <!-- Grand Central Arched Doorway + Pilasters -->
+    <rect x="288" y="172" width="7" height="64" fill="#E8DCC7" stroke-width="0.8"/>
+    <rect x="345" y="172" width="7" height="64" fill="#E8DCC7" stroke-width="0.8"/>
+    <path d="M302,236 L302,193 A18,18 0 0,1 338,193 L338,236 Z" fill="#5D4B3A" stroke-width="1"/>
+    <!-- Fanlight Transom -->
+    <path d="M304,193 A16,16 0 0,1 336,193 Z" fill="url(#windowGlass)" stroke-width="0.75"/>
+    <path d="M320,193 L320,177 M320,193 L309,182 M320,193 L331,182" stroke="#F5EFE4" stroke-width="0.65" opacity="0.8"/>
+    <!-- Twin Paneled Heritage Doors -->
+    <line x1="320" y1="193" x2="320" y2="236" stroke="#352B21" stroke-width="0.9"/>
+    <rect x="306" y="198" width="10" height="15" fill="#705B47" stroke="#352B21" stroke-width="0.6"/>
+    <rect x="324" y="198" width="10" height="15" fill="#705B47" stroke="#352B21" stroke-width="0.6"/>
+    <rect x="306" y="217" width="10" height="14" fill="#705B47" stroke="#352B21" stroke-width="0.6"/>
+    <rect x="324" y="217" width="10" height="14" fill="#705B47" stroke="#352B21" stroke-width="0.6"/>
+    <!-- Brass Door Handles -->
+    <circle cx="317.5" cy="216" r="1.2" fill="url(#goldTrim)" stroke="none"/>
+    <circle cx="322.5" cy="216" r="1.2" fill="url(#goldTrim)" stroke="none"/>
+    <!-- Twin Hanging Veranda Lanterns -->
+    <line x1="295" y1="184" x2="295" y2="192" stroke="#354328" stroke-width="0.7"/>
+    <polygon points="292,192 298,192 297,199 293,199" fill="#F2D79A" stroke="#354328" stroke-width="0.65"/>
+    <line x1="345" y1="184" x2="345" y2="192" stroke="#354328" stroke-width="0.7"/>
+    <polygon points="342,192 348,192 347,199 343,199" fill="#F2D79A" stroke="#354328" stroke-width="0.65"/>
+
+    <!-- Lower Right Arched Bays -->
+    <path d="M366,230 L366,191 A13,13 0 0,1 392,191 L392,230 Z" fill="url(#windowGlass)" stroke-width="0.9"/>
+    <line x1="379" y1="178" x2="379" y2="230" stroke="#F5EFE4" stroke-width="0.7" opacity="0.75"/>
+    <line x1="366" y1="196" x2="392" y2="196" stroke="#F5EFE4" stroke-width="0.7" opacity="0.75"/>
+    <line x1="366" y1="212" x2="392" y2="212" stroke="#F5EFE4" stroke-width="0.7" opacity="0.75"/>
+
+    <path d="M400,230 L400,191 A13,13 0 0,1 426,191 L426,230 Z" fill="url(#windowGlass)" stroke-width="0.9"/>
+    <line x1="413" y1="178" x2="413" y2="230" stroke="#F5EFE4" stroke-width="0.7" opacity="0.75"/>
+    <line x1="400" y1="196" x2="426" y2="196" stroke="#F5EFE4" stroke-width="0.7" opacity="0.75"/>
+    <line x1="400" y1="212" x2="426" y2="212" stroke="#F5EFE4" stroke-width="0.7" opacity="0.75"/>
+  </g>
+
+  <!-- 5. Stone Veranda Terrace, Balustrade & Central Garden Steps -->
+  <g id="stone-veranda" stroke="#3E3D29" stroke-linejoin="round" stroke-linecap="round">
+    <!-- Veranda Terrace Platform -->
+    <rect x="122" y="236" width="396" height="14" fill="#DDD0B8" stroke-width="0.95"/>
+    <rect x="118" y="232" width="404" height="4" fill="#EFE5D2" stroke-width="0.8"/>
+
+    <!-- Left Balustrade (x=126..288) -->
+    <rect x="124" y="220" width="166" height="3" fill="#EFE5D2" stroke-width="0.7"/>
+    <g fill="#E6DAC4" stroke-width="0.6">
+      <rect x="126" y="223" width="6" height="9"/>
+      <rect x="142" y="223" width="3.5" height="9"/><rect x="152" y="223" width="3.5" height="9"/><rect x="162" y="223" width="3.5" height="9"/>
+      <rect x="172" y="223" width="3.5" height="9"/><rect x="182" y="223" width="3.5" height="9"/><rect x="192" y="223" width="3.5" height="9"/>
+      <rect x="202" y="223" width="3.5" height="9"/><rect x="212" y="223" width="3.5" height="9"/><rect x="222" y="223" width="3.5" height="9"/>
+      <rect x="232" y="223" width="3.5" height="9"/><rect x="242" y="223" width="3.5" height="9"/><rect x="252" y="223" width="3.5" height="9"/>
+      <rect x="262" y="223" width="3.5" height="9"/><rect x="272" y="223" width="3.5" height="9"/>
+      <rect x="284" y="218" width="8" height="14"/>
+    </g>
+
+    <!-- Right Balustrade (x=350..514) -->
+    <rect x="350" y="220" width="166" height="3" fill="#EFE5D2" stroke-width="0.7"/>
+    <g fill="#E6DAC4" stroke-width="0.6">
+      <rect x="348" y="218" width="8" height="14"/>
+      <rect x="364" y="223" width="3.5" height="9"/><rect x="374" y="223" width="3.5" height="9"/><rect x="384" y="223" width="3.5" height="9"/>
+      <rect x="394" y="223" width="3.5" height="9"/><rect x="404" y="223" width="3.5" height="9"/><rect x="414" y="223" width="3.5" height="9"/>
+      <rect x="424" y="223" width="3.5" height="9"/><rect x="434" y="223" width="3.5" height="9"/><rect x="444" y="223" width="3.5" height="9"/>
+      <rect x="454" y="223" width="3.5" height="9"/><rect x="464" y="223" width="3.5" height="9"/><rect x="474" y="223" width="3.5" height="9"/>
+      <rect x="484" y="223" width="3.5" height="9"/><rect x="494" y="223" width="3.5" height="9"/>
+      <rect x="508" y="223" width="6" height="9"/>
+    </g>
+
+    <!-- Central Garden Pathway -->
+    <path d="M286,250 Q282,272 252,290 L388,290 Q358,272 354,250 Z" fill="url(#pathWash)" stroke="none"/>
+    <path d="M286,250 Q282,272 252,290 M354,250 Q358,272 388,290" fill="none" stroke="#8C7E66" stroke-width="0.75" stroke-dasharray="4 3" opacity="0.6"/>
+
+    <!-- Central Stone Steps -->
+    <rect x="292" y="236" width="56" height="4.5" fill="#F2E9D8" stroke-width="0.75"/>
+    <rect x="288" y="240.5" width="64" height="4.5" fill="#EAE0CD" stroke-width="0.75"/>
+    <rect x="284" y="245" width="72" height="5" fill="#E0D3BC" stroke-width="0.75"/>
+
+    <!-- Classical Stone Urns on Step Pillars -->
+    <g fill="#E9DEC8" stroke-width="0.75">
+      <path d="M283,218 L293,218 L291,213 L294,209 L282,209 L285,213 Z"/>
+      <path d="M347,218 L357,218 L355,213 L358,209 L346,209 L349,213 Z"/>
+    </g>
+  </g>
+
+  <!-- 6. Flanking Tall Olive-Moss Cypress Trees (Foreground Framing) -->
+  <g id="cypress-trees-front" stroke="#354328" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Left Hero Cypress with subtle organic feathered silhouette -->
+    <path d="M107,248 C104,226 102,196 105,174 C103,164 105,142 108,124 C108,112 111,94 114,80 C116,68 119,56 122,48 C125,56 128,68 130,80 C133,94 136,112 136,124 C139,142 141,164 139,174 C142,196 140,226 137,248 Z"
+          fill="url(#cypressWash)" stroke-width="1.05"/>
+    <!-- Delicate botanical cypress etching strokes -->
+    <g fill="none" stroke="#28351D" stroke-width="0.7" opacity="0.65">
+      <path d="M122,58 L122,244"/>
+      <path d="M115,102 Q122,95 129,104 M112,128 Q122,120 132,130 M110,156 Q122,146 134,158 M108,184 Q122,174 136,186 M108,214 Q122,204 136,216"/>
+      <path d="M113,115 Q118,110 122,118 M122,142 Q127,136 131,145 M111,170 Q117,164 122,172 M122,198 Q128,192 133,200"/>
+    </g>
+    <!-- Soft highlight leaf tufts -->
+    <path d="M116,96 Q113,115 117,132 M113,150 Q110,174 115,198" fill="none" stroke="#8C9C6F" stroke-width="1.2" opacity="0.5"/>
+
+    <!-- Left Inner Shorter Cypress -->
+    <path d="M58,248 C56,226 56,196 59,172 C58,160 61,142 64,126 C66,116 68,109 70,102 C72,109 74,116 76,126 C79,142 82,160 81,172 C84,196 84,226 82,248 Z"
+          fill="url(#cypressLight)" stroke-width="0.95"/>
+    <path d="M70,114 L70,244 M64,158 Q70,151 76,160 M62,188 Q70,180 78,190 M61,218 Q70,210 79,220"
+          fill="none" stroke="#354328" stroke-width="0.65" opacity="0.55"/>
+
+    <!-- Right Hero Cypress -->
+    <path d="M503,248 C500,226 498,196 501,174 C499,164 501,142 504,124 C504,112 507,94 510,80 C512,68 515,56 518,48 C521,56 524,68 526,80 C529,94 532,112 532,124 C535,142 537,164 535,174 C538,196 536,226 533,248 Z"
+          fill="url(#cypressWash)" stroke-width="1.05"/>
+    <g fill="none" stroke="#28351D" stroke-width="0.7" opacity="0.65">
+      <path d="M518,58 L518,244"/>
+      <path d="M511,102 Q518,95 525,104 M508,128 Q518,120 528,130 M506,156 Q518,146 530,158 M504,184 Q518,174 532,186 M504,214 Q518,204 532,216"/>
+      <path d="M509,115 Q514,110 518,118 M518,142 Q523,136 527,145 M507,170 Q513,164 518,172 M518,198 Q524,192 529,200"/>
+    </g>
+    <path d="M512,96 Q509,115 513,132 M509,150 Q506,174 511,198" fill="none" stroke="#8C9C6F" stroke-width="1.2" opacity="0.5"/>
+
+    <!-- Right Outer Shorter Cypress -->
+    <path d="M558,248 C556,226 556,196 559,172 C558,160 561,142 564,126 C566,116 568,109 570,102 C572,109 574,116 576,126 C579,142 582,160 581,172 C584,196 584,226 582,248 Z"
+          fill="url(#cypressLight)" stroke-width="0.95"/>
+    <path d="M570,114 L570,244 M564,158 Q570,151 576,160 M562,188 Q570,180 578,190 M561,218 Q570,210 579,220"
+          fill="none" stroke="#354328" stroke-width="0.65" opacity="0.55"/>
+  </g>
+
+  <!-- 7. Soft Sage Garden Bushes & Hedgerows -->
+  <g id="sage-bushes" stroke="#354328" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Left Garden Hedge Cluster -->
+    <path d="M44,250 C44,234 58,225 74,230 C84,216 108,214 122,226 C136,214 162,216 174,228 C190,220 212,226 220,238 C236,232 258,234 270,246 L276,254 L46,254 Z"
+          fill="url(#sageBush)" stroke-width="0.95"/>
+    <!-- Delicate bush stipple & leaf curves -->
+    <path d="M74,238 Q86,228 98,236 M128,234 Q142,224 156,234 M186,236 Q198,228 210,238 M234,242 Q246,236 258,244"
+          fill="none" stroke="#354328" stroke-width="0.65" opacity="0.55"/>
+
+    <!-- Right Garden Hedge Cluster -->
+    <path d="M364,254 L370,246 C382,234 404,232 420,238 C428,226 450,220 466,228 C478,216 504,214 518,226 C532,214 556,216 566,230 C582,225 596,234 596,250 L594,254 Z"
+          fill="url(#sageBush)" stroke-width="0.95"/>
+    <path d="M382,244 Q394,236 406,242 M430,238 Q442,228 454,236 M484,234 Q498,224 512,234 M542,236 Q554,228 566,238"
+          fill="none" stroke="#354328" stroke-width="0.65" opacity="0.55"/>
+
+    <!-- Foreground Low Olive Shrubs Flanking Path -->
+    <path d="M168,262 C175,248 198,244 214,252 C226,246 246,248 256,258 C264,254 276,256 280,264 Z"
+          fill="#8E9B77" stroke-width="0.85"/>
+    <path d="M360,264 C364,256 376,254 384,258 C394,248 414,246 426,252 C442,244 465,248 472,262 Z"
+          fill="#8E9B77" stroke-width="0.85"/>
+  </g>
+
+  <!-- 8. Tiny Blush, Dusty Rose & Burgundy Rose Accents -->
+  <g id="rose-accents">
+    <!-- Left Urn Overflowing Roses -->
+    <g transform="translate(288,205)">
+      <path d="M-9,4 Q-4,-4 3,2 M-2,3 Q6,-4 10,3" fill="none" stroke="#4F5D3A" stroke-width="1.2"/>
+      <circle cx="-4" cy="0" r="3.5" fill="#E5B8BE" stroke="#6B1F2E" stroke-width="0.55"/>
+      <circle cx="3" cy="-1" r="3.8" fill="#C98D96" stroke="#6B1F2E" stroke-width="0.55"/>
+      <circle cx="0" cy="3" r="2.8" fill="#6B1F2E" stroke="#3E121B" stroke-width="0.45"/>
+    </g>
+
+    <!-- Right Urn Overflowing Roses -->
+    <g transform="translate(352,205)">
+      <path d="M-10,3 Q-6,-4 2,3 M-3,2 Q4,-4 9,4" fill="none" stroke="#4F5D3A" stroke-width="1.2"/>
+      <circle cx="-3" cy="-1" r="3.8" fill="#C98D96" stroke="#6B1F2E" stroke-width="0.55"/>
+      <circle cx="4" cy="0" r="3.5" fill="#E5B8BE" stroke="#6B1F2E" stroke-width="0.55"/>
+      <circle cx="0" cy="3" r="2.8" fill="#6B1F2E" stroke="#3E121B" stroke-width="0.45"/>
+    </g>
+
+    <!-- Left Hedge Rose Clusters -->
+    <g stroke="#6B1F2E" stroke-width="0.5">
+      <circle cx="146" cy="234" r="4" fill="#E5B8BE"/><circle cx="152" cy="238" r="3.2" fill="#C98D96"/><circle cx="142" cy="240" r="2.4" fill="#6B1F2E"/>
+      <circle cx="204" cy="244" r="4.2" fill="#C98D96"/><circle cx="211" cy="247" r="3.4" fill="#E5B8BE"/><circle cx="198" cy="249" r="2.6" fill="#6B1F2E"/>
+      <circle cx="238" cy="252" r="3.6" fill="#E5B8BE"/><circle cx="244" cy="255" r="2.5" fill="#6B1F2E"/>
+      <circle cx="94" cy="238" r="3.4" fill="#E5B8BE"/><circle cx="100" cy="242" r="2.4" fill="#C98D96"/>
+    </g>
+
+    <!-- Right Hedge Rose Clusters -->
+    <g stroke="#6B1F2E" stroke-width="0.5">
+      <circle cx="494" cy="234" r="4" fill="#E5B8BE"/><circle cx="488" cy="238" r="3.2" fill="#C98D96"/><circle cx="498" cy="240" r="2.4" fill="#6B1F2E"/>
+      <circle cx="436" cy="244" r="4.2" fill="#C98D96"/><circle cx="429" cy="247" r="3.4" fill="#E5B8BE"/><circle cx="442" cy="249" r="2.6" fill="#6B1F2E"/>
+      <circle cx="402" cy="252" r="3.6" fill="#E5B8BE"/><circle cx="396" cy="255" r="2.5" fill="#6B1F2E"/>
+      <circle cx="546" cy="238" r="3.4" fill="#E5B8BE"/><circle cx="540" cy="242" r="2.4" fill="#C98D96"/>
+    </g>
+  </g>
+
+  <!-- 9. Delicate Etched Botanical Ground Line & Shadows -->
+  <g id="etching-ground" fill="none" stroke-linecap="round">
+    <line x1="65" y1="256" x2="255" y2="256" stroke="#4F5D3A" stroke-width="0.7" opacity="0.45"/>
+    <line x1="385" y1="256" x2="575" y2="256" stroke="#4F5D3A" stroke-width="0.7" opacity="0.45"/>
+    <line x1="120" y1="266" x2="245" y2="266" stroke="#5C553D" stroke-width="0.55" opacity="0.35"/>
+    <line x1="395" y1="266" x2="520" y2="266" stroke="#5C553D" stroke-width="0.55" opacity="0.35"/>
+    <!-- Subtle antique-gold vignette corner rule under path -->
+    <path d="M225,288 L272,288 M368,288 L415,288" stroke="#B5945B" stroke-width="0.7" opacity="0.55"/>
+    <circle cx="320" cy="288" r="1.6" fill="#B5945B" opacity="0.65"/>
+  </g>
+</svg>

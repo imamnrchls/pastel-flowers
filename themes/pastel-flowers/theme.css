@@ -1,0 +1,1951 @@
+/* ==========================================================================
+   LAYER 3 — THEME: PASTEL FLOWERS ("A Garden Heritage")
+   Art Nouveau Botanical Watercolor & Luxury Pressed Stationery
+   ========================================================================== */
+
+[data-theme="pastel-flowers"] {
+  --bg-parchment:     #F5EFE4;
+  --bg-cream-soft:    #FAF6EE;
+  --bg-moss:          #354328;
+  --bg-moss-mid:      #4F5D3A;
+  --bg-burgundy:      #5C1826;
+  --bg-burgundy-deep: #43101B;
+  --ink-primary:      #2D3326;
+  --ink-muted:        #5F6554;
+  --accent-rose:      #C98D96;
+  --accent-blush:     #E6C1C6;
+  --accent-gold:      #B5945B;
+  --accent-gold-light:#D9C08C;
+  --border-hairline:  rgba(79, 93, 58, 0.22);
+
+  --font-display:     "Cormorant Garamond", Georgia, serif;
+  --font-script:      "Pinyon Script", cursive;
+  --font-body:        "Plus Jakarta Sans", system-ui, sans-serif;
+
+  /* Skeleton token bridge */
+  --bg:               var(--bg-parchment);
+  --bg-outer:         #2C3722;
+  --surface:          var(--bg-cream-soft);
+  --text:             var(--ink-primary);
+  --text-muted:       var(--ink-muted);
+  --accent:           var(--accent-gold);
+  --gold:             var(--accent-gold);
+  --line:             var(--border-hairline);
+  --error:            #9E2F42;
+  --radius:           14px;
+  --max-col:          520px;
+  --ease:             cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur-slow:         850ms;
+
+  /* Tactile handmade parchment grain */
+  --pf-paper-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.032'/%3E%3C/svg%3E");
+
+  color-scheme: light;
+}
+
+/* ---------- Base & Split-Screen Shell ---------- */
+[data-theme="pastel-flowers"] body {
+  margin: 0;
+  background-color: var(--bg-moss);
+  background-image:
+    radial-gradient(ellipse 90% 70% at 50% 0%, rgba(217, 192, 140, 0.08), transparent 65%),
+    linear-gradient(180deg, #2D3922 0%, #242E1B 100%);
+  color: var(--ink-primary);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.72;
+  overflow-x: clip;
+}
+
+[data-theme="pastel-flowers"] body.lk-locked {
+  overflow: hidden;
+  height: 100vh;
+  height: 100svh;
+}
+
+.pf-shell {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow-x: clip;
+}
+
+.pf-aside {
+  display: none;
+}
+
+[data-theme="pastel-flowers"] .lk-main {
+  position: relative;
+  width: 100%;
+  max-width: var(--max-col);
+  min-height: 100vh;
+  min-height: 100svh;
+  margin-inline: auto;
+  background-color: var(--bg-parchment);
+  background-image:
+    var(--pf-paper-grain),
+    radial-gradient(circle at 50% 0%, rgba(250, 246, 238, 0.78), transparent 60%);
+  color: var(--ink-primary);
+  overflow-x: clip;
+}
+
+@media (min-width: 540px) and (max-width: 959px) {
+  [data-theme="pastel-flowers"] .lk-main {
+    border-left: 1px solid rgba(181, 148, 91, 0.35);
+    border-right: 1px solid rgba(181, 148, 91, 0.35);
+    box-shadow: 0 20px 70px rgba(15, 22, 10, 0.45);
+  }
+}
+
+@media (min-width: 960px) {
+  .pf-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 520px;
+    align-items: start;
+  }
+
+  .pf-aside {
+    display: grid;
+    place-items: center;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    height: 100svh;
+    padding: clamp(24px, 4vw, 48px);
+    overflow: hidden;
+    border-right: 1px solid rgba(217, 192, 140, 0.28);
+    background-color: var(--bg-moss);
+  }
+
+  [data-theme="pastel-flowers"] .lk-main {
+    width: 520px;
+    max-width: 520px;
+    margin: 0;
+    box-shadow: -16px 0 48px rgba(16, 22, 10, 0.38);
+  }
+
+  [data-theme="pastel-flowers"] .lk-cover {
+    left: auto;
+    right: 0;
+    width: min(520px, 100%);
+  }
+
+  [data-theme="pastel-flowers"] .lk-music-btn {
+    right: 22px;
+  }
+}
+
+/* ---------- Desktop Sticky Aside Showcase ---------- */
+.pf-aside-velvet {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(79, 93, 58, 0.55) 0%, rgba(53, 67, 40, 0.92) 55%, #242E1B 100%);
+}
+
+.pf-aside-velvet::before {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border: 1px solid rgba(217, 192, 140, 0.24);
+  pointer-events: none;
+}
+
+.pf-aside-velvet::after {
+  content: "";
+  position: absolute;
+  inset: 24px;
+  border: 1px solid rgba(217, 192, 140, 0.12);
+  pointer-events: none;
+}
+
+.pf-aside-filigree {
+  position: absolute;
+  width: 54px;
+  height: 54px;
+  pointer-events: none;
+}
+
+.pf-aside-filigree--tl { top: 22px; left: 22px; }
+.pf-aside-filigree--tr { top: 22px; right: 22px; transform: scaleX(-1); }
+.pf-aside-filigree--bl { bottom: 22px; left: 22px; transform: scaleY(-1); }
+.pf-aside-filigree--br { bottom: 22px; right: 22px; transform: scale(-1); }
+
+.pf-aside-card {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 400px);
+  aspect-ratio: 2 / 3;
+  max-height: calc(100svh - 64px);
+  background-color: var(--bg-parchment);
+  background-image: var(--pf-paper-grain);
+  border-radius: 999px 999px 22px 22px;
+  border: 1px solid rgba(217, 192, 140, 0.72);
+  box-shadow:
+    inset 0 0 0 5px var(--bg-parchment),
+    inset 0 0 0 6px rgba(181, 148, 91, 0.45),
+    0 28px 70px rgba(10, 15, 6, 0.55);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.pf-aside-frame {
+  position: absolute;
+  inset: 4px;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pf-aside-frame-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  mix-blend-mode: multiply;
+}
+
+.pf-aside-copy {
+  position: relative;
+  z-index: 2;
+  padding: 26% 16% 18%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.pf-aside-butterfly {
+  margin-bottom: 4px;
+  animation: pf-float 5.5s ease-in-out infinite;
+}
+
+.pf-aside-butterfly .pf-butterfly-svg {
+  width: 40px;
+  height: 32px;
+}
+
+.pf-aside-eyebrow {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.34em;
+  padding-left: 0.34em;
+  text-transform: uppercase;
+  color: var(--bg-moss-mid);
+}
+
+.pf-aside-names {
+  margin: 4px 0 2px;
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: clamp(42px, 4.4vw, 56px);
+  line-height: 1.06;
+  color: var(--ink-primary);
+}
+
+.pf-aside-names .pf-name-amp {
+  font-size: 0.78em;
+  color: var(--accent-gold);
+}
+
+.pf-aside-meta {
+  margin: 4px 0 0;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+}
+
+.pf-aside-tagline {
+  margin: 10px 0 0;
+  padding-top: 10px;
+  border-top: 1px solid rgba(181, 148, 91, 0.45);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--accent-rose);
+}
+
+/* ---------- Asset Blending & Botanical Ornaments ---------- */
+.pf-divider-img {
+  display: block;
+  width: min(100%, 300px);
+  height: auto;
+  margin-inline: auto;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  user-select: none;
+}
+
+.pf-wax-seal {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  user-select: none;
+}
+
+.pf-corner {
+  position: absolute;
+  width: clamp(78px, 20vw, 118px);
+  height: auto;
+  mix-blend-mode: multiply;
+  opacity: 0.85;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+}
+
+.pf-corner--tl {
+  top: 0;
+  left: 0;
+  transform-origin: 0% 0%;
+  animation: pf-sway 7s ease-in-out infinite alternate;
+}
+
+.pf-corner--tr {
+  top: 0;
+  right: 0;
+  transform-origin: 100% 0%;
+  transform: scaleX(-1);
+  animation: pf-sway-tr 7.4s 0.4s ease-in-out infinite alternate;
+}
+
+.pf-corner--bl {
+  bottom: 0;
+  left: 0;
+  transform-origin: 0% 100%;
+  transform: scaleY(-1);
+  animation: pf-sway-bl 7.8s 0.8s ease-in-out infinite alternate;
+}
+
+.pf-corner--br {
+  bottom: 0;
+  right: 0;
+  transform-origin: 100% 100%;
+  transform: scale(-1);
+  animation: pf-sway-br 8.2s 1.2s ease-in-out infinite alternate;
+}
+
+/* ---------- Butterfly SVG Wing Animation ---------- */
+.pf-butterfly-svg {
+  overflow: visible;
+  filter: drop-shadow(0 2px 5px rgba(45, 51, 38, 0.16));
+}
+
+.pf-butterfly-svg .wing-l {
+  transform-origin: 35px 29px;
+  animation: pf-wing-flap-l 0.55s ease-in-out infinite alternate;
+}
+
+.pf-butterfly-svg .wing-r {
+  transform-origin: 37px 29px;
+  animation: pf-wing-flap-r 0.55s ease-in-out infinite alternate;
+}
+
+.pf-butterflies {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 3;
+}
+
+.pf-butterfly-float {
+  position: absolute;
+  will-change: transform, opacity;
+}
+
+.pf-butterfly-float--1 {
+  top: 15%;
+  left: 10%;
+  animation: pf-butterfly-flight 14s ease-in-out infinite;
+}
+
+.pf-butterfly-float--2 {
+  top: 22%;
+  right: 11%;
+  transform: scale(0.78);
+  animation: pf-butterfly-flight-b 17s 2.5s ease-in-out infinite;
+}
+
+/* ---------- Golden Dust Motes ---------- */
+.pf-motes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.pf-motes i {
+  position: absolute;
+  left: var(--x, 50%);
+  top: var(--y, 70%);
+  width: var(--s, 4px);
+  height: var(--s, 4px);
+  border-radius: 50%;
+  background: radial-gradient(circle, #FFF8E6 0%, var(--accent-gold-light) 55%, transparent 75%);
+  box-shadow: 0 0 8px rgba(217, 192, 140, 0.7);
+  opacity: 0;
+  animation: pf-mote-rise var(--dur, 8s) ease-in-out var(--delay, 0s) infinite;
+}
+
+/* ---------- Cover Overlay (#lk-cover) ---------- */
+[data-theme="pastel-flowers"] .lk-cover {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: max(16px, env(safe-area-inset-top, 0px)) 16px max(20px, env(safe-area-inset-bottom, 0px));
+  background-color: var(--bg-moss);
+  background-image:
+    var(--pf-paper-grain),
+    radial-gradient(circle at 50% 42%, rgba(79, 93, 58, 0.58) 0%, rgba(53, 67, 40, 0.96) 58%, #242E1B 100%);
+  overflow-y: auto;
+  will-change: transform, opacity;
+}
+
+[data-theme="pastel-flowers"] .lk-cover.is-opening {
+  animation: pf-cover-out 750ms cubic-bezier(0.55, 0.04, 0.32, 1) forwards;
+  pointer-events: none;
+}
+
+[data-theme="pastel-flowers"] .lk-cover.is-gone {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.pf-cover-backdrop {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.pf-cover-card {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 420px);
+  min-height: min(620px, calc(100svh - 36px));
+  padding: clamp(54px, 12vw, 76px) clamp(26px, 7vw, 44px) clamp(38px, 8vw, 56px);
+  background-color: var(--bg-parchment);
+  background-image: var(--pf-paper-grain);
+  border-radius: 20px;
+  border: 1px solid rgba(181, 148, 91, 0.42);
+  box-shadow:
+    inset 0 0 0 5px var(--bg-parchment),
+    inset 0 0 0 6px rgba(79, 93, 58, 0.14),
+    0 24px 64px rgba(45, 51, 38, 0.18);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.pf-cover-frame {
+  position: absolute;
+  inset: 2px;
+  pointer-events: none;
+  z-index: 0;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.pf-cover-frame-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  mix-blend-mode: multiply;
+  opacity: 0.94;
+}
+
+.pf-cover-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 280px;
+  padding-top: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pf-cover-content > * {
+  animation: pf-soft-in 850ms var(--ease) both;
+}
+.pf-cover-content > :nth-child(1) { animation-delay: 80ms; }
+.pf-cover-content > :nth-child(2) { animation-delay: 180ms; }
+.pf-cover-content > :nth-child(3) { animation-delay: 280ms; }
+.pf-cover-content > :nth-child(4) { animation-delay: 380ms; }
+.pf-cover-content > :nth-child(5) { animation-delay: 480ms; }
+
+.pf-cover-eyebrow {
+  margin: 0 0 6px;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.34em;
+  padding-left: 0.34em;
+  text-transform: uppercase;
+  color: var(--bg-moss-mid);
+}
+
+.pf-cover-names {
+  margin: 0;
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: clamp(42px, 12vw, 56px);
+  line-height: 1.04;
+  color: var(--ink-primary);
+  text-shadow: 0 1px 10px rgba(245, 239, 228, 0.95);
+}
+
+.pf-cover-names .pf-name-amp {
+  font-size: 0.78em;
+  color: var(--accent-gold);
+}
+
+.pf-name-first,
+.pf-name-second {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.pf-cover-date {
+  margin: 6px 0 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  color: var(--ink-muted);
+}
+
+.pf-cover-date::before,
+.pf-cover-date::after {
+  content: "";
+  width: 20px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-gold));
+}
+
+.pf-cover-date::after {
+  background: linear-gradient(90deg, var(--accent-gold), transparent);
+}
+
+.pf-cover-guest {
+  width: 100%;
+  margin: 0 0 18px;
+  padding: 12px 14px;
+  background: rgba(250, 246, 238, 0.9);
+  border: 1px solid rgba(181, 148, 91, 0.48);
+  border-radius: 12px;
+  box-shadow:
+    inset 0 0 0 3px rgba(245, 239, 228, 0.75),
+    0 8px 20px rgba(45, 51, 38, 0.08);
+}
+
+.pf-cover-to {
+  margin: 0 0 4px;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.pf-cover-guest-name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(19px, 5vw, 22px);
+  line-height: 1.25;
+  color: var(--ink-primary);
+  overflow-wrap: anywhere;
+}
+
+.pf-cover-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.pf-open-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 6px 24px 6px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(217, 192, 140, 0.75);
+  background: linear-gradient(165deg, var(--bg-moss-mid) 0%, var(--bg-moss) 100%);
+  color: var(--bg-cream-soft);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0 10px 24px rgba(53, 67, 40, 0.28), inset 0 1px 0 rgba(250, 246, 238, 0.22);
+  transition: transform 240ms var(--ease), box-shadow 240ms var(--ease);
+}
+
+.pf-open-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(53, 67, 40, 0.36);
+}
+
+.pf-open-btn:active {
+  transform: scale(0.97);
+}
+
+.pf-open-seal {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--bg-parchment);
+  padding: 2px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 2px 8px rgba(18, 24, 12, 0.35);
+  transition: transform 280ms var(--ease);
+}
+
+.lk-cover.is-opening .pf-open-seal {
+  transform: scale(0.84) rotate(-10deg);
+}
+
+/* Angled gold sheen sweep */
+.pf-shine::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  bottom: -20%;
+  left: -65%;
+  width: 42%;
+  transform: skewX(-22deg);
+  background: linear-gradient(90deg, transparent, rgba(217, 192, 140, 0.55), transparent);
+  animation: pf-shine 4.2s 1.6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.pf-skip-btn {
+  padding: 8px 16px;
+  min-height: 36px;
+  border: 0;
+  background: transparent;
+  color: var(--ink-muted);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 200ms ease;
+}
+
+.pf-skip-btn:hover {
+  color: var(--ink-primary);
+}
+
+@media (max-height: 690px) {
+  .pf-cover-card {
+    padding-top: 42px;
+    padding-bottom: 28px;
+  }
+  .pf-cover-date {
+    margin-bottom: 10px;
+  }
+  .pf-cover-guest {
+    margin-bottom: 12px;
+    padding: 10px 12px;
+  }
+}
+
+/* ---------- Common Section & Card Primitives ---------- */
+[data-theme="pastel-flowers"] .lk-section {
+  position: relative;
+  padding: clamp(48px, 9vw, 76px) clamp(20px, 6vw, 32px);
+  text-align: center;
+  color: var(--ink-primary);
+}
+
+[data-theme="pastel-flowers"] .lk-section-eyebrow {
+  margin: 0 0 8px;
+  font-family: var(--font-body);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  padding-left: 0.3em;
+  text-transform: uppercase;
+  color: var(--bg-moss-mid);
+}
+
+[data-theme="pastel-flowers"] .lk-section-title {
+  margin: 0 0 14px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(28px, 7vw, 38px);
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+  color: var(--bg-moss);
+}
+
+[data-theme="pastel-flowers"] .lk-lead {
+  margin: 0 auto 28px;
+  max-width: 40ch;
+  font-size: 14px;
+  color: var(--ink-muted);
+}
+
+[data-theme="pastel-flowers"] .lk-divider {
+  margin: 0 auto 26px;
+}
+
+.pf-arch-card,
+.pf-frame-wrap {
+  position: relative;
+  background: var(--bg-cream-soft);
+  border-radius: 999px 999px 18px 18px;
+  border: 1px solid rgba(181, 148, 91, 0.55);
+  box-shadow:
+    inset 0 0 0 5px var(--bg-parchment),
+    inset 0 0 0 6px var(--border-hairline),
+    0 16px 36px rgba(45, 51, 38, 0.1);
+}
+
+[data-theme="pastel-flowers"] .lk-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: 1px solid var(--accent-gold);
+  background: var(--bg-cream-soft);
+  color: var(--bg-moss);
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 220ms var(--ease), background-color 220ms ease, color 220ms ease, box-shadow 220ms ease;
+}
+
+[data-theme="pastel-flowers"] .lk-btn:hover {
+  background: var(--bg-moss);
+  border-color: var(--bg-moss);
+  color: var(--bg-cream-soft);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(53, 67, 40, 0.22);
+}
+
+[data-theme="pastel-flowers"] .lk-btn--solid {
+  background: linear-gradient(165deg, var(--bg-moss-mid) 0%, var(--bg-moss) 100%);
+  border-color: rgba(217, 192, 140, 0.65);
+  color: var(--bg-cream-soft);
+}
+
+[data-theme="pastel-flowers"] .lk-btn--ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--ink-muted);
+}
+
+[data-theme="pastel-flowers"] .lk-btn--ghost:hover {
+  background: rgba(79, 93, 58, 0.08);
+  border-color: transparent;
+  color: var(--ink-primary);
+  box-shadow: none;
+}
+
+/* ---------- Section 1: Hero / Pembuka (#pembuka) ---------- */
+[data-theme="pastel-flowers"] .pf-hero {
+  position: relative;
+  min-height: min(94svh, 780px);
+  padding: clamp(54px, 10vw, 80px) clamp(20px, 5vw, 32px) clamp(48px, 8vw, 72px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--bg-parchment);
+}
+
+[data-theme="pastel-flowers"] .pf-hero-bg {
+  z-index: 0;
+}
+
+[data-theme="pastel-flowers"] .pf-hero-frame-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  mix-blend-mode: multiply;
+  opacity: 0.92;
+}
+
+body.lk-opened .pf-hero-frame-img {
+  animation: pf-dolly-in 1500ms var(--ease) both;
+}
+
+[data-theme="pastel-flowers"] .pf-hero-veil {
+  z-index: 1;
+  background: radial-gradient(ellipse 68% 58% at 50% 48%, rgba(245, 239, 228, 0.92) 0%, rgba(245, 239, 228, 0.68) 58%, transparent 88%);
+}
+
+[data-theme="pastel-flowers"] .pf-hero-florals {
+  z-index: 1;
+}
+
+[data-theme="pastel-flowers"] .pf-hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 340px;
+}
+
+.pf-monogram {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+
+.pf-monogram-letters {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--accent-gold);
+}
+
+[data-theme="pastel-flowers"] #pf-hero-names,
+[data-theme="pastel-flowers"] .pf-hero-names {
+  margin: 4px 0 8px;
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: clamp(46px, 13vw, 64px);
+  line-height: 1.05;
+  color: var(--ink-primary);
+  text-shadow: 0 2px 14px rgba(245, 239, 228, 0.95);
+}
+
+[data-theme="pastel-flowers"] #pf-hero-names .pf-hero-amp,
+[data-theme="pastel-flowers"] .pf-hero-names .lk-amp-inline {
+  font-style: normal;
+  font-size: 0.8em;
+  color: var(--accent-gold);
+}
+
+#pf-hero-names .ch {
+  display: inline-block;
+  opacity: 0;
+}
+
+#pf-hero-names .ch--space {
+  width: 0.25em;
+}
+
+body.lk-opened #pf-hero-names .ch {
+  animation: pf-letter-in 650ms calc(160ms + var(--i, 0) * 42ms) var(--ease) both;
+}
+
+[data-theme="pastel-flowers"] .lk-hero-date,
+[data-theme="pastel-flowers"] .pf-hero-meta {
+  margin: 0 0 22px;
+  font-family: var(--font-display);
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+[data-theme="pastel-flowers"] .pf-hero .lk-countdown {
+  gap: 8px;
+  max-width: 340px;
+  margin: 0 auto 24px;
+  padding: 0;
+  border: 0;
+}
+
+[data-theme="pastel-flowers"] .pf-hero .lk-countdown-unit {
+  padding: 12px 4px 10px;
+  background: rgba(250, 246, 238, 0.92);
+  border: 1px solid rgba(181, 148, 91, 0.45);
+  border-radius: 999px 999px 12px 12px;
+  box-shadow: 0 6px 18px rgba(45, 51, 38, 0.08);
+}
+
+[data-theme="pastel-flowers"] .pf-hero .lk-countdown-unit + .lk-countdown-unit::before {
+  display: none;
+}
+
+[data-theme="pastel-flowers"] .pf-hero .lk-countdown-num {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(24px, 6.5vw, 32px);
+  color: var(--bg-moss);
+}
+
+[data-theme="pastel-flowers"] .pf-hero .lk-countdown-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--ink-muted);
+}
+
+/* ---------- Section 2: Ayat / Kutipan (#ayat) ---------- */
+[data-theme="pastel-flowers"] #ayat .lk-quote-box {
+  position: relative;
+  margin: 0 auto;
+  padding: 36px 24px 30px;
+  max-width: 40ch;
+  background: var(--bg-cream-soft);
+  border: 1px solid rgba(181, 148, 91, 0.5);
+  border-radius: 999px 999px 18px 18px;
+  box-shadow:
+    inset 0 0 0 5px var(--bg-parchment),
+    inset 0 0 0 6px var(--border-hairline),
+    0 14px 32px rgba(45, 51, 38, 0.08);
+}
+
+[data-theme="pastel-flowers"] .lk-quote-text {
+  margin: 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(18px, 4.5vw, 21px);
+  line-height: 1.7;
+  color: var(--ink-primary);
+}
+
+[data-theme="pastel-flowers"] .lk-quote-source {
+  margin: 14px 0 0;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--bg-moss-mid);
+}
+
+/* ---------- Section 3: Mempelai (#mempelai) ---------- */
+[data-theme="pastel-flowers"] .lk-couple-grid {
+  display: grid;
+  gap: 34px;
+  margin-top: 24px;
+}
+
+[data-theme="pastel-flowers"] .lk-person-photo-wrap {
+  margin-bottom: 18px;
+  overflow: visible;
+}
+
+[data-theme="pastel-flowers"] .lk-person-photo-wrap .pf-frame-wrap {
+  padding: 10px;
+}
+
+[data-theme="pastel-flowers"] .lk-person-photo,
+[data-theme="pastel-flowers"] .lk-person-placeholder {
+  width: 196px;
+  height: 256px;
+  border-radius: 999px 999px 14px 14px;
+  object-fit: cover;
+  overflow: hidden;
+  background: var(--bg-parchment);
+}
+
+.pf-cameo {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(230, 193, 198, 0.24), transparent 65%),
+    var(--bg-cream-soft);
+  border-radius: 999px 999px 14px 14px;
+}
+
+.pf-cameo-crest {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.pf-cameo-initial {
+  position: relative;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 76px;
+  line-height: 1;
+  color: var(--bg-moss);
+  margin-top: 10px;
+}
+
+.pf-cameo-tag {
+  position: relative;
+  font-family: var(--font-body);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  padding-left: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+}
+
+[data-theme="pastel-flowers"] .lk-person-role {
+  margin: 0 0 6px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--accent-rose);
+}
+
+[data-theme="pastel-flowers"] .lk-person-name {
+  margin: 0 0 8px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(24px, 6vw, 30px);
+  line-height: 1.2;
+  color: var(--bg-moss);
+}
+
+[data-theme="pastel-flowers"] .lk-person-parents {
+  margin: 0;
+  max-width: 34ch;
+  font-size: 13.5px;
+  color: var(--ink-muted);
+}
+
+[data-theme="pastel-flowers"] .lk-person-parents-rel {
+  color: var(--ink-muted);
+}
+
+[data-theme="pastel-flowers"] .lk-person-parents-names {
+  color: var(--ink-primary);
+  font-weight: 500;
+}
+
+[data-theme="pastel-flowers"] .lk-ig-link {
+  margin-top: 12px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(181, 148, 91, 0.48);
+  background: var(--bg-cream-soft);
+  color: var(--bg-moss);
+  font-size: 12px;
+  font-weight: 500;
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+[data-theme="pastel-flowers"] .lk-ig-link:hover {
+  background: var(--bg-moss);
+  border-color: var(--bg-moss);
+  color: var(--bg-cream-soft);
+}
+
+[data-theme="pastel-flowers"] .lk-couple-sep,
+[data-theme="pastel-flowers"] .pf-amp-medallion {
+  font-family: var(--font-script);
+  font-size: 46px;
+  line-height: 1;
+  color: var(--accent-gold);
+}
+
+/* ---------- Section 4: Burgundy Heritage Band (#acara) ---------- */
+[data-theme="pastel-flowers"] #acara {
+  position: relative;
+  background:
+    radial-gradient(ellipse 110% 50% at 50% 0%, rgba(217, 192, 140, 0.14), transparent 65%),
+    linear-gradient(180deg, var(--bg-burgundy) 0%, var(--bg-burgundy-deep) 100%);
+  color: var(--bg-cream-soft);
+  border-top: 3px double rgba(217, 192, 140, 0.65);
+  border-bottom: 3px double rgba(217, 192, 140, 0.65);
+}
+
+[data-theme="pastel-flowers"] #acara .lk-section-eyebrow {
+  color: var(--accent-gold-light);
+}
+
+[data-theme="pastel-flowers"] #acara .lk-section-title {
+  color: var(--bg-cream-soft);
+}
+
+/* Divider inside burgundy band sits inside a cream stationery pill so multiply blends cleanly */
+[data-theme="pastel-flowers"] #acara .lk-divider {
+  padding: 10px 22px;
+  max-width: 280px;
+  border-radius: 999px;
+  background: var(--bg-parchment);
+  border: 1px solid rgba(217, 192, 140, 0.6);
+  box-shadow: 0 8px 22px rgba(22, 4, 9, 0.35);
+}
+
+/* Monthly Visual Calendar Card */
+[data-theme="pastel-flowers"] .pf-calendar-card {
+  max-width: 372px;
+  margin: 0 auto 30px;
+  padding: 22px 18px;
+  background-color: var(--bg-parchment);
+  background-image: var(--pf-paper-grain);
+  color: var(--ink-primary);
+  border-radius: 20px;
+  border: 1px solid rgba(217, 192, 140, 0.78);
+  box-shadow:
+    inset 0 0 0 5px var(--bg-parchment),
+    inset 0 0 0 6px rgba(181, 148, 91, 0.36),
+    0 18px 42px rgba(22, 4, 9, 0.38);
+}
+
+[data-theme="pastel-flowers"] .pf-cal-header {
+  border-bottom-color: rgba(181, 148, 91, 0.35);
+}
+
+[data-theme="pastel-flowers"] .pf-cal-month {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--bg-burgundy);
+}
+
+[data-theme="pastel-flowers"] .pf-cal-year {
+  color: var(--ink-muted);
+  font-weight: 600;
+}
+
+[data-theme="pastel-flowers"] .pf-cal-weekday {
+  color: var(--bg-moss-mid);
+  font-weight: 600;
+}
+
+[data-theme="pastel-flowers"] .pf-cal-cell.is-wedding-day {
+  color: var(--bg-cream-soft);
+}
+
+[data-theme="pastel-flowers"] .pf-cal-heart {
+  opacity: 1;
+  color: var(--bg-burgundy);
+}
+
+[data-theme="pastel-flowers"] .pf-cal-heart svg {
+  width: 32px;
+  height: 32px;
+  filter: drop-shadow(0 3px 6px rgba(92, 24, 38, 0.28));
+}
+
+[data-theme="pastel-flowers"] .pf-cal-cell.is-wedding-day .pf-cal-num {
+  color: var(--bg-cream-soft);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+[data-theme="pastel-flowers"] .lk-events-list {
+  display: grid;
+  gap: 26px;
+  max-width: 390px;
+  margin-inline: auto;
+}
+
+[data-theme="pastel-flowers"] .lk-event-card {
+  position: relative;
+  padding: 36px 22px 28px;
+  background-color: var(--bg-parchment);
+  background-image: var(--pf-paper-grain);
+  color: var(--ink-primary);
+  border-radius: 999px 999px 20px 20px;
+  border: 1px solid rgba(217, 192, 140, 0.82);
+  box-shadow:
+    inset 0 0 0 6px var(--bg-parchment),
+    inset 0 0 0 7px rgba(181, 148, 91, 0.4),
+    0 22px 48px rgba(22, 4, 9, 0.42);
+}
+
+[data-theme="pastel-flowers"] .lk-event-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--bg-cream-soft);
+  border: 1px solid var(--accent-gold);
+  color: var(--bg-burgundy);
+}
+
+[data-theme="pastel-flowers"] .lk-event-title {
+  margin: 0 0 10px;
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: clamp(36px, 9vw, 44px);
+  line-height: 1.08;
+  color: var(--bg-burgundy);
+}
+
+[data-theme="pastel-flowers"] .lk-event-date {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 auto 10px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(201, 141, 150, 0.14);
+  border: 1px solid rgba(201, 141, 150, 0.42);
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--ink-primary);
+}
+
+[data-theme="pastel-flowers"] .lk-event-date-day {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  min-width: 28px;
+  height: 28px;
+  padding-inline: 6px;
+  border-radius: 50%;
+  background: var(--bg-burgundy);
+  color: var(--bg-cream-soft);
+  font-weight: 700;
+}
+
+[data-theme="pastel-flowers"] .lk-event-date-day::after {
+  content: "♥";
+  position: absolute;
+  top: -7px;
+  right: -6px;
+  font-size: 11px;
+  line-height: 1;
+  color: var(--accent-rose);
+}
+
+[data-theme="pastel-flowers"] .lk-event-time {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--bg-moss);
+  opacity: 1;
+}
+
+[data-theme="pastel-flowers"] .lk-event-rule {
+  width: 64px;
+  background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+}
+
+[data-theme="pastel-flowers"] .lk-event-venue {
+  font-weight: 600;
+  color: var(--ink-primary);
+}
+
+[data-theme="pastel-flowers"] .lk-event-address {
+  color: var(--ink-muted);
+  opacity: 1;
+}
+
+[data-theme="pastel-flowers"] .lk-event-actions > a.lk-btn {
+  background: linear-gradient(165deg, var(--bg-burgundy), var(--bg-burgundy-deep));
+  border-color: rgba(217, 192, 140, 0.72);
+  color: var(--bg-cream-soft);
+}
+
+[data-theme="pastel-flowers"] .lk-cal-menu {
+  background: var(--bg-cream-soft);
+  border-color: var(--accent-gold);
+  color: var(--ink-primary);
+  box-shadow: 0 14px 32px rgba(22, 4, 9, 0.32);
+}
+
+[data-theme="pastel-flowers"] .lk-cal-menu a:hover,
+[data-theme="pastel-flowers"] .lk-cal-menu button:hover {
+  background: rgba(181, 148, 91, 0.14);
+  color: var(--bg-burgundy);
+}
+
+/* Arched Cream Stationery Frame for Villa Illustration inside Burgundy Band */
+[data-theme="pastel-flowers"] .pf-villa-figure {
+  margin: 30px auto 0;
+  max-width: 390px;
+  padding: 14px;
+  background-color: var(--bg-parchment);
+  background-image: var(--pf-paper-grain);
+  border-radius: 999px 999px 20px 20px;
+  border: 1px solid rgba(217, 192, 140, 0.78);
+  box-shadow:
+    inset 0 0 0 4px var(--bg-parchment),
+    inset 0 0 0 5px rgba(181, 148, 91, 0.35),
+    0 20px 44px rgba(22, 4, 9, 0.4);
+  overflow: hidden;
+}
+
+[data-theme="pastel-flowers"] .pf-villa-img {
+  border-radius: 999px 999px 14px 14px;
+  mix-blend-mode: multiply;
+}
+
+/* ---------- Section 4b: Dress Code (#dresscode) ---------- */
+[data-theme="pastel-flowers"] .lk-dresscode {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 30px 22px;
+  background-color: var(--bg-cream-soft);
+  background-image: var(--pf-paper-grain);
+  border: 1px solid rgba(181, 148, 91, 0.5);
+  border-radius: 20px;
+  box-shadow:
+    inset 0 0 0 5px var(--bg-parchment),
+    inset 0 0 0 6px var(--border-hairline),
+    0 14px 32px rgba(45, 51, 38, 0.08);
+}
+
+[data-theme="pastel-flowers"] .lk-swatch,
+[data-theme="pastel-flowers"] .pf-swatch-circle {
+  border: 2px solid var(--bg-cream-soft);
+  box-shadow: 0 0 0 1.5px var(--accent-gold), 0 6px 14px rgba(45, 51, 38, 0.16);
+}
+
+[data-theme="pastel-flowers"] .pf-swatch-name {
+  color: var(--ink-primary);
+  font-weight: 500;
+}
+
+[data-theme="pastel-flowers"] .pf-dc-illus-img {
+  mix-blend-mode: multiply;
+  border-radius: 12px;
+}
+
+/* ---------- Section 5: Cerita & Galeri (#cerita, #galeri) ---------- */
+[data-theme="pastel-flowers"] .lk-timeline::before,
+[data-theme="pastel-flowers"] .pf-timeline::before {
+  background: linear-gradient(180deg, transparent, var(--accent-gold) 10%, var(--accent-gold) 90%, transparent);
+}
+
+[data-theme="pastel-flowers"] .lk-timeline-item,
+[data-theme="pastel-flowers"] .pf-timeline-item {
+  padding: 18px 20px;
+  margin-bottom: 18px;
+  background: var(--bg-cream-soft);
+  border: 1px solid var(--border-hairline);
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(45, 51, 38, 0.06);
+}
+
+[data-theme="pastel-flowers"] .lk-timeline-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 18px;
+}
+
+[data-theme="pastel-flowers"] .lk-timeline-dot,
+[data-theme="pastel-flowers"] .pf-timeline-dot {
+  left: -25px;
+  top: 22px;
+  border-radius: 0;
+  transform: rotate(45deg);
+  background: var(--bg-parchment);
+  border: 1.5px solid var(--accent-gold);
+  box-shadow: 0 0 0 3px var(--bg-parchment);
+}
+
+[data-theme="pastel-flowers"] .pf-timeline-chapter {
+  color: var(--accent-rose);
+}
+
+[data-theme="pastel-flowers"] .lk-timeline-title {
+  font-weight: 600;
+  color: var(--bg-moss);
+}
+
+[data-theme="pastel-flowers"] .pf-gallery-featured {
+  padding: 6px;
+  background: var(--bg-cream-soft);
+  border: 1px solid rgba(181, 148, 91, 0.55);
+  box-shadow: 0 16px 36px rgba(45, 51, 38, 0.14);
+}
+
+[data-theme="pastel-flowers"] .pf-gallery-featured-img {
+  border-radius: 999px 999px 10px 10px;
+}
+
+[data-theme="pastel-flowers"] .pf-gallery-featured-meta {
+  inset: auto 6px 6px;
+  border-radius: 0 0 10px 10px;
+  background: linear-gradient(to top, rgba(35, 45, 26, 0.82), transparent);
+}
+
+[data-theme="pastel-flowers"] .lk-gallery-item {
+  padding: 5px;
+  background: var(--bg-cream-soft);
+  border: 1px solid rgba(181, 148, 91, 0.45);
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(45, 51, 38, 0.08);
+}
+
+[data-theme="pastel-flowers"] .lk-gallery-item img {
+  border-radius: 9px;
+}
+
+[data-theme="pastel-flowers"] .lk-lightbox {
+  background: rgba(26, 33, 20, 0.94);
+}
+
+[data-theme="pastel-flowers"] .lk-lightbox-img {
+  border-color: rgba(217, 192, 140, 0.55);
+}
+
+/* ---------- Section 6: Hadiah & 3D Envelope (#hadiah) ---------- */
+[data-theme="pastel-flowers"] .pf-gift-stage {
+  max-width: 410px;
+  padding: 26px 18px 24px;
+  background-color: var(--bg-cream-soft);
+  background-image: var(--pf-paper-grain);
+  border: 1px solid rgba(181, 148, 91, 0.5);
+  border-radius: 20px;
+  box-shadow:
+    inset 0 0 0 5px var(--bg-parchment),
+    inset 0 0 0 6px var(--border-hairline),
+    0 14px 34px rgba(45, 51, 38, 0.09);
+  perspective: 1000px;
+}
+
+[data-theme="pastel-flowers"] .pf-gift-envelope {
+  width: min(290px, 82vw);
+  height: 186px;
+  transition: margin-top 550ms var(--ease);
+}
+
+[data-theme="pastel-flowers"] .pf-gift-envelope.is-open {
+  margin-top: 34px;
+}
+
+[data-theme="pastel-flowers"] .pf-gift-back {
+  background: linear-gradient(160deg, var(--bg-burgundy) 0%, var(--bg-burgundy-deep) 100%);
+  border: 1px solid rgba(217, 192, 140, 0.65);
+  border-radius: 12px;
+  box-shadow: 0 16px 32px rgba(67, 16, 27, 0.25);
+}
+
+[data-theme="pastel-flowers"] .pf-gift-card-preview {
+  background: var(--bg-parchment);
+  border: 1px solid var(--accent-gold);
+  box-shadow: inset 0 0 0 3px var(--bg-cream-soft), 0 8px 20px rgba(45, 51, 38, 0.16);
+}
+
+[data-theme="pastel-flowers"] .pf-gift-envelope.is-open .pf-gift-card-preview {
+  transform: translateY(-44px);
+}
+
+[data-theme="pastel-flowers"] .pf-gift-card-kicker {
+  color: var(--bg-moss-mid);
+  font-weight: 600;
+}
+
+[data-theme="pastel-flowers"] .pf-gift-card-names {
+  font-family: var(--font-script);
+  font-size: 30px;
+  line-height: 1.05;
+  color: var(--bg-burgundy);
+}
+
+[data-theme="pastel-flowers"] .pf-gift-pocket {
+  border: 1px solid rgba(217, 192, 140, 0.55);
+  border-radius: 0 0 12px 12px;
+  background: linear-gradient(165deg, #6E2030 0%, var(--bg-burgundy) 100%);
+  clip-path: polygon(0 28%, 50% 66%, 100% 28%, 100% 100%, 0 100%);
+}
+
+[data-theme="pastel-flowers"] .pf-gift-flap {
+  height: 58%;
+  background: linear-gradient(180deg, #7A2436 0%, var(--bg-burgundy) 100%);
+  border: 0;
+  border-radius: 12px 12px 0 0;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transition: transform 650ms var(--ease), z-index 0s 280ms;
+}
+
+[data-theme="pastel-flowers"] .pf-gift-flap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(0 0, 100% 0, 50% 100%, 49% 97%, 97% 2%, 3% 2%, 51% 97%, 50% 100%);
+  background: var(--accent-gold-light);
+}
+
+[data-theme="pastel-flowers"] .pf-gift-envelope.is-open .pf-gift-flap {
+  transform: rotateX(-180deg);
+  z-index: 1;
+}
+
+[data-theme="pastel-flowers"] .pf-gift-seal-face {
+  width: 64px;
+  height: 64px;
+  background: var(--bg-parchment);
+  border: 1.5px solid var(--accent-gold-light);
+  box-shadow: 0 6px 18px rgba(22, 4, 9, 0.34);
+  transition: transform 380ms var(--ease), opacity 320ms ease;
+}
+
+[data-theme="pastel-flowers"] .pf-gift-seal-img {
+  mix-blend-mode: multiply;
+}
+
+[data-theme="pastel-flowers"] .pf-gift-seal-text {
+  color: var(--bg-parchment);
+  text-shadow: 0 1px 3px rgba(45, 32, 12, 0.75);
+  font-size: 14px;
+}
+
+[data-theme="pastel-flowers"] .pf-gift-envelope.is-open .pf-gift-seal-face {
+  transform: scale(0.45) rotate(120deg);
+  opacity: 0;
+}
+
+[data-theme="pastel-flowers"] .pf-gift-seal-hint {
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: var(--bg-moss);
+  border: 1px solid rgba(217, 192, 140, 0.6);
+  color: var(--bg-cream-soft);
+  font-size: 10px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(45, 51, 38, 0.25);
+}
+
+[data-theme="pastel-flowers"] .pf-gift-drawer.is-open .lk-gift-cards > * {
+  animation: pf-gift-reveal 620ms calc(var(--i, 0) * 120ms) var(--ease) both;
+}
+
+[data-theme="pastel-flowers"] .lk-bank-card {
+  background: linear-gradient(135deg, var(--bg-cream-soft) 0%, #EFE5D3 100%);
+  border: 1px solid rgba(181, 148, 91, 0.5);
+  box-shadow: 0 8px 20px rgba(45, 51, 38, 0.08);
+}
+
+[data-theme="pastel-flowers"] .lk-bank-name {
+  font-weight: 600;
+  color: var(--bg-burgundy);
+}
+
+[data-theme="pastel-flowers"] .lk-bank-num {
+  color: var(--ink-primary);
+  font-weight: 600;
+}
+
+[data-theme="pastel-flowers"] .lk-address-title {
+  color: var(--bg-burgundy);
+}
+
+/* ---------- Section 7: RSVP & Ucapan (#rsvp) ---------- */
+[data-theme="pastel-flowers"] .lk-rsvp-form {
+  max-width: 420px;
+  padding: 26px 22px;
+  background: var(--bg-cream-soft);
+  border: 1px solid rgba(181, 148, 91, 0.45);
+  border-radius: 18px;
+  box-shadow: 0 12px 28px rgba(45, 51, 38, 0.07);
+}
+
+[data-theme="pastel-flowers"] .lk-label {
+  color: var(--bg-moss-mid);
+  font-weight: 600;
+}
+
+[data-theme="pastel-flowers"] .lk-input,
+[data-theme="pastel-flowers"] .lk-textarea {
+  padding: 10px 12px;
+  background: var(--bg-parchment);
+  border: 1px solid var(--border-hairline);
+  border-radius: 10px;
+  color: var(--ink-primary);
+  font-size: 15px;
+}
+
+[data-theme="pastel-flowers"] .lk-input:focus,
+[data-theme="pastel-flowers"] .lk-textarea:focus {
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 0 3px rgba(181, 148, 91, 0.18);
+}
+
+[data-theme="pastel-flowers"] .lk-pill-label {
+  border-color: rgba(181, 148, 91, 0.45);
+  background: var(--bg-parchment);
+  color: var(--ink-primary);
+}
+
+[data-theme="pastel-flowers"] .lk-pill-option input:checked + .lk-pill-label {
+  background: var(--bg-moss);
+  border-color: var(--bg-moss);
+  color: var(--bg-cream-soft);
+}
+
+[data-theme="pastel-flowers"] .lk-wishes-stat {
+  background: var(--bg-cream-soft);
+  border-color: rgba(181, 148, 91, 0.4);
+}
+
+[data-theme="pastel-flowers"] .lk-wishes-stat-num {
+  color: var(--bg-moss);
+  font-weight: 600;
+}
+
+[data-theme="pastel-flowers"] .lk-wish-card {
+  background: var(--bg-cream-soft);
+  border-color: var(--border-hairline);
+}
+
+[data-theme="pastel-flowers"] .lk-wish-avatar {
+  background: var(--bg-parchment);
+  border-color: var(--accent-gold);
+  color: var(--bg-moss);
+}
+
+[data-theme="pastel-flowers"] .lk-wish-name {
+  font-weight: 600;
+  color: var(--bg-moss);
+}
+
+[data-theme="pastel-flowers"] .lk-wish-badge--hadir {
+  background: rgba(79, 93, 58, 0.1);
+  border-color: var(--bg-moss-mid);
+  color: var(--bg-moss);
+}
+
+/* ---------- Section 8: Closing & Falling Petals (#penutup) ---------- */
+[data-theme="pastel-flowers"] #penutup {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: clamp(56px, 10vw, 88px);
+}
+
+[data-theme="pastel-flowers"] .pf-closing-card {
+  position: relative;
+  max-width: 410px;
+  margin: 0 auto;
+  padding: 58px 26px 38px;
+  background-color: var(--bg-cream-soft);
+  background-image: var(--pf-paper-grain);
+  border: 1px solid rgba(181, 148, 91, 0.55);
+  border-radius: 999px 999px 22px 22px;
+  box-shadow:
+    inset 0 0 0 6px var(--bg-parchment),
+    inset 0 0 0 7px rgba(201, 141, 150, 0.35),
+    0 18px 40px rgba(45, 51, 38, 0.1);
+}
+
+[data-theme="pastel-flowers"] .pf-closing-card > .pf-lace-frame:not(.pf-lace-frame--wrapped) {
+  position: absolute;
+  inset: 12px;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  border: 1px dashed rgba(181, 148, 91, 0.38);
+  padding: 18px 14px 0;
+}
+
+.pf-lace-frame--wrapped {
+  position: relative;
+  padding: 26px 22px;
+  background: var(--bg-cream-soft);
+  border: 1px solid rgba(181, 148, 91, 0.55);
+  border-radius: 999px 999px 22px 22px;
+}
+
+.pf-lace-filigree {
+  display: block;
+  width: min(100%, 240px);
+  height: 28px;
+  margin: 0 auto;
+}
+
+.pf-closing-emblem {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin: 12px auto 14px;
+}
+
+.pf-closing-initials {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--accent-gold);
+}
+
+[data-theme="pastel-flowers"] .lk-closing-names,
+[data-theme="pastel-flowers"] .pf-closing-names {
+  font-family: var(--font-script);
+  font-size: clamp(38px, 11vw, 52px);
+  line-height: 1.08;
+  color: var(--bg-moss);
+}
+
+[data-theme="pastel-flowers"] .lk-closing-text {
+  color: var(--ink-muted);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+.pf-petals {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.pf-petals i {
+  position: absolute;
+  top: -24px;
+  left: var(--x, 50%);
+  width: var(--s, 11px);
+  height: calc(var(--s, 11px) * 0.72);
+  border-radius: 85% 0 85% 0;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.65), transparent 62%), var(--c, #E6C1C6);
+  opacity: 0.85;
+  animation: pf-petal-fall var(--dur, 9s) var(--delay, 0s) linear infinite;
+  animation-play-state: paused;
+}
+
+#penutup.is-live .pf-petals i,
+#penutup.live .pf-petals i {
+  animation-play-state: running;
+}
+
+/* ---------- Footer, Persistent Music Button & Toast ---------- */
+[data-theme="pastel-flowers"] .lk-footer {
+  padding: 26px 20px calc(34px + env(safe-area-inset-bottom, 0px));
+  background: var(--bg-moss);
+  color: rgba(250, 246, 238, 0.78);
+  border-top: 1px solid rgba(217, 192, 140, 0.35);
+}
+
+[data-theme="pastel-flowers"] .lk-footer a {
+  color: var(--accent-gold-light);
+  border-bottom-color: rgba(217, 192, 140, 0.45);
+}
+
+[data-theme="pastel-flowers"] .lk-music-btn {
+  border-color: rgba(217, 192, 140, 0.75);
+  background: var(--bg-moss);
+  color: var(--accent-gold-light);
+  box-shadow: 0 8px 22px rgba(20, 28, 12, 0.36);
+}
+
+[data-theme="pastel-flowers"] .lk-music-btn.is-playing svg,
+[data-theme="pastel-flowers"] .lk-music-btn[aria-pressed="true"] svg {
+  animation: pf-spin 4.8s linear infinite;
+}
+
+[data-theme="pastel-flowers"] .lk-toast {
+  background: var(--bg-moss);
+  border: 1px solid var(--accent-gold-light);
+  color: var(--bg-cream-soft);
+  border-radius: 999px;
+}
+
+/* ---------- Keyframe Animations ---------- */
+@keyframes pf-cover-out {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-28%) scale(0.98);
+  }
+}
+
+@keyframes pf-soft-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pf-dolly-in {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes pf-letter-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.92);
+    filter: blur(7px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@keyframes pf-sway {
+  from { transform: rotate(-1.6deg); }
+  to   { transform: rotate(1.6deg); }
+}
+
+@keyframes pf-sway-tr {
+  from { transform: scaleX(-1) rotate(-1.6deg); }
+  to   { transform: scaleX(-1) rotate(1.6deg); }
+}
+
+@keyframes pf-sway-bl {
+  from { transform: scaleY(-1) rotate(-1.6deg); }
+  to   { transform: scaleY(-1) rotate(1.6deg); }
+}
+
+@keyframes pf-sway-br {
+  from { transform: scale(-1) rotate(-1.6deg); }
+  to   { transform: scale(-1) rotate(1.6deg); }
+}
+
+@keyframes pf-swing {
+  from { transform: rotate(-2.4deg); }
+  to   { transform: rotate(2.4deg); }
+}
+
+@keyframes pf-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+
+@keyframes pf-wing-flap-l {
+  from { transform: scaleX(1); }
+  to   { transform: scaleX(0.38); }
+}
+
+@keyframes pf-wing-flap-r {
+  from { transform: scaleX(1); }
+  to   { transform: scaleX(0.38); }
+}
+
+@keyframes pf-butterfly-flight {
+  0%   { transform: translate3d(0, 0, 0) rotate(-6deg); opacity: 0.72; }
+  25%  { transform: translate3d(38px, -22px, 0) rotate(5deg); opacity: 0.95; }
+  50%  { transform: translate3d(72px, 8px, 0) rotate(-4deg); opacity: 0.85; }
+  75%  { transform: translate3d(28px, 24px, 0) rotate(7deg); opacity: 0.9; }
+  100% { transform: translate3d(0, 0, 0) rotate(-6deg); opacity: 0.72; }
+}
+
+@keyframes pf-butterfly-flight-b {
+  0%   { transform: scale(0.78) translate3d(0, 0, 0) rotate(6deg); opacity: 0.65; }
+  30%  { transform: scale(0.78) translate3d(-44px, -18px, 0) rotate(-6deg); opacity: 0.9; }
+  65%  { transform: scale(0.78) translate3d(-74px, 16px, 0) rotate(5deg); opacity: 0.8; }
+  100% { transform: scale(0.78) translate3d(0, 0, 0) rotate(6deg); opacity: 0.65; }
+}
+
+@keyframes pf-mote-rise {
+  0%   { opacity: 0; transform: translate3d(0, 0, 0); }
+  25%  { opacity: 0.75; }
+  75%  { opacity: 0.6; }
+  100% { opacity: 0; transform: translate3d(14px, -68px, 0); }
+}
+
+@keyframes pf-petal-fall {
+  0%   { transform: translate(0, 0) rotate(0deg); }
+  25%  { transform: translate(calc(var(--drift, 20px) * 0.6), 24vh) rotate(105deg); }
+  50%  { transform: translate(var(--drift, 20px), 52vh) rotate(200deg); }
+  75%  { transform: translate(calc(var(--drift, 20px) * 0.3), 80vh) rotate(300deg); }
+  100% { transform: translate(calc(var(--drift, 20px) * -0.2), 115vh) rotate(390deg); opacity: 0; }
+}
+
+@keyframes pf-shine {
+  0%, 58% { left: -65%; }
+  100%    { left: 135%; }
+}
+
+@keyframes pf-gift-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(-16px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pf-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---------- Reduced Motion Overrides ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  [data-theme="pastel-flowers"] *,
+  [data-theme="pastel-flowers"] *::before,
+  [data-theme="pastel-flowers"] *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+  }
+
+  .pf-motes,
+  .pf-butterflies,
+  .pf-petals,
+  .pf-shine::after {
+    display: none;
+  }
+
+  #pf-hero-names .ch,
+  .pf-hero-names .ch,
+  [data-theme="pastel-flowers"] [data-reveal],
+  [data-theme="pastel-flowers"] .lk-reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}

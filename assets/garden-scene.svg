@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 440" width="640" height="440" role="img" aria-label="Ilustrasi taman romantis pergola mawar pastel dan meja jamuan pernikahan berlilin">
+  <defs>
+    <!-- Soft sky & golden sun halo behind pergola -->
+    <radialGradient id="gardenSky" cx="46%" cy="32%" r="54%">
+      <stop offset="0%" stop-color="#F6E5BD" stop-opacity="0.72"/>
+      <stop offset="48%" stop-color="#E7E0CB" stop-opacity="0.34"/>
+      <stop offset="85%" stop-color="#E5E1CE" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#F5EFE4" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="meadowWash" cx="50%" cy="50%" r="52%">
+      <stop offset="0%" stop-color="#AEB995" stop-opacity="0.45"/>
+      <stop offset="65%" stop-color="#D4D3BC" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#F5EFE4" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Warm golden sunbeams -->
+    <linearGradient id="sunbeamGrad" x1="25%" y1="0%" x2="75%" y2="100%">
+      <stop offset="0%" stop-color="#F4D793" stop-opacity="0.34"/>
+      <stop offset="55%" stop-color="#E6C57D" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#F5EFE4" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Candle halo glow -->
+    <radialGradient id="candleGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFE69A" stop-opacity="0.75"/>
+      <stop offset="45%" stop-color="#E5B964" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#F5EFE4" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Stone pergola column gradient -->
+    <linearGradient id="stoneCol" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#DDD0B8"/>
+      <stop offset="38%" stop-color="#F3EAD9"/>
+      <stop offset="100%" stop-color="#C9BBA0"/>
+    </linearGradient>
+
+    <!-- Linen tablecloth gradient -->
+    <linearGradient id="linenCloth" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FAF4E7"/>
+      <stop offset="55%" stop-color="#EFE4D0"/>
+      <stop offset="100%" stop-color="#DECFAF"/>
+    </linearGradient>
+
+    <linearGradient id="runnerRose" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#E5B8BE"/>
+      <stop offset="100%" stop-color="#C98D96"/>
+    </linearGradient>
+
+    <!-- Olive foliage washes -->
+    <linearGradient id="oliveLeaf" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#76875B"/>
+      <stop offset="100%" stop-color="#455331"/>
+    </linearGradient>
+
+    <linearGradient id="goldVessel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#DEC388"/>
+      <stop offset="55%" stop-color="#B5945B"/>
+      <stop offset="100%" stop-color="#876A38"/>
+    </linearGradient>
+
+    <!-- Soft watercolor rose gradients -->
+    <radialGradient id="roseBlush" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#F6DFDF"/>
+      <stop offset="55%" stop-color="#E5B8BE"/>
+      <stop offset="100%" stop-color="#C98D96"/>
+    </radialGradient>
+    <radialGradient id="roseDusty" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#EBC8CE"/>
+      <stop offset="60%" stop-color="#C98D96"/>
+      <stop offset="100%" stop-color="#A66A74"/>
+    </radialGradient>
+
+    <filter id="softGlow" x="-15%" y="-15%" width="130%" height="130%">
+      <feGaussianBlur stdDeviation="3.5"/>
+    </filter>
+  </defs>
+
+  <!-- 1. Atmospheric Sky, Distant Garden Vista & Meadow Backdrop -->
+  <g id="garden-vista">
+    <ellipse cx="320" cy="185" rx="285" ry="155" fill="url(#gardenSky)"/>
+    <ellipse cx="320" cy="376" rx="280" ry="48" fill="url(#meadowWash)"/>
+
+    <!-- Distant Soft Cypresses & Garden Hedgerow through the Arch -->
+    <g opacity="0.40" fill="#7D8C66" stroke="none">
+      <path d="M195,295 C192,248 196,196 204,162 C211,196 215,248 212,295 Z"/>
+      <path d="M222,295 C220,256 223,212 229,182 C235,212 238,256 236,295 Z"/>
+      <path d="M404,295 C402,256 405,212 411,182 C417,212 420,256 418,295 Z"/>
+      <path d="M428,295 C425,248 429,196 437,162 C445,196 449,248 446,295 Z"/>
+      <path d="M140,305 Q200,262 260,278 Q320,254 380,278 Q440,262 500,305 Z" filter="url(#softGlow)"/>
+    </g>
+  </g>
+
+  <!-- 2. Arched Garden Pergola (Classical Stone Pillars + Wrought-Iron Lattice Arch) -->
+  <g id="garden-pergola" stroke="#354328" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Left Stone Column & Plinth -->
+    <rect x="92" y="328" width="44" height="32" fill="url(#stoneCol)" stroke-width="1"/>
+    <rect x="88" y="356" width="52" height="8" fill="#D5C6AA" stroke-width="0.9"/>
+    <rect x="98" y="176" width="32" height="152" fill="url(#stoneCol)" stroke-width="1"/>
+    <!-- Fluted etching lines -->
+    <path d="M106,184 L106,322 M114,184 L114,322 M122,184 L122,322" fill="none" stroke="#8C7E63" stroke-width="0.6" opacity="0.55"/>
+    <!-- Capital -->
+    <rect x="93" y="168" width="42" height="8" fill="#EFE4D0" stroke-width="0.9"/>
+
+    <!-- Right Stone Column & Plinth -->
+    <rect x="504" y="328" width="44" height="32" fill="url(#stoneCol)" stroke-width="1"/>
+    <rect x="500" y="356" width="52" height="8" fill="#D5C6AA" stroke-width="0.9"/>
+    <rect x="510" y="176" width="32" height="152" fill="url(#stoneCol)" stroke-width="1"/>
+    <path d="M518,184 L518,322 M526,184 L526,322 M534,184 L534,322" fill="none" stroke="#8C7E63" stroke-width="0.6" opacity="0.55"/>
+    <rect x="505" y="168" width="42" height="8" fill="#EFE4D0" stroke-width="0.9"/>
+
+    <!-- Wrought-Iron Arched Pergola Ribbing & Scrollwork -->
+    <path d="M108,168 C108,68 202,28 320,28 C438,28 532,68 532,168" fill="none" stroke="#354328" stroke-width="2.2"/>
+    <path d="M122,168 C122,82 210,44 320,44 C430,44 518,82 518,168" fill="none" stroke="#354328" stroke-width="1.6"/>
+    <!-- Delicate radial iron lattice rungs -->
+    <g fill="none" stroke="#4F5D3A" stroke-width="0.95" opacity="0.8">
+      <line x1="112" y1="138" x2="126" y2="141"/>
+      <line x1="125" y1="106" x2="138" y2="114"/>
+      <line x1="152" y1="76" x2="164" y2="88"/>
+      <line x1="194" y1="50" x2="202" y2="64"/>
+      <line x1="252" y1="34" x2="256" y2="49"/>
+      <line x1="320" y1="28" x2="320" y2="44"/>
+      <line x1="388" y1="34" x2="384" y2="49"/>
+      <line x1="446" y1="50" x2="438" y2="64"/>
+      <line x1="488" y1="76" x2="476" y2="88"/>
+      <line x1="515" y1="106" x2="502" y2="114"/>
+      <line x1="528" y1="138" x2="514" y2="141"/>
+      <!-- Tiny decorative filigree rings -->
+      <circle cx="144" cy="96" r="5"/>
+      <circle cx="226" cy="49" r="5"/>
+      <circle cx="414" cy="49" r="5"/>
+      <circle cx="496" cy="96" r="5"/>
+    </g>
+    <!-- Pergola Finial -->
+    <path d="M320,28 L320,16 M314,22 Q320,15 326,22" fill="none" stroke="url(#goldVessel)" stroke-width="1.4"/>
+  </g>
+
+  <!-- 3. Warm Golden Sunbeams Filtering Through Foliage -->
+  <g id="sunbeams" pointer-events="none">
+    <polygon points="210,36 275,36 420,350 325,350" fill="url(#sunbeamGrad)"/>
+    <polygon points="150,70 198,55 315,355 245,355" fill="url(#sunbeamGrad)" opacity="0.72"/>
+    <polygon points="300,32 346,36 485,340 420,340" fill="url(#sunbeamGrad)" opacity="0.58"/>
+  </g>
+
+  <!-- 4. Olive Vines & Blush Roses Draped Over the Pergola Arch -->
+  <g id="pergola-botanicals" stroke="#354328" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Sweeping Vine Tendrils -->
+    <path d="M98,280 Q85,225 104,172 Q125,95 215,52 Q272,30 320,38 Q372,30 425,52 Q515,95 536,172 Q552,225 540,280"
+          fill="none" stroke="#4F5D3A" stroke-width="1.8"/>
+    <path d="M126,162 Q155,102 225,65 M514,162 Q485,102 415,65" fill="none" stroke="#4F5D3A" stroke-width="1.3"/>
+    <!-- Hanging Foliage Garland Tendrils -->
+    <path d="M172,76 Q178,105 168,128 M245,48 Q250,78 242,98 M395,48 Q390,78 398,98 M468,76 Q462,105 472,128"
+          fill="none" stroke="#4F5D3A" stroke-width="1.1"/>
+
+    <!-- Olive Leaf Clusters Around Arch -->
+    <g fill="url(#oliveLeaf)" stroke="#354328" stroke-width="0.65">
+      <!-- Left Pillar Climbing Leaves -->
+      <ellipse cx="94" cy="242" rx="7" ry="3.2" transform="rotate(-35 94 242)"/>
+      <ellipse cx="105" cy="230" rx="7" ry="3.2" transform="rotate(28 105 230)"/>
+      <ellipse cx="96" cy="202" rx="8" ry="3.4" transform="rotate(-40 96 202)"/>
+      <ellipse cx="110" cy="184" rx="7.5" ry="3.2" transform="rotate(22 110 184)"/>
+      <ellipse cx="106" cy="154" rx="8" ry="3.5" transform="rotate(-25 106 154)"/>
+      <ellipse cx="124" cy="144" rx="7" ry="3.2" transform="rotate(35 124 144)"/>
+      <!-- Left Arch -->
+      <ellipse cx="132" cy="116" rx="8.5" ry="3.5" transform="rotate(-45 132 116)"/>
+      <ellipse cx="146" cy="122" rx="7.5" ry="3.2" transform="rotate(20 146 122)"/>
+      <ellipse cx="158" cy="86" rx="8.5" ry="3.6" transform="rotate(-30 158 86)"/>
+      <ellipse cx="172" cy="96" rx="7.5" ry="3.2" transform="rotate(30 172 96)"/>
+      <ellipse cx="169" cy="116" rx="6.5" ry="2.8" transform="rotate(75 169 116)"/>
+      <ellipse cx="204" cy="60" rx="8.5" ry="3.5" transform="rotate(-20 204 60)"/>
+      <ellipse cx="224" cy="68" rx="8" ry="3.2" transform="rotate(25 224 68)"/>
+      <ellipse cx="246" cy="46" rx="8.5" ry="3.5" transform="rotate(-12 246 46)"/>
+      <ellipse cx="244" cy="84" rx="6.5" ry="2.8" transform="rotate(80 244 84)"/>
+      <ellipse cx="288" cy="42" rx="8.5" ry="3.4" transform="rotate(10 288 42)"/>
+      <!-- Center Crest -->
+      <ellipse cx="308" cy="36" rx="8" ry="3.4" transform="rotate(-18 308 36)"/>
+      <ellipse cx="332" cy="36" rx="8" ry="3.4" transform="rotate(18 332 36)"/>
+      <!-- Right Arch -->
+      <ellipse cx="352" cy="42" rx="8.5" ry="3.4" transform="rotate(-10 352 42)"/>
+      <ellipse cx="394" cy="46" rx="8.5" ry="3.5" transform="rotate(12 394 46)"/>
+      <ellipse cx="396" cy="84" rx="6.5" ry="2.8" transform="rotate(-80 396 84)"/>
+      <ellipse cx="416" cy="68" rx="8" ry="3.2" transform="rotate(-25 416 68)"/>
+      <ellipse cx="436" cy="60" rx="8.5" ry="3.5" transform="rotate(20 436 60)"/>
+      <ellipse cx="471" cy="116" rx="6.5" ry="2.8" transform="rotate(-75 471 116)"/>
+      <ellipse cx="468" cy="96" rx="7.5" ry="3.2" transform="rotate(-30 468 96)"/>
+      <ellipse cx="482" cy="86" rx="8.5" ry="3.6" transform="rotate(30 482 86)"/>
+      <ellipse cx="494" cy="122" rx="7.5" ry="3.2" transform="rotate(-20 494 122)"/>
+      <ellipse cx="508" cy="116" rx="8.5" ry="3.5" transform="rotate(45 508 116)"/>
+      <!-- Right Pillar Climbing Leaves -->
+      <ellipse cx="516" cy="144" rx="7" ry="3.2" transform="rotate(-35 516 144)"/>
+      <ellipse cx="534" cy="154" rx="8" ry="3.5" transform="rotate(25 534 154)"/>
+      <ellipse cx="530" cy="184" rx="7.5" ry="3.2" transform="rotate(-22 530 184)"/>
+      <ellipse cx="544" cy="202" rx="8" ry="3.4" transform="rotate(40 544 202)"/>
+      <ellipse cx="535" cy="230" rx="7" ry="3.2" transform="rotate(-28 535 230)"/>
+      <ellipse cx="546" cy="242" rx="7" ry="3.2" transform="rotate(35 546 242)"/>
+    </g>
+
+    <!-- Draped Garden Rose Clusters on Pergola (Layered Botanical Petals: Blush, Dusty Rose & Burgundy Buds) -->
+    <!-- Left Arch Rose Cluster -->
+    <g stroke="#5D222D" stroke-width="0.65">
+      <!-- Rose 1 -->
+      <path d="M114,154 C112,148 119,145 123,148 C128,146 132,153 128,158 C130,164 122,167 117,163 C112,163 111,157 114,154 Z" fill="url(#roseBlush)"/>
+      <path d="M117,155 Q122,150 126,155 Q122,160 118,156 Q121,154 123,156" fill="none"/>
+      <path d="M105,165 C104,160 111,158 115,162 C119,165 114,173 108,171 C104,170 103,167 105,165 Z" fill="url(#roseDusty)"/>
+      <circle cx="128" cy="170" r="4.5" fill="#6B1F2E"/>
+
+      <!-- Rose 2 -->
+      <path d="M155,81 C154,74 163,71 167,75 C173,74 176,82 172,88 C172,94 163,96 158,92 C153,91 152,85 155,81 Z" fill="url(#roseDusty)"/>
+      <path d="M159,83 Q164,77 169,83 Q164,89 159,85 Q162,82 165,84" fill="none"/>
+      <path d="M144,92 C143,87 150,84 155,88 C159,92 155,100 148,99 C144,98 143,95 144,92 Z" fill="url(#roseBlush)"/>
+      <circle cx="176" cy="76" r="5.5" fill="url(#roseBlush)"/>
+      <circle cx="166" cy="100" r="4.2" fill="#6B1F2E"/>
+
+      <!-- Rose 3 -->
+      <path d="M234,46 C233,40 241,37 245,41 C250,40 253,47 249,53 C248,58 240,59 236,55 C232,54 231,49 234,46 Z" fill="url(#roseBlush)"/>
+      <path d="M238,47 Q242,42 246,47 Q242,52 238,48" fill="none"/>
+      <circle cx="229" cy="54" r="6" fill="url(#roseDusty)"/>
+      <circle cx="253" cy="55" r="5" fill="#E5B8BE"/>
+    </g>
+
+    <!-- Center Crest Rose Cluster -->
+    <g stroke="#5D222D" stroke-width="0.65">
+      <path d="M311,36 C311,30 319,27 323,31 C329,30 331,37 328,43 C326,48 318,49 314,45 C310,44 309,39 311,36 Z" fill="url(#roseBlush)"/>
+      <path d="M315,38 Q320,32 325,38 Q320,44 316,39" fill="none"/>
+      <circle cx="306" cy="41" r="6" fill="url(#roseDusty)"/>
+      <circle cx="334" cy="41" r="6" fill="url(#roseDusty)"/>
+      <circle cx="320" cy="49" r="4" fill="#6B1F2E"/>
+    </g>
+
+    <!-- Right Arch Rose Cluster -->
+    <g stroke="#5D222D" stroke-width="0.65">
+      <path d="M390,46 C389,40 397,37 401,41 C406,40 409,47 405,53 C404,58 396,59 392,55 C388,54 387,49 390,46 Z" fill="url(#roseBlush)"/>
+      <path d="M394,47 Q398,42 402,47 Q398,52 394,48" fill="none"/>
+      <circle cx="411" cy="54" r="6" fill="url(#roseDusty)"/>
+      <circle cx="387" cy="55" r="5" fill="#E5B8BE"/>
+
+      <path d="M467,81 C466,74 475,71 479,75 C485,74 488,82 484,88 C484,94 475,96 470,92 C465,91 464,85 467,81 Z" fill="url(#roseDusty)"/>
+      <path d="M471,83 Q476,77 481,83 Q476,89 471,85 Q474,82 477,84" fill="none"/>
+      <path d="M484,92 C483,87 490,84 495,88 C499,92 495,100 488,99 C484,98 483,95 484,92 Z" fill="url(#roseBlush)"/>
+      <circle cx="464" cy="76" r="5.5" fill="url(#roseBlush)"/>
+      <circle cx="474" cy="100" r="4.2" fill="#6B1F2E"/>
+
+      <path d="M510,154 C508,148 515,145 519,148 C524,146 528,153 524,158 C526,164 518,167 513,163 C508,163 507,157 510,154 Z" fill="url(#roseBlush)"/>
+      <path d="M513,155 Q518,150 522,155 Q518,160 514,156 Q517,154 519,156" fill="none"/>
+      <path d="M523,165 C522,160 529,158 533,162 C537,165 532,173 526,171 C522,170 521,167 523,165 Z" fill="url(#roseDusty)"/>
+      <circle cx="512" cy="170" r="4.5" fill="#6B1F2E"/>
+    </g>
+  </g>
+
+  <!-- 5. Vintage Garden Banquet Chairs (Behind & Flanking Table) -->
+  <g id="banquet-chairs" stroke="#474231" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Far Left Chair -->
+    <g fill="none" stroke-width="1.1">
+      <path d="M188,284 C188,266 196,258 205,258 C214,258 222,266 222,284"/>
+      <ellipse cx="205" cy="272" rx="11" ry="10" fill="#E6DAC4" fill-opacity="0.45" stroke-width="0.8"/>
+      <line x1="192" y1="306" x2="192" y2="356"/>
+      <line x1="216" y1="306" x2="216" y2="356"/>
+    </g>
+    <!-- Inner Left Chair -->
+    <g fill="none" stroke-width="1.1">
+      <path d="M242,276 C242,258 250,250 259,250 C268,250 276,258 276,276"/>
+      <ellipse cx="259" cy="264" rx="11" ry="10" fill="#E6DAC4" fill-opacity="0.45" stroke-width="0.8"/>
+    </g>
+    <!-- Inner Right Chair -->
+    <g fill="none" stroke-width="1.1">
+      <path d="M364,276 C364,258 372,250 381,250 C390,250 398,258 398,276"/>
+      <ellipse cx="381" cy="264" rx="11" ry="10" fill="#E6DAC4" fill-opacity="0.45" stroke-width="0.8"/>
+    </g>
+    <!-- Far Right Chair -->
+    <g fill="none" stroke-width="1.1">
+      <path d="M418,284 C418,266 426,258 435,258 C444,258 452,266 452,284"/>
+      <ellipse cx="435" cy="272" rx="11" ry="10" fill="#E6DAC4" fill-opacity="0.45" stroke-width="0.8"/>
+      <line x1="424" y1="306" x2="424" y2="356"/>
+      <line x1="448" y1="306" x2="448" y2="356"/>
+    </g>
+  </g>
+
+  <!-- 6. Candlelit Wedding Banquet Table -->
+  <g id="banquet-table" stroke="#474231" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Tabletop Surface (subtle perspective trapezoid) -->
+    <polygon points="172,278 468,278 486,296 154,296" fill="#FAF4E7" stroke-width="1"/>
+
+    <!-- Flowing Linen Tablecloth Drape -->
+    <path d="M154,296 L486,296 L488,358 C478,362 468,358 458,360 C432,362 394,358 358,360 C320,362 282,358 244,360 C210,362 178,358 152,358 Z"
+          fill="url(#linenCloth)" stroke-width="1.05"/>
+
+    <!-- Dusty-Rose Draped Table Runner Center -->
+    <path d="M294,278 L346,278 L352,296 L354,364 C336,368 304,368 286,364 L288,296 Z"
+          fill="url(#runnerRose)" opacity="0.88" stroke-width="0.85"/>
+
+    <!-- Fine Linen Pleat Etching Lines -->
+    <g fill="none" stroke="#85775C" stroke-width="0.65" opacity="0.58">
+      <path d="M168,298 L166,358 M188,298 L187,358 M218,298 L217,359 M252,298 L252,359"/>
+      <path d="M388,298 L388,359 M422,298 L423,359 M452,298 L453,358 M472,298 L474,358"/>
+      <!-- Runner folds -->
+      <path d="M304,298 L302,364 M320,298 L320,366 M336,298 L338,364" stroke="#7A444C"/>
+    </g>
+
+    <!-- Place Settings (Plates & Blush Folded Napkins) -->
+    <ellipse cx="212" cy="288" rx="16" ry="4.5" fill="#FFFDF8" stroke-width="0.75"/>
+    <polygon points="205,288 219,288 217,285 207,285" fill="#E5B8BE" stroke="#6B1F2E" stroke-width="0.5"/>
+
+    <ellipse cx="262" cy="288" rx="16" ry="4.5" fill="#FFFDF8" stroke-width="0.75"/>
+    <polygon points="255,288 269,288 267,285 257,285" fill="#E5B8BE" stroke="#6B1F2E" stroke-width="0.5"/>
+
+    <ellipse cx="378" cy="288" rx="16" ry="4.5" fill="#FFFDF8" stroke-width="0.75"/>
+    <polygon points="371,288 385,288 383,285 373,285" fill="#E5B8BE" stroke="#6B1F2E" stroke-width="0.5"/>
+
+    <ellipse cx="428" cy="288" rx="16" ry="4.5" fill="#FFFDF8" stroke-width="0.75"/>
+    <polygon points="421,288 435,288 433,285 423,285" fill="#E5B8BE" stroke="#6B1F2E" stroke-width="0.5"/>
+
+    <!-- Delicate Crystal Champagne Flutes -->
+    <g id="champagne-flutes" stroke="#5C553D" stroke-width="0.7">
+      <!-- Flute 1 (x=226) -->
+      <path d="M223,262 L229,262 L227.5,274 C227,276 225,276 224.5,274 Z" fill="#F2DFAA" fill-opacity="0.55"/>
+      <line x1="226" y1="275.5" x2="226" y2="283"/>
+      <ellipse cx="226" cy="283.5" rx="4" ry="1.2" fill="#EAE0CD"/>
+      <!-- Flute 2 (x=277) -->
+      <path d="M274,262 L280,262 L278.5,274 C278,276 276,276 275.5,274 Z" fill="#F2DFAA" fill-opacity="0.55"/>
+      <line x1="277" y1="275.5" x2="277" y2="283"/>
+      <ellipse cx="277" cy="283.5" rx="4" ry="1.2" fill="#EAE0CD"/>
+      <!-- Flute 3 (x=363) -->
+      <path d="M360,262 L366,262 L364.5,274 C364,276 362,276 361.5,274 Z" fill="#F2DFAA" fill-opacity="0.55"/>
+      <line x1="363" y1="275.5" x2="363" y2="283"/>
+      <ellipse cx="363" cy="283.5" rx="4" ry="1.2" fill="#EAE0CD"/>
+      <!-- Flute 4 (x=414) -->
+      <path d="M411,262 L417,262 L415.5,274 C415,276 413,276 412.5,274 Z" fill="#F2DFAA" fill-opacity="0.55"/>
+      <line x1="414" y1="275.5" x2="414" y2="283"/>
+      <ellipse cx="414" cy="283.5" rx="4" ry="1.2" fill="#EAE0CD"/>
+    </g>
+
+    <!-- Tapered Ivory Candles in Gold Candlesticks + Warm Glows -->
+    <g id="taper-candles">
+      <!-- Glows -->
+      <circle cx="190" cy="233" r="18" fill="url(#candleGlow)" stroke="none"/>
+      <circle cx="242" cy="227" r="20" fill="url(#candleGlow)" stroke="none"/>
+      <circle cx="398" cy="227" r="20" fill="url(#candleGlow)" stroke="none"/>
+      <circle cx="450" cy="233" r="18" fill="url(#candleGlow)" stroke="none"/>
+
+      <!-- Left Outer Candlestick (x=190) -->
+      <path d="M185,284 L195,284 L191.5,264 L188.5,264 Z" fill="url(#goldVessel)" stroke-width="0.7"/>
+      <rect x="188.5" y="241" width="3" height="23" fill="#FAF4E7" stroke="#5C553D" stroke-width="0.6"/>
+      <path d="M190,231 C192,235 192.2,239 190,240 C187.8,239 188,235 190,231 Z" fill="#F7C96A" stroke="#C88428" stroke-width="0.4"/>
+
+      <!-- Left Inner Candlestick (x=242) -->
+      <path d="M237,283 L247,283 L243.5,260 L240.5,260 Z" fill="url(#goldVessel)" stroke-width="0.7"/>
+      <rect x="240.5" y="235" width="3" height="25" fill="#FAF4E7" stroke="#5C553D" stroke-width="0.6"/>
+      <path d="M242,225 C244,229 244.2,233 242,234 C239.8,233 240,229 242,225 Z" fill="#F7C96A" stroke="#C88428" stroke-width="0.4"/>
+
+      <!-- Right Inner Candlestick (x=398) -->
+      <path d="M393,283 L403,283 L399.5,260 L396.5,260 Z" fill="url(#goldVessel)" stroke-width="0.7"/>
+      <rect x="396.5" y="235" width="3" height="25" fill="#FAF4E7" stroke="#5C553D" stroke-width="0.6"/>
+      <path d="M398,225 C400,229 400.2,233 398,234 C395.8,233 396,229 398,225 Z" fill="#F7C96A" stroke="#C88428" stroke-width="0.4"/>
+
+      <!-- Right Outer Candlestick (x=450) -->
+      <path d="M445,284 L455,284 L451.5,264 L448.5,264 Z" fill="url(#goldVessel)" stroke-width="0.7"/>
+      <rect x="448.5" y="241" width="3" height="23" fill="#FAF4E7" stroke="#5C553D" stroke-width="0.6"/>
+      <path d="M450,231 C452,235 452.2,239 450,240 C447.8,239 448,235 450,231 Z" fill="#F7C96A" stroke="#C88428" stroke-width="0.4"/>
+    </g>
+
+    <!-- Lush Floral Centerpiece in Antique-Gold Compote Bowl -->
+    <g id="floral-centerpiece">
+      <!-- Compote Pedestal Bowl -->
+      <path d="M300,264 L340,264 C338,274 328,276 323,277 L324,283 L332,285 L308,285 L316,283 L317,277 C312,276 302,274 300,264 Z"
+            fill="url(#goldVessel)" stroke="#5C4826" stroke-width="0.8"/>
+      <!-- Trailing Olive Sprigs -->
+      <g fill="url(#oliveLeaf)" stroke="#354328" stroke-width="0.6">
+        <path d="M300,262 Q284,264 278,274 M340,262 Q356,264 362,274" fill="none" stroke="#4F5D3A" stroke-width="1.1"/>
+        <ellipse cx="290" cy="260" rx="6.5" ry="2.8" transform="rotate(-24 290 260)"/>
+        <ellipse cx="283" cy="268" rx="6" ry="2.5" transform="rotate(-48 283 268)"/>
+        <ellipse cx="304" cy="248" rx="6.5" ry="2.8" transform="rotate(-55 304 248)"/>
+        <ellipse cx="320" cy="244" rx="6.5" ry="2.8" transform="rotate(-90 320 244)"/>
+        <ellipse cx="336" cy="248" rx="6.5" ry="2.8" transform="rotate(55 336 248)"/>
+        <ellipse cx="350" cy="260" rx="6.5" ry="2.8" transform="rotate(24 350 260)"/>
+        <ellipse cx="357" cy="268" rx="6" ry="2.5" transform="rotate(48 357 268)"/>
+      </g>
+      <!-- Centerpiece Roses (Blush, Dusty Rose, Ivory & Burgundy) -->
+      <g stroke="#5D222D" stroke-width="0.6">
+        <circle cx="305" cy="258" r="6.5" fill="url(#roseDusty)"/>
+        <circle cx="335" cy="258" r="6.5" fill="url(#roseDusty)"/>
+        <circle cx="313" cy="252" r="7.5" fill="url(#roseBlush)"/>
+        <circle cx="328" cy="252" r="7.2" fill="#F5EFE4"/>
+        <circle cx="320" cy="258" r="8" fill="url(#roseBlush)"/><path d="M317,256 Q320,253 323,257" fill="none"/>
+        <circle cx="298" cy="263" r="4" fill="#6B1F2E"/>
+        <circle cx="342" cy="263" r="4" fill="#6B1F2E"/>
+        <circle cx="320" cy="248" r="3.6" fill="#6B1F2E"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- 7. Foreground Garden Foliage, Wildflowers & Fallen Petals -->
+  <g id="foreground-garden" stroke="#354328" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Left Foreground Shrubs -->
+    <path d="M62,380 C68,364 90,356 108,366 C122,354 146,356 158,370 C170,362 190,366 196,380 Z"
+          fill="#84936C" stroke-width="0.9"/>
+    <path d="M98,372 Q112,362 126,372 M138,374 Q152,366 164,376" fill="none" stroke="#354328" stroke-width="0.65" opacity="0.55"/>
+
+    <!-- Right Foreground Shrubs -->
+    <path d="M444,380 C450,366 470,362 482,370 C494,356 518,354 532,366 C550,356 572,364 578,380 Z"
+          fill="#84936C" stroke-width="0.9"/>
+    <path d="M476,376 Q488,366 502,374 M514,372 Q528,362 542,372" fill="none" stroke="#354328" stroke-width="0.65" opacity="0.55"/>
+
+    <!-- Foreground Rose Accents -->
+    <g stroke="#5D222D" stroke-width="0.55">
+      <circle cx="116" cy="368" r="5" fill="url(#roseBlush)"/><circle cx="124" cy="372" r="4" fill="url(#roseDusty)"/><circle cx="110" cy="373" r="3" fill="#6B1F2E"/>
+      <circle cx="524" cy="368" r="5" fill="url(#roseBlush)"/><circle cx="516" cy="372" r="4" fill="url(#roseDusty)"/><circle cx="530" cy="373" r="3" fill="#6B1F2E"/>
+    </g>
+
+    <!-- Delicate Ground Etching Lines & Scattered Blush Petals -->
+    <path d="M95,388 L272,388 M368,388 L545,388" fill="none" stroke="#4F5D3A" stroke-width="0.7" opacity="0.45"/>
+    <path d="M180,398 L292,398 M348,398 L460,398" fill="none" stroke="#B5945B" stroke-width="0.65" opacity="0.48"/>
+    <ellipse cx="255" cy="378" rx="3.2" ry="1.6" transform="rotate(-18 255 378)" fill="#E5B8BE" stroke="none" opacity="0.8"/>
+    <ellipse cx="305" cy="384" rx="2.8" ry="1.5" transform="rotate(24 305 384)" fill="#C98D96" stroke="none" opacity="0.75"/>
+    <ellipse cx="348" cy="382" rx="3.2" ry="1.6" transform="rotate(-12 348 382)" fill="#E5B8BE" stroke="none" opacity="0.8"/>
+    <ellipse cx="392" cy="378" rx="2.6" ry="1.4" transform="rotate(32 392 378)" fill="#6B1F2E" stroke="none" opacity="0.65"/>
+  </g>
+</svg>

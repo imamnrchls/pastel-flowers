@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 280" width="600" height="280" role="img" aria-label="Ilustrasi mode editorial tiga busana tamu pernikahan: gaun sifon dusty rose, gaun slip sutra zaitun, dan setelan linen krem">
+  <defs>
+    <!-- Soft parchment-halo backdrop behind each silhouette -->
+    <radialGradient id="haloRose" cx="50%" cy="48%" r="50%">
+      <stop offset="0%" stop-color="#EBC8CE" stop-opacity="0.36"/>
+      <stop offset="68%" stop-color="#E5B8BE" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#F5EFE4" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="haloOlive" cx="50%" cy="48%" r="50%">
+      <stop offset="0%" stop-color="#A5B48E" stop-opacity="0.30"/>
+      <stop offset="68%" stop-color="#7C8E64" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#F5EFE4" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="haloSand" cx="50%" cy="48%" r="50%">
+      <stop offset="0%" stop-color="#E2D3B7" stop-opacity="0.36"/>
+      <stop offset="68%" stop-color="#D6C7AA" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#F5EFE4" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Soft ground shadow -->
+    <radialGradient id="floorShadow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#6F674D" stop-opacity="0.28"/>
+      <stop offset="65%" stop-color="#8B8267" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#F5EFE4" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Left Gown: Dusty-rose & blush pleated chiffon -->
+    <linearGradient id="chiffonBodice" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EBC8CE"/>
+      <stop offset="55%" stop-color="#DDA6AE"/>
+      <stop offset="100%" stop-color="#C98D96"/>
+    </linearGradient>
+    <linearGradient id="chiffonSkirt" x1="15%" y1="0%" x2="85%" y2="100%">
+      <stop offset="0%" stop-color="#EBC8CE"/>
+      <stop offset="45%" stop-color="#D89CA4"/>
+      <stop offset="85%" stop-color="#C78A93"/>
+      <stop offset="100%" stop-color="#EBC8CE"/>
+    </linearGradient>
+
+    <!-- Center Gown: Olive-moss draped silk slip -->
+    <linearGradient id="silkOlive" x1="15%" y1="0%" x2="85%" y2="100%">
+      <stop offset="0%" stop-color="#7C8E64"/>
+      <stop offset="32%" stop-color="#96A77F"/>
+      <stop offset="65%" stop-color="#5A6B44"/>
+      <stop offset="100%" stop-color="#455532"/>
+    </linearGradient>
+    <linearGradient id="silkDrapeHighlight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#B9C6A5" stop-opacity="0.72"/>
+      <stop offset="100%" stop-color="#5A6B44" stop-opacity="0.10"/>
+    </linearGradient>
+
+    <!-- Right Suit: Warm cream-sand linen -->
+    <linearGradient id="linenJacket" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EFE6D3"/>
+      <stop offset="52%" stop-color="#E8DEC8"/>
+      <stop offset="100%" stop-color="#D6C7AA"/>
+    </linearGradient>
+    <linearGradient id="linenTrousers" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#D6C7AA"/>
+      <stop offset="45%" stop-color="#E8DEC8"/>
+      <stop offset="100%" stop-color="#CFC0A2"/>
+    </linearGradient>
+
+    <!-- Delicate warm porcelain skin tone for neck/arms only (headless couture style) -->
+    <linearGradient id="fashionSkin" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F1DFCE"/>
+      <stop offset="100%" stop-color="#DFC6B0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 1. Editorial Aura Halos & Ground Shadows -->
+  <g id="editorial-backdrop">
+    <ellipse cx="115" cy="142" rx="76" ry="118" fill="url(#haloRose)"/>
+    <ellipse cx="300" cy="142" rx="72" ry="118" fill="url(#haloOlive)"/>
+    <ellipse cx="485" cy="142" rx="74" ry="118" fill="url(#haloSand)"/>
+
+    <ellipse cx="115" cy="252" rx="64" ry="8" fill="url(#floorShadow)"/>
+    <ellipse cx="300" cy="252" rx="52" ry="8" fill="url(#floorShadow)"/>
+    <ellipse cx="485" cy="252" rx="46" ry="8" fill="url(#floorShadow)"/>
+  </g>
+
+  <!-- 2. LEFT OUTFIT: Flowing Dusty-Rose & Blush Pleated Chiffon Formal Gown -->
+  <g id="outfit-chiffon-gown" stroke="#474231" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Slender couture neck & shoulders flowing seamlessly behind bodice (no hard chest seam) -->
+    <path d="M109,34 L110,46 C103,49 95,52 90,57 L93,68 L137,68 L140,57 C135,52 127,49 120,46 L121,34"
+          fill="url(#fashionSkin)" stroke-width="0.8"/>
+    <path d="M109,34 Q115,36 121,34" fill="none" stroke="#474231" stroke-width="0.6" opacity="0.55"/>
+    <path d="M105,51 Q110,54 115,52.5 Q120,54 125,51" fill="none" stroke="#9C7F6E" stroke-width="0.5" opacity="0.5"/>
+
+    <!-- Graceful tapered arms -->
+    <path d="M90,59 C82,70 78,90 79,110 C79,119 83,127 86,130 C88,128 87,123 85,115 C84,99 86,82 93,69 Z"
+          fill="url(#fashionSkin)" stroke-width="0.8"/>
+    <path d="M140,59 C148,70 152,90 151,110 C151,119 147,127 144,130 C142,128 143,123 145,115 C146,99 144,82 137,69 Z"
+          fill="url(#fashionSkin)" stroke-width="0.8"/>
+
+    <!-- Dainty blush heels peeking beneath front hem -->
+    <path d="M104,246 L100,252 L110,252 L110,246 Z" fill="#C98D96" stroke-width="0.75"/>
+    <path d="M122,246 L122,252 L132,252 L128,246 Z" fill="#C98D96" stroke-width="0.75"/>
+
+    <!-- Draped Off-Shoulder Chiffon Sleeves & Sweetheart Bodice -->
+    <path d="M89,58 C85,62 85,69 90,72 L98,70 L102,96 L128,96 L132,70 L140,72 C145,69 145,62 141,58 C134,55 127,57 123,60 Q115,66 107,60 C103,57 96,55 89,58 Z"
+          fill="url(#chiffonBodice)" stroke-width="1"/>
+    <!-- Delicate bodice cross-pleats -->
+    <g fill="none" stroke="#6E4B4F" stroke-width="0.55" opacity="0.65">
+      <path d="M98,61 Q107,72 115,79 M132,61 Q123,72 115,79"/>
+      <path d="M101,71 Q109,81 115,87 M129,71 Q121,81 115,87"/>
+      <path d="M103,82 Q110,90 115,94 M127,82 Q120,90 115,94"/>
+    </g>
+
+    <!-- Flowing Pleated A-Line Chiffon Skirt -->
+    <path d="M101,97 C93,124 76,184 58,238 C68,244 79,242 88,246 C99,249 112,245 124,248 C137,250 153,245 166,242 C152,188 136,126 129,97 Z"
+          fill="url(#chiffonSkirt)" stroke-width="1.05"/>
+
+    <!-- Translucent Soft Blush Chiffon Over-Pleat Layers -->
+    <path d="M107,97 C101,134 89,192 78,243 C87,245 96,246 104,246 C109,194 113,136 115,97 Z"
+          fill="#EBC8CE" opacity="0.48" stroke="none"/>
+    <path d="M122,97 C127,138 136,196 146,245 C153,244 160,243 165,241 C151,188 136,127 129,97 Z"
+          fill="#C98D96" opacity="0.32" stroke="none"/>
+
+    <!-- Fine Accordion Pleat Etching Lines -->
+    <g fill="none" stroke="#6E4B4F" stroke-width="0.6" opacity="0.62">
+      <path d="M103,100 C95,134 80,192 67,241"/>
+      <path d="M106,100 C99,138 87,196 77,243"/>
+      <path d="M109,100 C105,142 98,198 92,246"/>
+      <path d="M113,100 C112,144 109,200 107,246"/>
+      <path d="M117,100 C119,144 121,200 123,247"/>
+      <path d="M121,100 C125,142 132,198 138,246"/>
+      <path d="M125,100 C131,138 142,194 152,244"/>
+      <path d="M127,100 C136,134 148,190 160,242"/>
+    </g>
+
+    <!-- Cinched Grosgrain Ribbon Waist Sash & Antique-Gold Clasp -->
+    <rect x="100" y="93" width="30" height="5" rx="1.5" fill="#B97B85" stroke-width="0.8"/>
+    <ellipse cx="115" cy="95.5" rx="2.2" ry="1.8" fill="#D4B87C" stroke="#6B532B" stroke-width="0.6"/>
+  </g>
+
+  <!-- 3. CENTER OUTFIT: Sleek Olive-Moss Draped Silk Slip Gown -->
+  <g id="outfit-silk-slip" stroke="#354328" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Slender Neck & Shoulders flowing seamlessly behind slip bodice -->
+    <path d="M294,30 L295,42 C288,45 279,49 274,54 L276,68 L324,68 L326,54 C321,49 312,45 305,42 L306,30"
+          fill="url(#fashionSkin)" stroke-width="0.8"/>
+    <path d="M295,30 Q300,32 305,30" fill="none" stroke="#474231" stroke-width="0.6" opacity="0.55"/>
+    <path d="M290,48 Q295,51 300,49.5 Q305,51 310,48" fill="none" stroke="#9C7F6E" stroke-width="0.5" opacity="0.5"/>
+
+    <!-- Bare Sculpted Arms -->
+    <path d="M274,55 C268,69 266,94 268,118 C269,125 272,131 275,133 C277,130 276,124 275,115 C274,97 275,77 280,64 Z"
+          fill="url(#fashionSkin)" stroke-width="0.8"/>
+    <path d="M326,55 C332,69 334,94 332,118 C331,125 328,131 325,133 C323,130 324,124 325,115 C326,97 325,77 320,64 Z"
+          fill="url(#fashionSkin)" stroke-width="0.8"/>
+
+    <!-- Delicate Ankle & Gold Strappy Sandals -->
+    <path d="M308,225 L307,246 L313,246 L315,222 Z" fill="url(#fashionSkin)" stroke-width="0.75"/>
+    <path d="M306,246 L303,252 L315,252 L313,246 Z" fill="#B5945B" stroke-width="0.75"/>
+    <path d="M286,247 L283,252 L294,252 L292,247 Z" fill="#B5945B" stroke-width="0.75"/>
+
+    <!-- Spaghetti Straps -->
+    <line x1="284" y1="49" x2="285" y2="62" stroke="#354328" stroke-width="1.2"/>
+    <line x1="316" y1="49" x2="315" y2="62" stroke="#354328" stroke-width="1.2"/>
+
+    <!-- Bias-Cut Olive Silk Slip Silhouette with Asymmetrical Draped Wrap -->
+    <path d="M283,61 C292,69 308,69 317,61 L317,84 C317,91 315,96 315,103 C319,120 325,148 327,184 C328,214 330,236 334,248 C323,250 315,248 313,244 L311,198 C308,214 303,234 301,249 C290,251 278,249 271,247 C275,216 277,156 280,122 C281,108 283,98 283,86 Z"
+          fill="url(#silkOlive)" stroke-width="1.05"/>
+
+    <!-- Soft Satin Cowl Neckline & Hip Drape Highlights -->
+    <path d="M285,63 Q300,76 315,63 Q308,71 300,72 Q292,71 285,63 Z" fill="url(#silkDrapeHighlight)" stroke="#354328" stroke-width="0.6"/>
+    <path d="M283,88 C293,98 308,108 316,120 C313,128 306,136 297,144 C287,131 282,115 282,99 Z"
+          fill="url(#silkDrapeHighlight)" stroke="none"/>
+    <!-- Silk Waterfall Wrap Fold & Slit Seam -->
+    <g fill="none" stroke="#28351D" stroke-width="0.7" opacity="0.72">
+      <path d="M284,74 Q300,82 315,74"/>
+      <path d="M284,96 Q301,109 315,116"/>
+      <path d="M283,110 Q299,124 313,136"/>
+      <path d="M311,198 C312,172 308,144 297,128"/>
+      <path d="M286,154 C284,186 283,218 281,247"/>
+      <path d="M298,162 C297,192 295,222 293,248"/>
+    </g>
+    <!-- Subtle specular sheen strokes -->
+    <path d="M290,148 C288,176 287,208 286,236" fill="none" stroke="#CAD4B8" stroke-width="1.1" opacity="0.45"/>
+    <path d="M319,144 C322,174 323,208 325,236" fill="none" stroke="#CAD4B8" stroke-width="0.9" opacity="0.38"/>
+  </g>
+
+  <!-- 4. RIGHT OUTFIT: Tailored Cream-Sand Linen Suit & Burgundy Pocket Square -->
+  <g id="outfit-linen-suit" stroke="#474231" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Clean Editorial Collar Neck (no blocky head stump) -->
+    <path d="M477,36 L478,44 L492,44 L493,36" fill="url(#fashionSkin)" stroke-width="0.75"/>
+    <path d="M478,36 Q485,38 492,36" fill="none" stroke="#474231" stroke-width="0.55" opacity="0.5"/>
+
+    <!-- Ivory Linen Dress Shirt V & Collar -->
+    <polygon points="476,43 485,48 494,43 494,62 485,84 476,62" fill="#F9F4EA" stroke-width="0.85"/>
+    <polygon points="476,43 483,52 478,56 474,47" fill="#FFFDF8" stroke-width="0.75"/>
+    <polygon points="494,43 487,52 492,56 496,47" fill="#FFFDF8" stroke-width="0.75"/>
+    <!-- Subtle open collar button -->
+    <circle cx="485" cy="56" r="1" fill="#C9B99B" stroke="#474231" stroke-width="0.45"/>
+
+    <!-- Classic Brown Leather Loafers -->
+    <path d="M466,244 L462,251 L478,251 L477,244 Z" fill="#5D4433" stroke-width="0.8"/>
+    <path d="M493,244 L492,251 L508,251 L504,244 Z" fill="#5D4433" stroke-width="0.8"/>
+    <line x1="466" y1="247" x2="474" y2="247" stroke="#B5945B" stroke-width="0.6"/>
+    <line x1="496" y1="247" x2="504" y2="247" stroke="#B5945B" stroke-width="0.6"/>
+
+    <!-- Tailored Pleated Cream-Sand Linen Trousers -->
+    <path d="M463,124 L507,124 L508,158 L504,244 L490,244 L486,166 L484,166 L480,244 L466,244 L462,158 Z"
+          fill="url(#linenTrousers)" stroke-width="1"/>
+    <!-- Crisp Trouser Center Creases & Pleats -->
+    <g fill="none" stroke="#6E634B" stroke-width="0.6" opacity="0.65">
+      <path d="M474,132 L473,243"/>
+      <path d="M496,132 L497,243"/>
+      <path d="M469,130 L470,144"/>
+      <path d="M501,130 L500,144"/>
+    </g>
+
+    <!-- Jacket Sleeves & Hands -->
+    <path d="M459,54 C454,74 452,102 453,128 L462,128 C463,106 464,84 466,68 Z"
+          fill="url(#linenJacket)" stroke-width="0.95"/>
+    <path d="M454,128 C453,134 455,139 459,140 C461,138 462,133 461,128 Z"
+          fill="url(#fashionSkin)" stroke-width="0.75"/>
+
+    <path d="M511,54 C516,74 518,102 517,128 L508,128 C507,106 506,84 504,68 Z"
+          fill="url(#linenJacket)" stroke-width="0.95"/>
+    <path d="M516,128 C517,134 515,139 511,140 C509,138 508,133 509,128 Z"
+          fill="url(#fashionSkin)" stroke-width="0.75"/>
+
+    <!-- Tailored Cream-Sand Linen Jacket Body -->
+    <path d="M475,47 L459,54 L463,92 L460,136 C468,139 477,140 484,139 L485,84 L486,139 C493,140 502,139 510,136 L507,92 L511,54 L495,47 L485,84 Z"
+          fill="url(#linenJacket)" stroke-width="1.05"/>
+
+    <!-- Notch Lapels -->
+    <polygon points="475,47 468,61 473,63 470,67 485,84 478,56" fill="#F1E9D8" stroke-width="0.8"/>
+    <polygon points="495,47 502,61 497,63 500,67 485,84 492,56" fill="#F1E9D8" stroke-width="0.8"/>
+
+    <!-- Tortoiseshell / Horn Jacket Buttons & Flap Pockets -->
+    <circle cx="485" cy="91" r="1.8" fill="#8B6F4B" stroke="#474231" stroke-width="0.6"/>
+    <circle cx="485" cy="107" r="1.8" fill="#8B6F4B" stroke="#474231" stroke-width="0.6"/>
+    <path d="M465,112 L478,112 L478,115 L465,115 Z" fill="#DFD2B8" stroke-width="0.65"/>
+    <path d="M492,112 L505,112 L505,115 L492,115 Z" fill="#DFD2B8" stroke-width="0.65"/>
+
+    <!-- TINY BURGUNDY POCKET SQUARE (#6B1F2E) -->
+    <g id="burgundy-pocket-square">
+      <polygon points="493,74 497,67 501,71 504,68 505,74" fill="#6B1F2E" stroke="#3D1019" stroke-width="0.65"/>
+      <polygon points="496,74 498,69 501,74" fill="#8D3042" stroke="none"/>
+      <line x1="492" y1="74" x2="506" y2="74" stroke="#474231" stroke-width="0.85"/>
+    </g>
+  </g>
+
+  <!-- 5. Subtle Vintage Editorial Baseline & Tiny Botanical Flourishes -->
+  <g id="editorial-flourishes" fill="none" stroke-linecap="round">
+    <line x1="54" y1="264" x2="270" y2="264" stroke="#B5945B" stroke-width="0.65" opacity="0.5"/>
+    <line x1="330" y1="264" x2="546" y2="264" stroke="#B5945B" stroke-width="0.65" opacity="0.5"/>
+    <path d="M286,264 Q293,259 300,264 Q307,259 314,264" stroke="#4F5D3A" stroke-width="0.75" opacity="0.6"/>
+    <circle cx="300" cy="264" r="1.8" fill="#C98D96" stroke="#6B1F2E" stroke-width="0.5"/>
+  </g>
+</svg>
