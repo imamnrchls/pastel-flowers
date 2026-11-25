@@ -37,6 +37,22 @@
   --ease:             cubic-bezier(0.22, 0.61, 0.36, 1);
   --dur-slow:         850ms;
 
+  /* Opening choreography timeline (seconds after open tap) */
+  --t-cover:          0.72s;
+  --t-dolly-at:       0s;       --t-dolly:       1.9s;
+  --t-villa-at:       0.15s;    --t-villa:       1.8s;
+  --t-vine-at:        0.55s;    --t-vine:        0.75s;
+  --t-bloom-at:       0.75s;    --t-bloom:       0.9s;
+  --t-butterfly-at:   0.85s;    --t-butterfly:   1.15s;
+  --t-lace-at:        1.15s;    --t-lace:        0.7s;
+  --t-veil-at:        1.25s;    --t-veil:        0.75s;
+  --t-mono-at:        1.45s;
+  --t-kicker-at:      1.65s;
+  --t-names-at:       1.80s;    --t-letter:      0.045s;
+  --t-meta-at:        2.35s;
+  --t-cd-at:          2.55s;
+  --t-cta-at:         3.05s;
+
   /* Tactile handmade parchment grain */
   --pf-paper-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.032'/%3E%3C/svg%3E");
 
@@ -343,12 +359,12 @@
 
 .pf-butterfly-svg .wing-l {
   transform-origin: 35px 29px;
-  animation: pf-wing-flap-l 0.55s ease-in-out infinite alternate;
+  animation: pf-wing-flap-l 0.45s ease-in-out infinite alternate;
 }
 
 .pf-butterfly-svg .wing-r {
   transform-origin: 37px 29px;
-  animation: pf-wing-flap-r 0.55s ease-in-out infinite alternate;
+  animation: pf-wing-flap-r 0.45s ease-in-out infinite alternate;
 }
 
 .pf-butterflies {
@@ -361,20 +377,22 @@
 
 .pf-butterfly-float {
   position: absolute;
-  will-change: transform, opacity;
+  opacity: 0;
+  will-change: transform, translate, rotate, scale, opacity;
 }
 
 .pf-butterfly-float--1 {
   top: 15%;
-  left: 10%;
-  animation: pf-butterfly-flight 14s ease-in-out infinite;
+  left: 9%;
 }
 
 .pf-butterfly-float--2 {
   top: 22%;
-  right: 11%;
-  transform: scale(0.78);
-  animation: pf-butterfly-flight-b 17s 2.5s ease-in-out infinite;
+  right: 10%;
+}
+
+.pf-butterfly-float--2 .pf-butterfly-svg {
+  transform: scale(0.82) scaleX(-1);
 }
 
 /* ---------- Golden Dust Motes ---------- */
@@ -416,7 +434,7 @@
 }
 
 [data-theme="pastel-flowers"] .lk-cover.is-opening {
-  animation: pf-cover-out 750ms cubic-bezier(0.55, 0.04, 0.32, 1) forwards;
+  animation: pf-cover-out var(--t-cover, 720ms) cubic-bezier(0.55, 0.04, 0.32, 1) forwards;
   pointer-events: none;
 }
 
@@ -784,19 +802,40 @@
 }
 
 /* ---------- Section 1: Hero / Pembuka (#pembuka) ---------- */
+[data-theme="pastel-flowers"] .lk-section.pf-hero,
 [data-theme="pastel-flowers"] .pf-hero {
   position: relative;
   min-height: min(94svh, 780px);
-  padding: clamp(54px, 10vw, 80px) clamp(20px, 5vw, 32px) clamp(48px, 8vw, 72px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  padding: 0;
+  display: grid;
   overflow: hidden;
   background: var(--bg-parchment);
 }
 
+[data-theme="pastel-flowers"] .pf-hero-stage {
+  position: relative;
+  width: 100%;
+  min-height: inherit;
+  display: grid;
+  overflow: hidden;
+}
+
+[data-theme="pastel-flowers"] .pf-hero-dolly {
+  position: relative;
+  width: 100%;
+  min-height: inherit;
+  padding: clamp(54px, 10vw, 80px) clamp(20px, 5vw, 32px) clamp(76px, 13vw, 100px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform-origin: 50% 54%;
+  will-change: transform;
+}
+
 [data-theme="pastel-flowers"] .pf-hero-bg {
+  position: absolute;
+  inset: 0;
   z-index: 0;
 }
 
@@ -807,14 +846,93 @@
   object-position: center;
   mix-blend-mode: multiply;
   opacity: 0.92;
+  will-change: transform;
 }
 
-body.lk-opened .pf-hero-frame-img {
-  animation: pf-dolly-in 1500ms var(--ease) both;
+[data-theme="pastel-flowers"] .pf-hero-villa {
+  z-index: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 10%;
+  opacity: 0.22;
+  mix-blend-mode: multiply;
+}
+
+[data-theme="pastel-flowers"] .pf-hero-villa-img {
+  width: min(100%, 460px);
+  height: auto;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+[data-theme="pastel-flowers"] .pf-hero-vine {
+  position: absolute;
+  top: -4px;
+  width: clamp(68px, 17vw, 96px);
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  transform-origin: 30% 0%;
+  will-change: transform, opacity;
+}
+
+[data-theme="pastel-flowers"] .pf-hero-vine--l {
+  left: -4px;
+}
+
+[data-theme="pastel-flowers"] .pf-hero-vine--r {
+  right: -4px;
+  transform-origin: 70% 0%;
+}
+
+[data-theme="pastel-flowers"] .pf-hero-vine--r .pf-hero-vine-svg {
+  transform: scaleX(-1);
+}
+
+[data-theme="pastel-flowers"] .pf-hero-bloom {
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transform: translateX(-50%);
+  width: min(84%, 310px);
+  z-index: 2;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  -webkit-mask-image: linear-gradient(to top, #000 58%, transparent 100%);
+  mask-image: linear-gradient(to top, #000 58%, transparent 100%);
+}
+
+[data-theme="pastel-flowers"] .pf-hero-bloom-img {
+  width: 100%;
+  height: auto;
+  opacity: 0;
+  transform-origin: 50% 100%;
+  will-change: transform, opacity;
+}
+
+[data-theme="pastel-flowers"] .pf-hero-laces {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+[data-theme="pastel-flowers"] .pf-hero-laces svg {
+  position: absolute;
+  left: var(--x, 50%);
+  top: var(--y, 50%);
+  width: var(--s, 18px);
+  height: var(--s, 18px);
+  opacity: 0;
+  filter: drop-shadow(0 0 5px rgba(217, 192, 140, 0.72));
+  will-change: transform, opacity;
 }
 
 [data-theme="pastel-flowers"] .pf-hero-veil {
   z-index: 1;
+  opacity: 0;
   background: radial-gradient(ellipse 68% 58% at 50% 48%, rgba(245, 239, 228, 0.92) 0%, rgba(245, 239, 228, 0.68) 58%, transparent 88%);
 }
 
@@ -824,9 +942,22 @@ body.lk-opened .pf-hero-frame-img {
 
 [data-theme="pastel-flowers"] .pf-hero-content {
   position: relative;
-  z-index: 2;
+  z-index: 4;
   width: 100%;
   max-width: 340px;
+}
+
+/* Hide hero foreground cleanly before cover opens */
+[data-theme="pastel-flowers"] .pf-hero .pf-hero-monogram,
+[data-theme="pastel-flowers"] .pf-hero .lk-section-eyebrow,
+[data-theme="pastel-flowers"] .pf-hero .pf-hero-meta,
+[data-theme="pastel-flowers"] .pf-hero .lk-countdown-unit,
+[data-theme="pastel-flowers"] .pf-hero .pf-hero-actions {
+  opacity: 0;
+}
+
+body:not(.lk-opened) .pf-hero-names {
+  opacity: 0;
 }
 
 .pf-monogram {
@@ -856,6 +987,12 @@ body.lk-opened .pf-hero-frame-img {
   text-shadow: 0 2px 14px rgba(245, 239, 228, 0.95);
 }
 
+[data-theme="pastel-flowers"] #pf-hero-names .pf-name-first,
+[data-theme="pastel-flowers"] #pf-hero-names .pf-name-second {
+  display: inline-block;
+  white-space: nowrap;
+}
+
 [data-theme="pastel-flowers"] #pf-hero-names .pf-hero-amp,
 [data-theme="pastel-flowers"] .pf-hero-names .lk-amp-inline {
   font-style: normal;
@@ -872,8 +1009,82 @@ body.lk-opened .pf-hero-frame-img {
   width: 0.25em;
 }
 
+/* ---------- Opening Film Choreography (body.lk-opened) ---------- */
+body.lk-opened .pf-hero-dolly {
+  animation: pf-dolly-zoom var(--t-dolly) var(--t-dolly-at) cubic-bezier(0.4, 0.05, 0.2, 1) both;
+}
+
+body.lk-opened .pf-hero-frame-img {
+  animation:
+    pf-dolly-in var(--t-dolly) var(--t-dolly-at) var(--ease) both,
+    pf-frame-breathe 9s calc(var(--t-dolly-at) + var(--t-dolly)) ease-in-out infinite alternate;
+}
+
+body.lk-opened .pf-hero-villa img {
+  animation: pf-villa-drift var(--t-villa) var(--t-villa-at) cubic-bezier(0.4, 0.05, 0.2, 1) both;
+}
+
+body.lk-opened .pf-hero-vine {
+  animation:
+    pf-drop-in var(--t-vine) var(--t-vine-at) var(--ease) both,
+    pf-swing 5.2s calc(var(--t-vine-at) + var(--t-vine)) ease-in-out infinite alternate;
+}
+
+body.lk-opened .pf-hero-vine--r {
+  animation-delay: calc(var(--t-vine-at) + 0.08s), calc(var(--t-vine-at) + var(--t-vine) + 0.6s);
+  animation-direction: normal, alternate-reverse;
+}
+
+body.lk-opened .pf-hero-bloom img {
+  animation:
+    pf-bloom-rise var(--t-bloom) var(--t-bloom-at) var(--ease) both,
+    pf-breathe 6.5s calc(var(--t-bloom-at) + var(--t-bloom)) ease-in-out infinite alternate;
+}
+
+body.lk-opened .pf-butterfly-float--1 {
+  animation:
+    pf-butterfly-in var(--t-butterfly) var(--t-butterfly-at) cubic-bezier(0.2, 0.7, 0.3, 1) both,
+    pf-butterfly-flight 14s calc(var(--t-butterfly-at) + var(--t-butterfly)) ease-in-out infinite;
+}
+
+body.lk-opened .pf-butterfly-float--2 {
+  animation:
+    pf-butterfly-in var(--t-butterfly) calc(var(--t-butterfly-at) + 0.18s) cubic-bezier(0.2, 0.7, 0.3, 1) both,
+    pf-butterfly-flight-b 16s calc(var(--t-butterfly-at) + var(--t-butterfly) + 0.18s) ease-in-out infinite;
+}
+
+body.lk-opened .pf-hero-laces svg {
+  animation:
+    pf-lace-in var(--t-lace) calc(var(--t-lace-at) + var(--d, 0s)) ease-out both,
+    pf-twinkle 3.4s calc(var(--t-lace-at) + var(--t-lace) + var(--d, 0s)) ease-in-out infinite;
+}
+
+body.lk-opened .pf-hero-veil {
+  animation: pf-fade-in var(--t-veil) var(--t-veil-at) ease-out both;
+}
+
+body.lk-opened .pf-hero-monogram {
+  animation: pf-mono-in 680ms var(--t-mono-at) var(--ease) both;
+}
+
+body.lk-opened .pf-hero .lk-section-eyebrow {
+  animation: pf-letter-in 600ms var(--t-kicker-at) var(--ease) both;
+}
+
 body.lk-opened #pf-hero-names .ch {
-  animation: pf-letter-in 650ms calc(160ms + var(--i, 0) * 42ms) var(--ease) both;
+  animation: pf-letter-in 650ms calc(var(--t-names-at) + var(--i, 0) * var(--t-letter)) var(--ease) both;
+}
+
+body.lk-opened .pf-hero .pf-hero-meta {
+  animation: pf-letter-in 600ms var(--t-meta-at) var(--ease) both;
+}
+
+body.lk-opened .pf-hero .lk-countdown-unit {
+  animation: pf-card-pop 580ms calc(var(--t-cd-at) + var(--n, 0) * 90ms) cubic-bezier(0.22, 1.15, 0.36, 1) both;
+}
+
+body.lk-opened .pf-hero .pf-hero-actions {
+  animation: pf-letter-in 620ms var(--t-cta-at) var(--ease) both;
 }
 
 [data-theme="pastel-flowers"] .lk-hero-date,
@@ -1805,12 +2016,145 @@ body.lk-opened #pf-hero-names .ch {
   }
 }
 
+@keyframes pf-dolly-zoom {
+  from {
+    transform: scale(1.62);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
 @keyframes pf-dolly-in {
   from {
     transform: scale(1.08);
   }
   to {
     transform: scale(1);
+  }
+}
+
+@keyframes pf-frame-breathe {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.018);
+  }
+}
+
+@keyframes pf-villa-drift {
+  from {
+    opacity: 0;
+    transform: translateY(-12%) scale(1.08);
+  }
+  25% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pf-drop-in {
+  from {
+    opacity: 0;
+    transform: translateY(-40px) rotate(-6deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pf-bloom-rise {
+  from {
+    opacity: 0;
+    transform: translateY(65%) scale(1.12);
+  }
+  40% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pf-breathe {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.025) translateY(-1.5%);
+  }
+}
+
+@keyframes pf-butterfly-in {
+  0% {
+    opacity: 0;
+    translate: var(--from, -110px) -36px;
+    rotate: -10deg;
+    scale: 0.75;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    translate: 0 0;
+    rotate: 0deg;
+    scale: 1;
+  }
+}
+
+@keyframes pf-lace-in {
+  from {
+    opacity: 0;
+    transform: scale(0.55) rotate(-18deg);
+  }
+  to {
+    opacity: 0.88;
+    transform: none;
+  }
+}
+
+@keyframes pf-twinkle {
+  0%, 100% {
+    opacity: 0.88;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.84);
+  }
+}
+
+@keyframes pf-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes pf-mono-in {
+  from {
+    opacity: 0;
+    transform: scale(0.6) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pf-card-pop {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.86);
+  }
+  to {
+    opacity: 1;
+    transform: none;
   }
 }
 
@@ -1868,18 +2212,18 @@ body.lk-opened #pf-hero-names .ch {
 }
 
 @keyframes pf-butterfly-flight {
-  0%   { transform: translate3d(0, 0, 0) rotate(-6deg); opacity: 0.72; }
-  25%  { transform: translate3d(38px, -22px, 0) rotate(5deg); opacity: 0.95; }
-  50%  { transform: translate3d(72px, 8px, 0) rotate(-4deg); opacity: 0.85; }
-  75%  { transform: translate3d(28px, 24px, 0) rotate(7deg); opacity: 0.9; }
-  100% { transform: translate3d(0, 0, 0) rotate(-6deg); opacity: 0.72; }
+  0%   { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 1; }
+  25%  { transform: translate3d(34px, -20px, 0) rotate(6deg); opacity: 0.95; }
+  50%  { transform: translate3d(66px, 8px, 0) rotate(-4deg); opacity: 0.88; }
+  75%  { transform: translate3d(24px, 20px, 0) rotate(7deg); opacity: 0.92; }
+  100% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 1; }
 }
 
 @keyframes pf-butterfly-flight-b {
-  0%   { transform: scale(0.78) translate3d(0, 0, 0) rotate(6deg); opacity: 0.65; }
-  30%  { transform: scale(0.78) translate3d(-44px, -18px, 0) rotate(-6deg); opacity: 0.9; }
-  65%  { transform: scale(0.78) translate3d(-74px, 16px, 0) rotate(5deg); opacity: 0.8; }
-  100% { transform: scale(0.78) translate3d(0, 0, 0) rotate(6deg); opacity: 0.65; }
+  0%   { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 1; }
+  30%  { transform: translate3d(-40px, -16px, 0) rotate(-6deg); opacity: 0.92; }
+  65%  { transform: translate3d(-68px, 14px, 0) rotate(5deg); opacity: 0.85; }
+  100% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 1; }
 }
 
 @keyframes pf-mote-rise {
@@ -1935,13 +2279,27 @@ body.lk-opened #pf-hero-names .ch {
 
   .pf-motes,
   .pf-butterflies,
+  .pf-hero-laces,
   .pf-petals,
   .pf-shine::after {
     display: none;
   }
 
+  [data-theme="pastel-flowers"] .pf-hero-dolly,
+  [data-theme="pastel-flowers"] .pf-hero-frame-img,
+  [data-theme="pastel-flowers"] .pf-hero-villa img,
+  [data-theme="pastel-flowers"] .pf-hero-vine,
+  [data-theme="pastel-flowers"] .pf-hero-bloom img,
+  [data-theme="pastel-flowers"] .pf-hero-veil,
+  [data-theme="pastel-flowers"] .pf-hero .pf-hero-monogram,
+  [data-theme="pastel-flowers"] .pf-hero .lk-section-eyebrow,
+  [data-theme="pastel-flowers"] .pf-hero-names,
+  body:not(.lk-opened) .pf-hero-names,
   #pf-hero-names .ch,
   .pf-hero-names .ch,
+  [data-theme="pastel-flowers"] .pf-hero .pf-hero-meta,
+  [data-theme="pastel-flowers"] .pf-hero .lk-countdown-unit,
+  [data-theme="pastel-flowers"] .pf-hero .pf-hero-actions,
   [data-theme="pastel-flowers"] [data-reveal],
   [data-theme="pastel-flowers"] .lk-reveal {
     opacity: 1;

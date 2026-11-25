@@ -621,13 +621,11 @@
 
     if (typeof ornaments.monogram === "function") {
       const monoWrap = el("div", "pf-hero-monogram");
-      monoWrap.setAttribute("data-reveal", "zoom");
       monoWrap.append(ornaments.monogram(initials));
       content.append(monoWrap);
     }
 
     const eyebrow = el("p", "lk-section-eyebrow", "The Wedding of");
-    eyebrow.setAttribute("data-reveal", "up");
 
     const headline = el("h1", "pf-hero-names lk-couple-headline");
     headline.id = "pf-hero-names";
@@ -638,7 +636,6 @@
     const dateText = data.tanggal_teks || fmtDateID(primaryIso);
     const dateParts = [dateText, city].filter(Boolean);
     const metaLine = el("p", "lk-hero-date pf-hero-meta", dateParts.join(" · "));
-    metaLine.setAttribute("data-reveal", "up");
 
     content.append(eyebrow, headline);
     if (metaLine.textContent) content.append(metaLine);
@@ -648,7 +645,6 @@
       const targetMs = new Date(primaryIso).getTime();
       if (!Number.isNaN(targetMs)) {
         const cdHost = el("div", "pf-countdown-wrap");
-        cdHost.setAttribute("data-reveal", "rise");
 
         const grid = el("div", "lk-countdown");
         grid.id = "pf-countdown";
@@ -661,8 +657,9 @@
           ["s", "Detik"]
         ];
         const refs = {};
-        units.forEach(([key, label]) => {
+        units.forEach(([key, label], idx) => {
           const box = el("div", "lk-countdown-unit");
+          box.style.setProperty("--n", String(idx));
           const num = el("span", "lk-countdown-num", "00");
           const lbl = el("span", "lk-countdown-label", label);
           refs[key] = num;
@@ -702,7 +699,6 @@
 
     // Quick Action Buttons ("Simpan Tanggal" -> .ics, "Lihat Lokasi" -> #acara)
     const actions = el("div", "pf-hero-actions lk-shortcut-wrap");
-    actions.setAttribute("data-reveal", "up");
 
     const firstEvent = Array.isArray(data.acara) && data.acara[0]
       ? data.acara[0]
@@ -2069,6 +2065,15 @@
     const coverEl = $("#lk-cover");
     const reduced = prefersReducedMotion();
     let hasOpened = false;
+    let motionEnhanced = false;
+
+    function runEnhanceMotion() {
+      if (motionEnhanced) return;
+      motionEnhanced = true;
+      if (typeof theme.enhanceMotion === "function") {
+        theme.enhanceMotion(mainEl, reduced);
+      }
+    }
 
     function finishOpen() {
       if (hasOpened) return;
@@ -2082,9 +2087,7 @@
         coverEl.hidden = true;
       }
       initScrollReveal();
-      if (typeof theme.enhanceMotion === "function") {
-        theme.enhanceMotion(mainEl, reduced);
-      }
+      runEnhanceMotion();
     }
 
     function handleOpen() {
@@ -2093,6 +2096,8 @@
         finishOpen();
         return;
       }
+      document.body.classList.add("lk-opened");
+      runEnhanceMotion();
       theme.opener.open(coverEl, finishOpen);
     }
 

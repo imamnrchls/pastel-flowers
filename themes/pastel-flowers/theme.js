@@ -541,24 +541,117 @@
       splitLetters(heroNames);
     }
 
-    // 2. Ambient Hero Butterflies, Corner Florals & Golden Motes
+    // 2. Enriched Hero Diorama Layers, Sparkles, Butterflies & Golden Motes
     var heroEl =
       scope.querySelector(".pf-hero") ||
       scope.querySelector("#pembuka") ||
       document.getElementById("pembuka");
     if (heroEl) {
-      if (!heroEl.querySelector(".pf-butterflies")) {
-        var butterflies = el("div", "pf-butterflies");
-        butterflies.setAttribute("aria-hidden", "true");
+      if (heroEl.dataset.pfDiorama !== "1") {
+        heroEl.dataset.pfDiorama = "1";
 
-        var b1 = el("div", "pf-butterfly-float pf-butterfly-float--1");
-        b1.appendChild(ornaments.butterflySvg());
+        var dolly = heroEl.querySelector(".pf-hero-dolly") || heroEl;
+        var heroContent = dolly.querySelector(".pf-hero-content");
+        var insertBeforeContent = function (node) {
+          if (heroContent && heroContent.parentNode === dolly) {
+            dolly.insertBefore(node, heroContent);
+          } else {
+            dolly.appendChild(node);
+          }
+        };
 
-        var b2 = el("div", "pf-butterfly-float pf-butterfly-float--2");
-        b2.appendChild(ornaments.butterflySvg());
+        // Subtle heritage villa silhouette behind veil
+        if (!dolly.querySelector(".pf-hero-villa")) {
+          var villaWrap = el("div", "pf-hero-layer pf-hero-villa");
+          villaWrap.setAttribute("data-depth", "0.22");
+          villaWrap.setAttribute("aria-hidden", "true");
+          var villaImg = imgEl(ASSETS.venueVilla, "pf-hero-villa-img", "");
+          villaImg.loading = "eager";
+          villaWrap.appendChild(villaImg);
+          insertBeforeContent(villaWrap);
+        }
 
-        butterflies.append(b1, b2);
-        heroEl.appendChild(butterflies);
+        // Delicate hanging botanical vine SVG sprigs at top-left & top-right
+        var vineMarkup =
+          '<path d="M12 0 C14 26, 26 48, 22 78 C18 104, 34 128, 30 156" fill="none" stroke="#4F5D3A" stroke-width="1.35" stroke-linecap="round"/>' +
+          '<path d="M22 44 C38 38, 52 44, 58 56" fill="none" stroke="#4F5D3A" stroke-width="1" stroke-linecap="round"/>' +
+          '<path d="M23 92 C40 94, 52 104, 54 118" fill="none" stroke="#687850" stroke-width="0.95" stroke-linecap="round"/>' +
+          '<path d="M18 22 C8 25, 4 36, 13 41 C20 38, 21 29, 18 22 Z" fill="#7A8A5F" fill-opacity="0.72" stroke="#354328" stroke-width="0.8"/>' +
+          '<path d="M36 42 C46 34, 56 36, 55 46 C48 51, 39 48, 36 42 Z" fill="#687850" fill-opacity="0.78" stroke="#354328" stroke-width="0.8"/>' +
+          '<path d="M20 74 C8 76, 5 87, 14 92 C21 88, 23 80, 20 74 Z" fill="#7A8A5F" fill-opacity="0.74" stroke="#354328" stroke-width="0.8"/>' +
+          '<path d="M38 96 C48 90, 58 94, 56 104 C48 107, 40 103, 38 96 Z" fill="#687850" fill-opacity="0.76" stroke="#354328" stroke-width="0.8"/>' +
+          '<path d="M27 128 C16 132, 14 143, 22 147 C29 143, 31 135, 27 128 Z" fill="#7A8A5F" fill-opacity="0.72" stroke="#354328" stroke-width="0.8"/>' +
+          '<circle cx="59" cy="57" r="4.2" fill="#E6C1C6" stroke="#C98D96" stroke-width="0.9"/>' +
+          '<circle cx="59" cy="57" r="1.7" fill="#D9C08C"/>' +
+          '<circle cx="54" cy="119" r="3.6" fill="#E6C1C6" stroke="#C98D96" stroke-width="0.85"/>' +
+          '<circle cx="30" cy="158" r="3.2" fill="#D9C08C" stroke="#B5945B" stroke-width="0.8"/>';
+
+        ["l", "r"].forEach(function (side) {
+          if (!dolly.querySelector(".pf-hero-vine--" + side)) {
+            var vine = el("div", "pf-hero-vine pf-hero-vine--" + side);
+            vine.setAttribute("data-depth", "0.18");
+            vine.setAttribute("aria-hidden", "true");
+            vine.appendChild(svgEl("0 0 84 176", vineMarkup, "pf-hero-vine-svg"));
+            insertBeforeContent(vine);
+          }
+        });
+
+        // Bottom floral garland that rises and breathes gently
+        if (!dolly.querySelector(".pf-hero-bloom")) {
+          var bloomWrap = el("div", "pf-hero-bloom");
+          bloomWrap.setAttribute("data-depth", "0.10");
+          bloomWrap.setAttribute("aria-hidden", "true");
+          var bloomImg = imgEl(ASSETS.floralDivider, "pf-hero-bloom-img", "");
+          bloomImg.loading = "eager";
+          bloomWrap.appendChild(bloomImg);
+          insertBeforeContent(bloomWrap);
+        }
+
+        // 8 delicate antique-gold 4-point star sparkles
+        if (!dolly.querySelector(".pf-hero-laces")) {
+          var lacesWrap = el("div", "pf-hero-laces");
+          lacesWrap.setAttribute("aria-hidden", "true");
+          var sparkleSpecs = [
+            { x: "11%", y: "18%", s: "18px", d: "0s" },
+            { x: "84%", y: "16%", s: "21px", d: "0.14s" },
+            { x: "16%", y: "39%", s: "14px", d: "0.28s" },
+            { x: "82%", y: "41%", s: "16px", d: "0.2s" },
+            { x: "9%",  y: "64%", s: "20px", d: "0.36s" },
+            { x: "88%", y: "66%", s: "15px", d: "0.44s" },
+            { x: "22%", y: "82%", s: "16px", d: "0.18s" },
+            { x: "75%", y: "84%", s: "22px", d: "0.52s" }
+          ];
+          var sparkleMarkup =
+            '<path d="M12 1.5 L14.1 9.9 L22.5 12 L14.1 14.1 L12 22.5 L9.9 14.1 L1.5 12 L9.9 9.9 Z" fill="#D9C08C" fill-opacity="0.55" stroke="#B5945B" stroke-width="0.9" stroke-linejoin="round"/>' +
+            '<circle cx="12" cy="12" r="1.6" fill="#FAF6EE"/>';
+
+          sparkleSpecs.forEach(function (sp) {
+            var star = svgEl("0 0 24 24", sparkleMarkup, "pf-hero-lace-star");
+            star.style.setProperty("--x", sp.x);
+            star.style.setProperty("--y", sp.y);
+            star.style.setProperty("--s", sp.s);
+            star.style.setProperty("--d", sp.d);
+            lacesWrap.appendChild(star);
+          });
+          insertBeforeContent(lacesWrap);
+        }
+
+        // 2 antique-gold butterflies flying in from off-screen
+        if (!dolly.querySelector(".pf-butterflies")) {
+          var butterflies = el("div", "pf-butterflies");
+          butterflies.setAttribute("aria-hidden", "true");
+
+          var b1 = el("div", "pf-butterfly-float pf-butterfly-float--1");
+          b1.style.setProperty("--from", "-110px");
+          b1.appendChild(ornaments.butterflySvg());
+
+          var b2 = el("div", "pf-butterfly-float pf-butterfly-float--2");
+          b2.style.setProperty("--from", "110px");
+          b2.appendChild(ornaments.butterflySvg());
+
+          butterflies.append(b1, b2);
+          insertBeforeContent(butterflies);
+        }
       }
 
       if (!heroEl.querySelector(".pf-hero-motes")) {
