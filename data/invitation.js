@@ -81,6 +81,13 @@ window.INVITATION_DATA = {
     ilustrasi: "assets/dress-code.webp"
   },
 
+  foto_cerita: {
+    src: "assets/kisah-nadia-dimas.webp",
+    alt: "Nadia dan Dimas berjalan bersama di taman",
+    lebar: 1200,
+    tinggi: 900
+  },
+
   cerita: [
     {
       bab: "Bab I",
