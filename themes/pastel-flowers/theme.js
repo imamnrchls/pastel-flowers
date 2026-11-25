@@ -6,12 +6,12 @@
   "use strict";
 
   var ASSETS = {
-    frameHero: "assets/frame-hero.jpg",
-    floralDivider: "assets/floral-divider.jpg",
-    waxSeal: "assets/wax-seal.jpg",
-    venueVilla: "assets/venue-villa.svg",
+    frameHero: "assets/frame-hero.webp",
+    floralDivider: "assets/floral-divider.webp",
+    waxSeal: "assets/wax-seal.webp",
+    venueVilla: "assets/venue-villa.webp",
     dressCode: "assets/dress-code.svg",
-    botanicalCorner: "assets/botanical-corner.jpg",
+    botanicalCorner: "assets/botanical-corner.webp",
     gardenScene: "assets/garden-scene.svg"
   };
 
@@ -339,7 +339,14 @@
 
       var backdrop = el("div", "pf-cover-backdrop");
       backdrop.setAttribute("aria-hidden", "true");
-      backdrop.appendChild(createMotes(12, "pf-cover-motes"));
+      var coverFiligreeSvg =
+        '<path d="M4 44 C4 18, 18 4, 44 4" fill="none" stroke="#D9C08C" stroke-width="1" opacity="0.52"/>' +
+        '<path d="M10 32 C10 17, 17 10, 32 10" fill="none" stroke="#D9C08C" stroke-width="0.7" opacity="0.35"/>' +
+        '<circle cx="14" cy="14" r="2" fill="#D9C08C" opacity="0.58"/>';
+      ["tl", "tr", "bl", "br"].forEach(function (pos) {
+        backdrop.appendChild(svgEl("0 0 48 48", coverFiligreeSvg, "pf-cover-filigree pf-cover-filigree--" + pos));
+      });
+      backdrop.appendChild(createMotes(14, "pf-cover-motes"));
 
       var card = el("div", "pf-cover-card");
       var frameWrap = el("div", "pf-cover-frame");
@@ -487,49 +494,6 @@
     var isReduced = typeof reducedMotion === "boolean" ? reducedMotion : prefersReducedMotion();
 
     // 5. Interactive 3D Envelope in #hadiah
-    var giftSection = scope.querySelector("#hadiah") || document.getElementById("hadiah");
-    var giftToggle = scope.querySelector("#gift-toggle") || document.getElementById("gift-toggle");
-    if (giftSection && giftToggle && giftToggle.dataset.pfBound !== "1") {
-      giftToggle.dataset.pfBound = "1";
-
-      var skeletonEnvelope = giftSection.querySelector("#pf-gift-envelope");
-      var skeletonDrawer = giftSection.querySelector("#pf-gift-drawer");
-      var giftCards = giftSection.querySelector(".lk-gift-cards") || giftSection.querySelector("#gift-list");
-
-      if (giftCards) {
-        Array.from(giftCards.children).forEach(function (child, idx) {
-          child.style.setProperty("--i", String(idx));
-        });
-      }
-
-      if (skeletonEnvelope && skeletonDrawer) {
-        // Skeleton already manages #pf-gift-envelope & #pf-gift-drawer click toggle;
-        // sync .is-open on #hadiah and ensure card stagger indices stay fresh.
-        giftToggle.addEventListener("click", function () {
-          requestAnimationFrame(function () {
-            var isOpen = skeletonEnvelope.classList.contains("is-open");
-            giftSection.classList.toggle("is-open", isOpen);
-          });
-        });
-      } else {
-        // Standalone fallback if skeleton markup is custom
-        giftToggle.addEventListener("click", function () {
-          var nextOpen = giftToggle.getAttribute("aria-expanded") !== "true";
-          giftToggle.setAttribute("aria-expanded", String(nextOpen));
-          giftSection.classList.toggle("is-open", nextOpen);
-          if (giftCards) {
-            if (nextOpen) {
-              setTimeout(function () {
-                giftCards.hidden = false;
-              }, isReduced ? 0 : 420);
-            } else {
-              giftCards.hidden = true;
-            }
-          }
-        });
-      }
-    }
-
     if (isReduced) return;
 
     // 1. Letter-by-letter Hero Name Reveal
