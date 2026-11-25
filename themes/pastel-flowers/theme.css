@@ -2447,6 +2447,27 @@ body.lk-opened .pf-hero .pf-hero-actions {
 
 [data-theme="pastel-flowers"] .pf-bank-face .lk-bank-num {
   font-weight: 600;
+  font-size: clamp(14px, 4.1vw, 17px);
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+[data-theme="pastel-flowers"] .pf-bank-face .pf-bank-copy-btn {
+  background: rgba(250, 246, 238, 0.14);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(217, 192, 140, 0.58);
+  color: var(--bg-cream-soft);
+  box-shadow: 0 4px 12px rgba(10, 14, 8, 0.24);
+}
+
+[data-theme="pastel-flowers"] .pf-bank-face .pf-bank-copy-btn:hover,
+[data-theme="pastel-flowers"] .pf-bank-face .pf-bank-copy-btn:focus-visible {
+  background: var(--accent-gold-light);
+  border-color: var(--accent-gold-light);
+  color: var(--bg-moss);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(10, 14, 8, 0.3);
 }
 
 .pf-address-icon {

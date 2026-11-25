@@ -759,20 +759,41 @@ a {
   color: var(--accent, #b08b6a);
 }
 
-.pf-villa-figure {
+.pf-event-location {
+  max-width: 390px;
   margin: 28px auto 0;
-  max-width: 340px;
-  padding: 14px;
-  background: var(--surface, #FAF6EE);
-  border: 1px solid var(--line, rgba(176, 139, 106, 0.35));
-  border-radius: var(--radius, 14px);
+  padding: 24px clamp(16px, 5vw, 28px);
+  border: 1px solid var(--line, #d6c2ad);
+  border-radius: 16px;
+  background: var(--surface, #faf6ee);
+  color: var(--ink-primary, #2f2a26);
+  text-align: center;
+  scroll-margin-block-start: 20px;
+}
+
+.pf-event-location-title {
+  margin: 0 0 12px;
+  font: 600 26px/1.15 var(--font-display, Georgia, serif);
+}
+
+.pf-villa-figure {
+  margin: 0 auto 14px;
 }
 
 .pf-villa-img {
+  display: block;
   width: 100%;
   height: auto;
-  margin: 0 auto;
-  border-radius: var(--radius, 10px);
+}
+
+.pf-villa-caption {
+  margin-top: 5px;
+  font-size: 12px;
+  color: var(--ink-muted, #625a4b);
+}
+
+.pf-event-location .lk-event-address {
+  margin-bottom: 14px;
 }
 
 /* ---------- 5. Dress Code ---------- */
@@ -1270,8 +1291,28 @@ a {
   background: linear-gradient(120deg, #b89962, #eed7a7 55%, #c8a76c);
 }
 
-.lk-bank-card .lk-copy-btn {
-  justify-self: end;
+.pf-bank-num-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
+}
+
+.pf-bank-num-row .lk-bank-num {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.lk-bank-card .lk-copy-btn.pf-bank-copy-btn {
+  flex: none;
+  margin-top: 0;
+  min-height: 36px;
+  padding: 6px 11px;
+  gap: 5px;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
 }
 
 .lk-bank-name,

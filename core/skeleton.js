@@ -1569,9 +1569,14 @@
         const face = el("div", "pf-bank-face");
         const chip = el("span", "pf-bank-chip");
         chip.setAttribute("aria-hidden", "true");
-        face.append(el("h4", "lk-bank-name", bank), chip, el("p", "lk-bank-num", number));
+        const numRow = el("div", "pf-bank-num-row");
+        const copyBtn = copyButton(number.replace(/\s+/g, ""), "Salin", bank);
+        copyBtn.classList.add("pf-bank-copy-btn");
+        copyBtn.setAttribute("aria-label", `${labels.copy_account} ${bank}`);
+        numRow.append(el("p", "lk-bank-num", number), copyBtn);
+        face.append(el("h4", "lk-bank-name", bank), chip, numRow);
         if (acc.atas_nama) face.append(el("p", "lk-bank-holder", acc.atas_nama));
-        card.append(face, copyButton(number.replace(/\s+/g, ""), labels.copy_account, bank));
+        card.append(face);
         cards.append(card);
       });
 
