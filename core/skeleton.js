@@ -1246,6 +1246,15 @@
     const source = storyPhoto && String(storyPhoto.src || "").trim();
     if (source) {
       const figure = el("figure", "pf-story-photo");
+      figure.setAttribute("data-reveal", "zoom");
+
+      const pin = el("span", "pf-story-pin");
+      pin.setAttribute("aria-hidden", "true");
+      if (typeof ornaments.waxSealImg === "function") {
+        pin.append(ornaments.waxSealImg());
+      }
+
+      const frame = el("div", "pf-story-photo-frame");
       const image = el("img");
       image.alt = storyPhoto.alt || "Foto kedua mempelai";
       image.loading = "lazy";
@@ -1255,7 +1264,36 @@
         image.height = storyPhoto.tinggi;
       }
       setImageWithSvgFallback(image, source, () => { figure.hidden = true; });
-      figure.append(image);
+      frame.append(image);
+
+      if (typeof ornaments.cornerFloral === "function") {
+        const cornerTl = ornaments.cornerFloral("tl");
+        cornerTl.classList.add("pf-story-corner", "pf-story-corner--tl");
+        const cornerBr = ornaments.cornerFloral("br");
+        cornerBr.classList.add("pf-story-corner", "pf-story-corner--br");
+        figure.append(cornerTl, cornerBr);
+      }
+
+      figure.append(pin, frame);
+
+      const capText = storyPhoto.caption && String(storyPhoto.caption).trim();
+      const figcaption = el("figcaption", "pf-story-caption");
+      if (capText) {
+        figcaption.textContent = capText;
+      } else {
+        const pair = getCouplePair(data);
+        const capNames = el("span", "pf-story-caption-names");
+        buildNamesSpans(capNames, data);
+        figcaption.append(capNames);
+        if (stories[0] && stories[0].tanggal) {
+          figcaption.append(el("span", "pf-story-caption-sep", "✦"));
+          figcaption.append(el("span", "pf-story-caption-meta", stories[0].tanggal));
+        } else if (pair.first || pair.second) {
+          figcaption.append(el("span", "pf-story-caption-sep", "✦"));
+          figcaption.append(el("span", "pf-story-caption-meta", "Our Story"));
+        }
+      }
+      figure.append(figcaption);
       sec.append(figure);
     }
 
