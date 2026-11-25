@@ -139,9 +139,9 @@
   }
 
   [data-theme="pastel-flowers"] .lk-cover {
-    left: auto;
-    right: 0;
-    width: min(520px, 100%);
+    inset: 0;
+    width: 100%;
+    padding: clamp(20px, 3.5svh, 36px) 24px;
   }
 
   [data-theme="pastel-flowers"] .lk-music-btn {
@@ -595,7 +595,7 @@ body.lk-opened .pf-botanical-scene--hero .pf-scene-piece {
 }
 
 .pf-cover-backdrop {
-  position: fixed;
+  position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 0;
@@ -625,11 +625,10 @@ body.lk-opened .pf-botanical-scene--hero .pf-scene-piece {
 .pf-cover-card {
   position: relative;
   z-index: 1;
-  width: min(100%, 416px);
+  width: min(100%, 416px, calc((100svh - 48px) * 2 / 3));
   aspect-ratio: 2 / 3;
-  min-height: min(520px, calc(100svh - 40px));
-  max-height: calc(100svh - 40px);
-  padding: clamp(54px, 11vw, 72px) clamp(26px, 7vw, 42px) clamp(38px, 8vw, 54px);
+  max-height: calc(100svh - 48px);
+  padding: clamp(46px, 8vw, 66px) clamp(24px, 6vw, 40px) clamp(36px, 7vw, 50px);
   background-color: var(--bg-parchment);
   background-image:
     var(--pf-paper-grain),

@@ -6,7 +6,10 @@
   "use strict";
 
   var ASSETS = {
-    frameHero: "assets/frame-hero.webp",
+    botanicalFrame: "assets/botanical-frame.webp",
+    hangingOrchid: "assets/orchid-hanging.webp",
+    orchidBouquet: "assets/orchid-bouquet.webp",
+    butterfly: "assets/butterfly.webp",
     floralDivider: "assets/floral-divider.webp",
     waxSeal: "assets/wax-seal.webp",
     venueVilla: "assets/venue-villa.webp",
@@ -164,41 +167,45 @@
 
   /* ---------- Ornaments ---------- */
   var ornaments = {
-    butterflySvg: function () {
-      return svgEl(
-        "0 0 72 58",
-        '<defs>' +
-          '<linearGradient id="pf-gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">' +
-            '<stop offset="0%" stop-color="#E8D2A3"/>' +
-            '<stop offset="50%" stop-color="#B5945B"/>' +
-            '<stop offset="100%" stop-color="#8A6C3B"/>' +
-          '</linearGradient>' +
-        '</defs>' +
-        '<g class="wing-l">' +
-          '<path d="M35 28 C27 12, 8 4, 5 16 C3 24, 15 31, 34 31 Z" fill="url(#pf-gold-grad)" fill-opacity="0.28" stroke="#B5945B" stroke-width="1.2" stroke-linejoin="round"/>' +
-          '<path d="M34 32 C20 33, 10 42, 16 50 C22 56, 32 46, 35 35 Z" fill="url(#pf-gold-grad)" fill-opacity="0.22" stroke="#B5945B" stroke-width="1.15" stroke-linejoin="round"/>' +
-          '<path d="M33 28 C23 19, 14 14, 9 17 M32 30 C23 25, 16 24, 12 25 M33 34 C25 39, 20 44, 18 47" fill="none" stroke="#8A6C3B" stroke-width="0.7" stroke-linecap="round" opacity="0.75"/>' +
-          '<circle cx="14" cy="17" r="1.4" fill="#D9C08C"/>' +
-          '<circle cx="20" cy="44" r="1.1" fill="#D9C08C"/>' +
-        '</g>' +
-        '<g class="wing-r">' +
-          '<path d="M37 28 C45 12, 64 4, 67 16 C69 24, 57 31, 38 31 Z" fill="url(#pf-gold-grad)" fill-opacity="0.28" stroke="#B5945B" stroke-width="1.2" stroke-linejoin="round"/>' +
-          '<path d="M38 32 C52 33, 62 42, 56 50 C50 56, 40 46, 37 35 Z" fill="url(#pf-gold-grad)" fill-opacity="0.22" stroke="#B5945B" stroke-width="1.15" stroke-linejoin="round"/>' +
-          '<path d="M39 28 C49 19, 58 14, 63 17 M40 30 C49 25, 56 24, 60 25 M39 34 C47 39, 52 44, 54 47" fill="none" stroke="#8A6C3B" stroke-width="0.7" stroke-linecap="round" opacity="0.75"/>' +
-          '<circle cx="58" cy="17" r="1.4" fill="#D9C08C"/>' +
-          '<circle cx="52" cy="44" r="1.1" fill="#D9C08C"/>' +
-        '</g>' +
-        '<g class="butterfly-body">' +
-          '<ellipse cx="36" cy="33" rx="1.6" ry="9.5" fill="#8A6C3B"/>' +
-          '<circle cx="36" cy="22.5" r="1.9" fill="#B5945B"/>' +
-          '<path d="M35.2 21 C33 14, 28 10, 25 11 M36.8 21 C39 14, 44 10, 47 11" fill="none" stroke="#8A6C3B" stroke-width="0.9" stroke-linecap="round"/>' +
-          '<circle cx="25" cy="11" r="0.9" fill="#B5945B"/>' +
-          '<circle cx="47" cy="11" r="0.9" fill="#B5945B"/>' +
-        '</g>',
-        "pf-butterfly-svg",
-        44,
-        36
-      );
+    butterfly: function () {
+      var art = el("span", "pf-butterfly-art");
+      art.setAttribute("aria-hidden", "true");
+      ["left", "right", "body"].forEach(function (part) {
+        var image = imgEl(ASSETS.butterfly, "pf-butterfly-part pf-butterfly-part--" + part, "");
+        image.loading = "eager";
+        art.appendChild(image);
+      });
+      return art;
+    },
+
+    botanicalScene: function (placement) {
+      var scene = el("div", "pf-botanical-scene pf-botanical-scene--" + placement);
+      scene.setAttribute("aria-hidden", "true");
+
+      var frame = imgEl(ASSETS.botanicalFrame, "pf-scene-frame", "");
+      frame.loading = "eager";
+      scene.appendChild(frame);
+
+      [
+        { name: "vine-left", asset: ASSETS.hangingOrchid, depth: "0.08" },
+        { name: "vine-right", asset: ASSETS.hangingOrchid, depth: "0.12" },
+        { name: "flowers-left", asset: ASSETS.orchidBouquet, depth: "0.18" },
+        { name: "flowers-right", asset: ASSETS.orchidBouquet, depth: "0.23" }
+      ].forEach(function (layer) {
+        var piece = el("span", "pf-scene-piece pf-scene-piece--" + layer.name);
+        if (placement === "hero") piece.setAttribute("data-depth", layer.depth);
+        var image = imgEl(layer.asset, "pf-scene-art", "");
+        image.loading = "eager";
+        piece.appendChild(image);
+        scene.appendChild(piece);
+      });
+
+      if (placement === "cover") {
+        var butterfly = el("span", "pf-scene-butterfly");
+        butterfly.appendChild(ornaments.butterfly());
+        scene.appendChild(butterfly);
+      }
+      return scene;
     },
 
     dividerImg: function () {
@@ -297,7 +304,7 @@
       var box = el("div", "pf-monogram");
       box.setAttribute("aria-label", "Monogram " + (initials || ""));
       box.append(
-        ornaments.butterflySvg(),
+        ornaments.butterfly(),
         el("span", "pf-monogram-letters", initials || "N & D")
       );
       return box;
@@ -315,7 +322,7 @@
 
     closingEmblem: function (initials) {
       var wrap = el("div", "pf-closing-emblem");
-      wrap.append(ornaments.butterflySvg(), el("span", "pf-closing-initials", initials || "N & D"));
+      wrap.append(ornaments.butterfly(), el("span", "pf-closing-initials", initials || "N & D"));
       return wrap;
     }
   };
@@ -349,11 +356,7 @@
       backdrop.appendChild(createMotes(14, "pf-cover-motes"));
 
       var card = el("div", "pf-cover-card");
-      var frameWrap = el("div", "pf-cover-frame");
-      frameWrap.setAttribute("aria-hidden", "true");
-      var frameImg = imgEl(ASSETS.frameHero, "pf-cover-frame-img", "");
-      frameImg.loading = "eager";
-      frameWrap.appendChild(frameImg);
+      var scene = ornaments.botanicalScene("cover");
 
       var content = el("div", "pf-cover-content");
 
@@ -383,18 +386,12 @@
         openBtn.addEventListener("click", onOpen);
       }
 
-      var skipBtn = el("button", "pf-skip-btn", "Lewati");
-      skipBtn.type = "button";
-      if (typeof onSkip === "function") {
-        skipBtn.addEventListener("click", onSkip);
-      }
-
-      actions.append(openBtn, skipBtn);
+      actions.append(openBtn);
       content.append(eyebrow, names);
       if (dateStr) content.appendChild(dateEl);
       content.append(guestBox, actions);
 
-      card.append(frameWrap, content);
+      card.append(scene, content);
       container.replaceChildren(backdrop, card);
     },
 
@@ -461,12 +458,11 @@
       velvet.appendChild(createMotes(10, "pf-aside-motes"));
 
       var card = el("div", "pf-aside-card");
-      var frameWrap = el("div", "pf-aside-frame");
-      frameWrap.appendChild(imgEl(ASSETS.frameHero, "pf-aside-frame-img", ""));
+      var scene = ornaments.botanicalScene("aside");
 
       var copy = el("div", "pf-aside-copy");
       var butterflyWrap = el("div", "pf-aside-butterfly");
-      butterflyWrap.appendChild(ornaments.butterflySvg());
+      butterflyWrap.appendChild(ornaments.butterfly());
 
       var eyebrow = el("p", "pf-aside-eyebrow", "THE WEDDING OF");
       var names = buildNamesHeading("h2", "pf-aside-names", data);
@@ -481,7 +477,7 @@
       if (metaText) copy.appendChild(metaEl);
       copy.appendChild(tagline);
 
-      card.append(frameWrap, copy);
+      card.append(scene, copy);
       container.replaceChildren(velvet, card);
     }
   };
@@ -493,7 +489,6 @@
     var scope = root && typeof root.querySelector === "function" ? root : document;
     var isReduced = typeof reducedMotion === "boolean" ? reducedMotion : prefersReducedMotion();
 
-    // 5. Interactive 3D Envelope in #hadiah
     if (isReduced) return;
 
     // 1. Letter-by-letter Hero Name Reveal
@@ -535,42 +530,6 @@
           insertBeforeContent(villaWrap);
         }
 
-        // Delicate hanging botanical vine SVG sprigs at top-left & top-right
-        var vineMarkup =
-          '<path d="M12 0 C14 26, 26 48, 22 78 C18 104, 34 128, 30 156" fill="none" stroke="#4F5D3A" stroke-width="1.35" stroke-linecap="round"/>' +
-          '<path d="M22 44 C38 38, 52 44, 58 56" fill="none" stroke="#4F5D3A" stroke-width="1" stroke-linecap="round"/>' +
-          '<path d="M23 92 C40 94, 52 104, 54 118" fill="none" stroke="#687850" stroke-width="0.95" stroke-linecap="round"/>' +
-          '<path d="M18 22 C8 25, 4 36, 13 41 C20 38, 21 29, 18 22 Z" fill="#7A8A5F" fill-opacity="0.72" stroke="#354328" stroke-width="0.8"/>' +
-          '<path d="M36 42 C46 34, 56 36, 55 46 C48 51, 39 48, 36 42 Z" fill="#687850" fill-opacity="0.78" stroke="#354328" stroke-width="0.8"/>' +
-          '<path d="M20 74 C8 76, 5 87, 14 92 C21 88, 23 80, 20 74 Z" fill="#7A8A5F" fill-opacity="0.74" stroke="#354328" stroke-width="0.8"/>' +
-          '<path d="M38 96 C48 90, 58 94, 56 104 C48 107, 40 103, 38 96 Z" fill="#687850" fill-opacity="0.76" stroke="#354328" stroke-width="0.8"/>' +
-          '<path d="M27 128 C16 132, 14 143, 22 147 C29 143, 31 135, 27 128 Z" fill="#7A8A5F" fill-opacity="0.72" stroke="#354328" stroke-width="0.8"/>' +
-          '<circle cx="59" cy="57" r="4.2" fill="#E6C1C6" stroke="#C98D96" stroke-width="0.9"/>' +
-          '<circle cx="59" cy="57" r="1.7" fill="#D9C08C"/>' +
-          '<circle cx="54" cy="119" r="3.6" fill="#E6C1C6" stroke="#C98D96" stroke-width="0.85"/>' +
-          '<circle cx="30" cy="158" r="3.2" fill="#D9C08C" stroke="#B5945B" stroke-width="0.8"/>';
-
-        ["l", "r"].forEach(function (side) {
-          if (!dolly.querySelector(".pf-hero-vine--" + side)) {
-            var vine = el("div", "pf-hero-vine pf-hero-vine--" + side);
-            vine.setAttribute("data-depth", "0.18");
-            vine.setAttribute("aria-hidden", "true");
-            vine.appendChild(svgEl("0 0 84 176", vineMarkup, "pf-hero-vine-svg"));
-            insertBeforeContent(vine);
-          }
-        });
-
-        // Bottom floral garland that rises and breathes gently
-        if (!dolly.querySelector(".pf-hero-bloom")) {
-          var bloomWrap = el("div", "pf-hero-bloom");
-          bloomWrap.setAttribute("data-depth", "0.10");
-          bloomWrap.setAttribute("aria-hidden", "true");
-          var bloomImg = imgEl(ASSETS.floralDivider, "pf-hero-bloom-img", "");
-          bloomImg.loading = "eager";
-          bloomWrap.appendChild(bloomImg);
-          insertBeforeContent(bloomWrap);
-        }
-
         // 8 delicate antique-gold 4-point star sparkles
         if (!dolly.querySelector(".pf-hero-laces")) {
           var lacesWrap = el("div", "pf-hero-laces");
@@ -607,11 +566,11 @@
 
           var b1 = el("div", "pf-butterfly-float pf-butterfly-float--1");
           b1.style.setProperty("--from", "-110px");
-          b1.appendChild(ornaments.butterflySvg());
+          b1.appendChild(ornaments.butterfly());
 
           var b2 = el("div", "pf-butterfly-float pf-butterfly-float--2");
           b2.style.setProperty("--from", "110px");
-          b2.appendChild(ornaments.butterflySvg());
+          b2.appendChild(ornaments.butterfly());
 
           butterflies.append(b1, b2);
           insertBeforeContent(butterflies);
