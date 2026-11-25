@@ -41,8 +41,6 @@
   --t-cover:          0.72s;
   --t-dolly-at:       0s;       --t-dolly:       1.9s;
   --t-villa-at:       0.15s;    --t-villa:       1.8s;
-  --t-vine-at:        0.55s;    --t-vine:        0.75s;
-  --t-bloom-at:       0.75s;    --t-bloom:       0.9s;
   --t-butterfly-at:   0.85s;    --t-butterfly:   1.15s;
   --t-lace-at:        1.15s;    --t-lace:        0.7s;
   --t-veil-at:        1.25s;    --t-veil:        0.75s;
@@ -207,21 +205,6 @@
   overflow: hidden;
 }
 
-.pf-aside-frame {
-  position: absolute;
-  inset: 4px;
-  pointer-events: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.pf-aside-frame-img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
 .pf-aside-copy {
   position: relative;
   z-index: 2;
@@ -236,11 +219,6 @@
 .pf-aside-butterfly {
   margin-bottom: 4px;
   animation: pf-float 5.5s ease-in-out infinite;
-}
-
-.pf-aside-butterfly .pf-butterfly-svg {
-  width: 40px;
-  height: 32px;
 }
 
 .pf-aside-eyebrow {
@@ -349,20 +327,194 @@
   animation: pf-sway-br 8.2s 1.2s ease-in-out infinite alternate;
 }
 
-/* ---------- Butterfly SVG Wing Animation ---------- */
-.pf-butterfly-svg {
-  overflow: visible;
-  filter: drop-shadow(0 2px 5px rgba(45, 51, 38, 0.16));
+/* ---------- Botanical scene layers ---------- */
+.pf-botanical-scene {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  user-select: none;
 }
 
-.pf-butterfly-svg .wing-l {
-  transform-origin: 35px 29px;
-  animation: pf-wing-flap-l 0.45s ease-in-out infinite alternate;
+.pf-scene-frame {
+  position: absolute;
+  inset: 6px;
+  width: calc(100% - 12px);
+  height: calc(100% - 12px);
+  object-fit: fill;
 }
 
-.pf-butterfly-svg .wing-r {
-  transform-origin: 37px 29px;
-  animation: pf-wing-flap-r 0.45s ease-in-out infinite alternate;
+.pf-botanical-scene--hero .pf-scene-frame {
+  inset: 10px;
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  opacity: .78;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body.lk-opened .pf-botanical-scene--hero .pf-scene-frame {
+    animation: pf-outline-enter .9s var(--ease) both;
+  }
+}
+
+@keyframes pf-outline-enter {
+  from { opacity: 0; }
+  to { opacity: .78; }
+}
+
+.pf-scene-piece {
+  position: absolute;
+  display: block;
+}
+
+.pf-scene-art {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 3px 5px #38291626);
+  transform-origin: var(--origin, top left);
+  animation: pf-orchid-drift var(--duration, 8s) var(--phase, 0s) ease-in-out infinite alternate;
+}
+
+.pf-scene-piece--vine-left,
+.pf-scene-piece--vine-right {
+  top: 0;
+  width: min(27%, 110px);
+  --entry-offset: -16px;
+}
+
+.pf-scene-piece--vine-left {
+  left: 0;
+  --duration: 8.6s;
+  --entry-delay: .08s;
+  --phase: -2s;
+}
+
+.pf-scene-piece--vine-right {
+  top: 1%;
+  right: 0;
+  --duration: 10.2s;
+  --phase: -5s;
+  --origin: top center;
+  --entry-delay: .22s;
+}
+
+.pf-scene-piece--flowers-left,
+.pf-scene-piece--flowers-right {
+  bottom: 0;
+  width: min(32%, 148px);
+  --origin: bottom left;
+  --duration: 10.6s;
+  --entry-offset: 20px;
+}
+
+.pf-scene-piece--flowers-left {
+  left: 0;
+  --phase: -5s;
+  --entry-delay: .35s;
+}
+
+.pf-scene-piece--flowers-right {
+  right: 0;
+  bottom: 1%;
+  width: min(30%, 136px);
+  --origin: bottom center;
+  --duration: 9.4s;
+  --phase: -3s;
+  --entry-delay: .49s;
+}
+
+.pf-scene-piece--vine-right img,
+.pf-scene-piece--flowers-right img {
+  scale: -1 1;
+}
+
+.pf-botanical-scene--cover .pf-scene-piece,
+.pf-botanical-scene--aside .pf-scene-piece {
+  opacity: .92;
+}
+
+.pf-botanical-scene--hero {
+  z-index: 2;
+}
+
+body.lk-opened .pf-botanical-scene--hero .pf-scene-piece {
+  animation: pf-scene-enter .95s var(--entry-delay) var(--ease) both;
+}
+
+.pf-scene-butterfly {
+  position: absolute;
+  top: 6%;
+  left: 50%;
+  translate: -50% 0;
+  animation: pf-crest-flight 7s ease-in-out infinite alternate;
+}
+
+.pf-butterfly-art {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  aspect-ratio: 340 / 240;
+  vertical-align: middle;
+  filter: drop-shadow(0 2px 3px #4532204d);
+  perspective: 100px;
+}
+
+.pf-butterfly-part {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.pf-butterfly-part--left,
+.pf-butterfly-part--right {
+  transform-origin: 50.5% 50%;
+  animation: pf-wing-stroke .74s ease-in-out infinite;
+}
+
+.pf-butterfly-part--left {
+  clip-path: inset(0 49% 0 0);
+  --wing-turn: 61deg;
+}
+
+.pf-butterfly-part--right {
+  clip-path: inset(0 0 0 50%);
+  --wing-turn: -61deg;
+  animation-delay: -.036s;
+}
+
+.pf-butterfly-part--body {
+  clip-path: polygon(33% 0, 67% 0, 53% 35%, 53% 72%, 47% 72%, 47% 35%);
+}
+
+@keyframes pf-wing-stroke {
+  0%, 100% { transform: rotateY(0); }
+  44% { transform: rotateY(var(--wing-turn)); }
+  72% { transform: rotateY(12deg); }
+}
+
+@keyframes pf-scene-enter {
+  from { opacity: .3; translate: 0 var(--entry-offset); }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@keyframes pf-orchid-drift {
+  from { transform: translateY(0) rotate(-2deg); }
+  to { transform: translateY(5px) rotate(2.5deg); }
+}
+
+@keyframes pf-crest-flight {
+  from { transform: translate(-9px, 2px) rotate(-9deg); }
+  to { transform: translate(10px, -8px) rotate(8deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.lk-opened .pf-botanical-scene--hero .pf-scene-piece,
+  .pf-scene-art,
+  .pf-scene-butterfly,
+  .pf-butterfly-part {
+    animation: none;
+  }
 }
 
 .pf-butterflies {
@@ -389,8 +541,8 @@
   right: 10%;
 }
 
-.pf-butterfly-float--2 .pf-butterfly-svg {
-  transform: scale(0.82) scaleX(-1);
+.pf-butterfly-float--2 .pf-butterfly-art {
+  transform: scale(0.82) rotate(-12deg);
 }
 
 /* ---------- Golden Dust Motes ---------- */
@@ -475,6 +627,7 @@
   z-index: 1;
   width: min(100%, 416px);
   aspect-ratio: 2 / 3;
+  min-height: min(520px, calc(100svh - 40px));
   max-height: calc(100svh - 40px);
   padding: clamp(54px, 11vw, 72px) clamp(26px, 7vw, 42px) clamp(38px, 8vw, 54px);
   background-color: var(--bg-parchment);
@@ -494,24 +647,6 @@
   justify-content: center;
   text-align: center;
   overflow: hidden;
-}
-
-.pf-cover-frame {
-  position: absolute;
-  inset: 10px;
-  pointer-events: none;
-  z-index: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.pf-cover-frame-img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  mix-blend-mode: multiply;
-  opacity: 0.96;
 }
 
 .pf-cover-content {
@@ -534,16 +669,6 @@
 .pf-cover-content > :nth-child(4) { animation-delay: 320ms; }
 .pf-cover-content > :nth-child(5) { animation-delay: 420ms; }
 .pf-cover-content > :nth-child(6) { animation-delay: 520ms; }
-
-.pf-cover-crest {
-  margin-bottom: 4px;
-  animation: pf-float 5.2s ease-in-out infinite;
-}
-
-.pf-cover-crest .pf-butterfly-svg {
-  width: 38px;
-  height: 30px;
-}
 
 .pf-cover-eyebrow {
   margin: 0 0 6px;
@@ -927,48 +1052,6 @@
   will-change: transform, opacity;
 }
 
-[data-theme="pastel-flowers"] .pf-hero-vine {
-  position: absolute;
-  top: -4px;
-  width: clamp(68px, 17vw, 96px);
-  z-index: 2;
-  pointer-events: none;
-  opacity: 0;
-  transform-origin: 30% 0%;
-  will-change: transform, opacity;
-}
-
-[data-theme="pastel-flowers"] .pf-hero-vine--l {
-  left: -4px;
-}
-
-[data-theme="pastel-flowers"] .pf-hero-vine--r {
-  right: -4px;
-  transform-origin: 70% 0%;
-}
-
-[data-theme="pastel-flowers"] .pf-hero-vine--r .pf-hero-vine-svg {
-  transform: scaleX(-1);
-}
-
-[data-theme="pastel-flowers"] .pf-hero-bloom {
-  position: absolute;
-  left: 50%;
-  bottom: 5px;
-  transform: translateX(-50%);
-  width: min(56%, 240px);
-  z-index: 2;
-  pointer-events: none;
-}
-
-[data-theme="pastel-flowers"] .pf-hero-bloom-img {
-  width: 100%;
-  height: auto;
-  opacity: 0;
-  transform-origin: 50% 100%;
-  will-change: transform, opacity;
-}
-
 [data-theme="pastel-flowers"] .pf-hero-laces {
   position: absolute;
   inset: 0;
@@ -992,10 +1075,6 @@
   z-index: 1;
   opacity: 0;
   background: radial-gradient(ellipse 68% 58% at 50% 48%, rgba(245, 239, 228, 0.92) 0%, rgba(245, 239, 228, 0.68) 58%, transparent 88%);
-}
-
-[data-theme="pastel-flowers"] .pf-hero-florals {
-  z-index: 1;
 }
 
 [data-theme="pastel-flowers"] .pf-hero-content {
@@ -1070,7 +1149,7 @@ body:not(.lk-opened) .pf-hero-names {
 }
 
 /* ---------- Opening Film Choreography (body.lk-opened) ---------- */
-body.lk-opened .pf-hero-dolly {
+body.lk-opened .pf-hero:not(.pf-hero--layered) .pf-hero-dolly {
   animation: pf-dolly-zoom var(--t-dolly) var(--t-dolly-at) cubic-bezier(0.4, 0.05, 0.2, 1) both;
 }
 
@@ -1082,23 +1161,6 @@ body.lk-opened .pf-hero-frame-img {
 
 body.lk-opened .pf-hero-villa img {
   animation: pf-villa-drift var(--t-villa) var(--t-villa-at) cubic-bezier(0.4, 0.05, 0.2, 1) both;
-}
-
-body.lk-opened .pf-hero-vine {
-  animation:
-    pf-drop-in var(--t-vine) var(--t-vine-at) var(--ease) both,
-    pf-swing 5.2s calc(var(--t-vine-at) + var(--t-vine)) ease-in-out infinite alternate;
-}
-
-body.lk-opened .pf-hero-vine--r {
-  animation-delay: calc(var(--t-vine-at) + 0.08s), calc(var(--t-vine-at) + var(--t-vine) + 0.6s);
-  animation-direction: normal, alternate-reverse;
-}
-
-body.lk-opened .pf-hero-bloom img {
-  animation:
-    pf-bloom-rise var(--t-bloom) var(--t-bloom-at) var(--ease) both,
-    pf-breathe 6.5s calc(var(--t-bloom-at) + var(--t-bloom)) ease-in-out infinite alternate;
 }
 
 body.lk-opened .pf-butterfly-float--1 {
@@ -1824,24 +1886,14 @@ body.lk-opened .pf-hero .pf-hero-actions {
   color: var(--bg-burgundy);
 }
 
-/* Stationery frame for the landscape venue illustration */
-[data-theme="pastel-flowers"] .pf-villa-figure {
-  margin: 30px auto 0;
-  max-width: 390px;
-  padding: 14px;
-  background-color: var(--bg-parchment);
-  background-image: var(--pf-paper-grain);
-  border-radius: 18px;
-  border: 1px solid rgba(217, 192, 140, 0.78);
-  box-shadow:
-    inset 0 0 0 4px var(--bg-parchment),
-    inset 0 0 0 5px rgba(181, 148, 91, 0.35),
-    0 20px 44px rgba(22, 4, 9, 0.4);
-  overflow: hidden;
+[data-theme="pastel-flowers"] .pf-event-location {
+  background: var(--bg-parchment) var(--pf-paper-grain);
+  border-color: var(--accent-gold);
+  box-shadow: inset 0 0 0 5px var(--bg-parchment), inset 0 0 0 6px var(--border-hairline);
 }
 
-[data-theme="pastel-flowers"] .pf-villa-img {
-  display: block;
+[data-theme="pastel-flowers"] .pf-event-location-title {
+  color: var(--bg-burgundy);
 }
 
 /* ---------- Section 4b: Dress Code (#dresscode) ---------- */
@@ -1900,6 +1952,23 @@ body.lk-opened .pf-hero .pf-hero-actions {
 }
 
 /* ---------- Section 5: Cerita & Galeri (#cerita, #galeri) ---------- */
+.pf-story-photo {
+  width: min(100%, 400px);
+  margin: 22px auto 30px;
+  padding: 7px;
+  background: var(--bg-cream-soft);
+  border: 1px solid var(--border-hairline);
+  border-radius: 14px;
+  box-shadow: 0 10px 28px #30382420;
+}
+
+.pf-story-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
 [data-theme="pastel-flowers"] .lk-timeline::before,
 [data-theme="pastel-flowers"] .pf-timeline::before {
   background: linear-gradient(180deg, transparent, var(--accent-gold) 10%, var(--accent-gold) 90%, transparent);
@@ -2474,10 +2543,34 @@ body.lk-opened .pf-hero .pf-hero-actions {
 
 /* ---------- Footer, Persistent Music Button & Toast ---------- */
 [data-theme="pastel-flowers"] .lk-footer {
-  padding: 26px 20px calc(34px + env(safe-area-inset-bottom, 0px));
+  padding: 28px 22px calc(36px + env(safe-area-inset-bottom, 0px));
   background: var(--bg-moss);
-  color: rgba(250, 246, 238, 0.78);
+  color: rgba(250, 246, 238, 0.82);
   border-top: 1px solid rgba(217, 192, 140, 0.35);
+}
+
+[data-theme="pastel-flowers"] .lk-footer-note {
+  margin: 0 0 6px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.5;
+  color: rgba(250, 246, 238, 0.9);
+}
+
+[data-theme="pastel-flowers"] .lk-footer-couple {
+  font-style: normal;
+  font-weight: 600;
+  color: var(--accent-gold-light);
+}
+
+[data-theme="pastel-flowers"] .lk-footer-credit {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(250, 246, 238, 0.65);
 }
 
 [data-theme="pastel-flowers"] .lk-footer a {
@@ -2568,40 +2661,6 @@ body.lk-opened .pf-hero .pf-hero-actions {
   to {
     opacity: 1;
     transform: none;
-  }
-}
-
-@keyframes pf-drop-in {
-  from {
-    opacity: 0;
-    transform: translateY(-40px) rotate(-6deg);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-@keyframes pf-bloom-rise {
-  from {
-    opacity: 0;
-    transform: translateY(65%) scale(1.12);
-  }
-  40% {
-    opacity: 1;
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-@keyframes pf-breathe {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.025) translateY(-1.5%);
   }
 }
 
@@ -2705,24 +2764,9 @@ body.lk-opened .pf-hero .pf-hero-actions {
   to   { transform: scale(-1) rotate(1.6deg); }
 }
 
-@keyframes pf-swing {
-  from { transform: rotate(-2.4deg); }
-  to   { transform: rotate(2.4deg); }
-}
-
 @keyframes pf-float {
   0%, 100% { transform: translateY(0); }
   50%      { transform: translateY(-6px); }
-}
-
-@keyframes pf-wing-flap-l {
-  from { transform: scaleX(1); }
-  to   { transform: scaleX(0.38); }
-}
-
-@keyframes pf-wing-flap-r {
-  from { transform: scaleX(1); }
-  to   { transform: scaleX(0.38); }
 }
 
 @keyframes pf-butterfly-flight {
@@ -2831,8 +2875,6 @@ body.lk-opened .pf-hero .pf-hero-actions {
   [data-theme="pastel-flowers"] .pf-hero-dolly,
   [data-theme="pastel-flowers"] .pf-hero-frame-img,
   [data-theme="pastel-flowers"] .pf-hero-villa img,
-  [data-theme="pastel-flowers"] .pf-hero-vine,
-  [data-theme="pastel-flowers"] .pf-hero-bloom img,
   [data-theme="pastel-flowers"] .pf-hero-veil,
   [data-theme="pastel-flowers"] .pf-hero .pf-hero-monogram,
   [data-theme="pastel-flowers"] .pf-hero .lk-section-eyebrow,

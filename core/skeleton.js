@@ -205,6 +205,28 @@
     return (ev && (ev.tempat || ev.venue)) || "";
   }
 
+  function getSharedEventVenue(events) {
+    if (!Array.isArray(events) || !events.length) return null;
+
+    const name = String(getEventVenue(events[0])).trim();
+    const address = String(events[0].alamat || "").trim();
+    const samePlace = events.every((event) =>
+      String(getEventVenue(event)).trim() === name && String(event.alamat || "").trim() === address
+    );
+    const maps = [...new Set(events.map((event) => String(event.maps_url || "").trim()).filter(Boolean))];
+    if (!samePlace || maps.length > 1 || !(name || address || maps.length)) return null;
+    return { name, address, map: maps[0] };
+  }
+
+  function eventMapLink(url, label) {
+    const link = el("a", "lk-btn");
+    link.href = url;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.append(ICONS.pin(), document.createTextNode(label));
+    return link;
+  }
+
   function getPrimaryDateIso(data) {
     if (data && data.tanggal_utama) return data.tanggal_utama;
     if (data && Array.isArray(data.acara) && data.acara[0]) {
@@ -594,28 +616,29 @@
     const stage = el("div", "pf-hero-stage");
     const dolly = el("div", "pf-hero-dolly");
 
-    // Parallax layers ([data-depth])
-    const bgLayer = el("div", "pf-hero-layer pf-hero-bg");
-    bgLayer.setAttribute("data-depth", "0.14");
-    bgLayer.setAttribute("aria-hidden", "true");
-    const frameImg = el("img", "pf-hero-frame-img");
-    frameImg.src = (data.hero && data.hero.frame) || "assets/frame-hero.webp";
-    frameImg.alt = "";
-    frameImg.decoding = "async";
-    bgLayer.append(frameImg);
+    const ornaments = theme.ornaments || {};
+    const customFrame = data.hero && data.hero.frame;
+    if (!customFrame && typeof ornaments.botanicalScene === "function") {
+      sec.classList.add("pf-hero--layered");
+      dolly.append(ornaments.botanicalScene("hero"));
+    } else {
+      const bgLayer = el("div", "pf-hero-layer pf-hero-bg");
+      bgLayer.setAttribute("data-depth", "0.14");
+      bgLayer.setAttribute("aria-hidden", "true");
+      const frameImg = el("img", "pf-hero-frame-img");
+      frameImg.src = customFrame || "assets/frame-hero.webp";
+      frameImg.alt = "";
+      frameImg.decoding = "async";
+      bgLayer.append(frameImg);
+      dolly.append(bgLayer);
+    }
 
     const veilLayer = el("div", "pf-hero-layer pf-hero-veil");
     veilLayer.setAttribute("data-depth", "0.06");
     veilLayer.setAttribute("aria-hidden", "true");
-
-    const floralLayer = el("div", "pf-hero-layer pf-hero-florals");
-    floralLayer.setAttribute("data-depth", "0.24");
-    floralLayer.setAttribute("aria-hidden", "true");
-
-    dolly.append(bgLayer, veilLayer, floralLayer);
+    dolly.append(veilLayer);
 
     const content = el("div", "pf-hero-content");
-    const ornaments = theme.ornaments || {};
     const initials = getInitials(data);
 
     if (typeof ornaments.monogram === "function") {
@@ -696,7 +719,7 @@
       }
     }
 
-    // Quick Action Buttons ("Simpan Tanggal" -> .ics, "Lihat Lokasi" -> #acara)
+    // Quick Action Buttons ("Simpan Tanggal" -> .ics, "Lihat Lokasi" -> venue or events)
     const actions = el("div", "pf-hero-actions lk-shortcut-wrap");
 
     const firstEvent = Array.isArray(data.acara) && data.acara[0]
@@ -715,7 +738,7 @@
     }
 
     const locBtn = el("a", "lk-btn");
-    locBtn.href = "#acara";
+    locBtn.href = getSharedEventVenue(data.acara) ? "#lokasi-acara" : "#acara";
     locBtn.append(ICONS.pin(), document.createTextNode(labels.location_shortcut));
     actions.append(locBtn);
 
@@ -963,6 +986,8 @@
     const calEl = buildMonthlyCalendar(primaryIso);
     if (calEl) sec.append(calEl);
 
+    const sharedVenue = getSharedEventVenue(events);
+
     // Event Cards
     if (events.length) {
       const list = el("div", "lk-events-list");
@@ -1026,24 +1051,19 @@
           el("hr", "lk-event-rule")
         );
 
-        if (venueText) {
+        if (!sharedVenue && venueText) {
           const venue = el("p", "lk-event-venue");
           const venueIcon = ICONS.pin();
           venueIcon.classList.add("lk-event-venue-icon");
           venue.append(venueIcon, el("span", null, venueText));
           card.append(venue);
         }
-        if (ev.alamat) card.append(el("p", "lk-event-address", ev.alamat));
+        if (!sharedVenue && ev.alamat) card.append(el("p", "lk-event-address", ev.alamat));
         if (ev.catatan) card.append(el("p", "pf-event-note", ev.catatan));
 
         const actions = el("div", "lk-event-actions");
-        if (ev.maps_url) {
-          const mapBtn = el("a", "lk-btn");
-          mapBtn.href = ev.maps_url;
-          mapBtn.target = "_blank";
-          mapBtn.rel = "noopener noreferrer";
-          mapBtn.append(ICONS.pin(), document.createTextNode(labels.view_location));
-          actions.append(mapBtn);
+        if (!sharedVenue && ev.maps_url) {
+          actions.append(eventMapLink(ev.maps_url, labels.view_location));
         }
 
         if (startIso) {
@@ -1074,7 +1094,7 @@
           actions.append(cal);
         }
 
-        card.append(actions);
+        if (actions.childElementCount) card.append(actions);
         list.append(card);
       });
 
@@ -1089,19 +1109,30 @@
       sec.append(list);
     }
 
-    // Vintage botanical villa illustration
-    const villaSrc = (data.villa_ilustrasi && String(data.villa_ilustrasi).trim()) || "assets/venue-villa.webp";
-    const villaFig = el("figure", "pf-villa-figure");
-    villaFig.setAttribute("data-reveal", "rise");
-    const villaImg = el("img", "pf-venue-img pf-villa-img");
-    setImageWithSvgFallback(villaImg, villaSrc, () => {
-      villaFig.hidden = true;
-    });
-    villaImg.alt = "Ilustrasi botani lokasi acara pernikahan";
-    villaImg.loading = "lazy";
-    villaImg.decoding = "async";
-    villaFig.append(villaImg);
-    sec.append(villaFig);
+    if (sharedVenue) {
+      const location = el("section", "pf-event-location");
+      location.id = "lokasi-acara";
+      location.tabIndex = -1;
+
+      const heading = el("h3", "pf-event-location-title", "Lokasi Acara");
+      heading.id = "lokasi-acara-title";
+      location.setAttribute("aria-labelledby", heading.id);
+
+      const figure = el("figure", "pf-villa-figure");
+      const image = el("img", "pf-villa-img");
+      const source = String(data.villa_ilustrasi || "").trim() || "assets/venue-villa.webp";
+      setImageWithSvgFallback(image, source, () => { figure.hidden = true; });
+      image.alt = "";
+      image.loading = "lazy";
+      image.decoding = "async";
+      figure.append(image, el("figcaption", "pf-villa-caption", "Ilustrasi lokasi"));
+
+      location.append(heading, figure);
+      if (sharedVenue.name) location.append(el("p", "lk-event-venue", sharedVenue.name));
+      if (sharedVenue.address) location.append(el("p", "lk-event-address", sharedVenue.address));
+      if (sharedVenue.map) location.append(eventMapLink(sharedVenue.map, "Lihat Peta"));
+      sec.append(location);
+    }
 
     return sec;
   }
@@ -1210,6 +1241,23 @@
     title.setAttribute("data-reveal", "up");
     sec.setAttribute("aria-labelledby", title.id);
     sec.append(eyebrow, title);
+
+    const storyPhoto = data.foto_cerita;
+    const source = storyPhoto && String(storyPhoto.src || "").trim();
+    if (source) {
+      const figure = el("figure", "pf-story-photo");
+      const image = el("img");
+      image.alt = storyPhoto.alt || "Foto kedua mempelai";
+      image.loading = "lazy";
+      image.decoding = "async";
+      if (storyPhoto.lebar > 0 && storyPhoto.tinggi > 0) {
+        image.width = storyPhoto.lebar;
+        image.height = storyPhoto.tinggi;
+      }
+      setImageWithSvgFallback(image, source, () => { figure.hidden = true; });
+      figure.append(image);
+      sec.append(figure);
+    }
 
     const timeline = el("div", "lk-timeline pf-timeline");
     stories.forEach((s) => {
@@ -2029,14 +2077,25 @@
     return sec;
   }
 
-  function renderFooter() {
+  function renderFooter(data) {
     const footer = el("footer", "lk-footer");
-    footer.append(document.createTextNode("Dibuat dengan "));
+    const note = el("p", "lk-footer-note");
+    note.append(document.createTextNode("Dirangkai dengan sepenuh hati untuk hari bahagia "));
+    const coupleSpan = el("span", "lk-footer-couple");
+    if (data) {
+      buildNamesSpans(coupleSpan, data);
+    }
+    note.append(coupleSpan);
+
+    const credit = el("p", "lk-footer-credit");
+    credit.append(document.createTextNode("bersama "));
     const lkLink = el("a", null, "Lembar Kabar");
     lkLink.href = "https://lembarkabar.web.id/";
     lkLink.target = "_blank";
     lkLink.rel = "noopener noreferrer";
-    footer.append(lkLink);
+    credit.append(lkLink);
+
+    footer.append(note, credit);
     return footer;
   }
 
@@ -2170,7 +2229,7 @@
       const secEl = renderFn();
       if (secEl) mainEl.append(secEl);
     });
-    mainEl.append(renderFooter());
+    mainEl.append(renderFooter(data));
 
     bindNamesUpdated(data);
 
