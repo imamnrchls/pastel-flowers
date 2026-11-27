@@ -1801,6 +1801,16 @@ a {
   height: auto;
 }
 
+.lk-footer .lk-url {
+  display: block;
+  margin-top: 5px;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
 /* ---------- Persistent Floating Music Control ---------- */
 .lk-music-btn {
   position: fixed;
