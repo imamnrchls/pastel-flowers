@@ -114,13 +114,13 @@ window.INVITATION_DATA = {
 
   galeri: [
     {
-      src: "assets/garden-scene.svg",
-      alt: "Ilustrasi jamuan taman dengan meja panjang, bunga pastel, dan pergola mawar",
+      src: "assets/garden-reception.webp",
+      alt: "Ilustrasi jamuan taman dengan meja panjang di bawah pergola anggrek",
       caption: "Di antara rimbun daun dan cahaya pagi, sebuah janji mulai bersemi.",
       featured: true
     },
     {
-      src: "assets/venue-villa.svg",
+      src: "assets/venue-villa.webp",
       alt: "Ilustrasi cat air Villa Taman Asri Heritage",
       caption: "Villa Taman Asri Heritage, tempat kedua keluarga bersatu dalam doa."
     },
@@ -130,9 +130,9 @@ window.INVITATION_DATA = {
       caption: "Rangkaian anggrek dan mawar taman yang menjadi simbol kehangatan hari bahagia."
     },
     {
-      src: "assets/dress-code.svg",
-      alt: "Ilustrasi palet busana Garden Heritage Attire",
-      caption: "Harmoni warna pastel taman: cream, sage moss, dusty rose, dan burgundy."
+      src: "assets/dress-code.webp",
+      alt: "Ilustrasi gaun hijau sage dan setelan linen warna pasir",
+      caption: "Inspirasi busana pesta taman dalam warna sage dan krem."
     },
     {
       src: "assets/floral-divider.jpg",

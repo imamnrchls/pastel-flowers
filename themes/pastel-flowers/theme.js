@@ -13,9 +13,9 @@
     floralDivider: "assets/floral-divider.webp",
     waxSeal: "assets/wax-seal.webp",
     venueVilla: "assets/venue-villa.webp",
-    dressCode: "assets/dress-code.svg",
+    dressCode: "assets/dress-code.webp",
     botanicalCorner: "assets/botanical-corner.webp",
-    gardenScene: "assets/garden-scene.svg"
+    gardenScene: "assets/garden-reception.webp"
   };
 
   var PETAL_COLORS = ["#E6C1C6", "#C98D96", "#FAF6EE", "#D9C08C", "#F0D1D6"];
@@ -328,7 +328,9 @@
 
     closingEmblem: function (initials) {
       var wrap = el("div", "pf-closing-emblem");
-      wrap.append(ornaments.butterfly(), el("span", "pf-closing-initials", initials || "N & D"));
+      var seal = el("span", "pf-closing-seal");
+      seal.appendChild(ornaments.waxSealImg());
+      wrap.append(seal, el("span", "pf-closing-initials", initials || "N & D"));
       return wrap;
     }
   };
@@ -404,6 +406,10 @@
       actions.append(openBtn);
       content.append(eyebrow, names);
       if (dateStr) content.appendChild(dateEl);
+      var flourish = ornaments.dividerImg();
+      flourish.classList.add("pf-cover-flourish");
+      flourish.loading = "eager";
+      content.appendChild(flourish);
       content.append(guestBox, actions);
 
       card.append(scene, content);
