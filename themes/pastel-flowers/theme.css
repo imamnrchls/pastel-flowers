@@ -752,7 +752,7 @@ body.lk-opened .pf-botanical-scene--hero .pf-scene-piece {
   box-sizing: border-box;
   width: 100%;
   height: 100%;
-  padding: 31cqw 13cqw calc(var(--bq) * 1.25);
+  padding: 31cqw 13cqw var(--bq);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -768,6 +768,11 @@ body.lk-opened .pf-botanical-scene--hero .pf-scene-piece {
 .pf-cover-content > :nth-child(4) { animation-delay: 320ms; }
 .pf-cover-content > :nth-child(5) { animation-delay: 420ms; }
 .pf-cover-content > :nth-child(6) { animation-delay: 520ms; }
+
+.pf-cover-content .pf-cover-flourish {
+  width: clamp(76px, 27cqw, 144px);
+  margin: 0 auto 6px;
+}
 
 .pf-cover-eyebrow {
   margin: 0 0 calc(1.6 * var(--u));
@@ -808,28 +813,12 @@ body.lk-opened .pf-botanical-scene--hero .pf-scene-piece {
 }
 
 .pf-cover-date {
-  margin: calc(2.6 * var(--u)) 0 calc(5 * var(--u));
-  display: inline-flex;
-  align-items: center;
-  gap: calc(2.6 * var(--u));
+  margin: calc(2.6 * var(--u)) 0 4px;
   font-family: var(--font-display);
   font-weight: 600;
   font-size: clamp(13px, calc(3.9 * var(--u)), 20px);
   letter-spacing: 0.12em;
-  white-space: nowrap;
   color: var(--ink-muted);
-}
-
-.pf-cover-date::before,
-.pf-cover-date::after {
-  content: "";
-  width: calc(6 * var(--u));
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent-gold));
-}
-
-.pf-cover-date::after {
-  background: linear-gradient(90deg, var(--accent-gold), transparent);
 }
 
 .pf-cover-guest {
@@ -1998,6 +1987,18 @@ body.lk-opened .pf-hero .pf-hero-actions {
   color: var(--bg-burgundy);
 }
 
+[data-theme="pastel-flowers"] :is(.pf-villa-img, .pf-dc-illus-img) {
+  display: block;
+  background: var(--bg-cream-soft);
+  border: 1px solid var(--border-hairline);
+  border-radius: 12px 12px 4px 4px;
+  box-shadow: 0 4px 12px rgba(45, 51, 38, 0.08);
+}
+
+[data-theme="pastel-flowers"] .pf-dc-illus {
+  max-width: 320px;
+}
+
 /* ---------- Section 4b: Dress Code (#dresscode) ---------- */
 [data-theme="pastel-flowers"] .lk-dresscode {
   max-width: 400px;
@@ -2765,6 +2766,13 @@ body.lk-opened .pf-hero .pf-hero-actions {
   align-items: center;
   gap: 6px;
   margin: 12px auto 14px;
+}
+
+.pf-closing-seal {
+  display: block;
+  width: 62px;
+  height: 62px;
+  filter: drop-shadow(0 4px 6px rgba(92, 24, 38, 0.2));
 }
 
 .pf-closing-initials {
