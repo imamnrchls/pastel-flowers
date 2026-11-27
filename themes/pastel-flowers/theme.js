@@ -696,6 +696,7 @@
     },
 
     labels: {
+      credit_line: "Dilukis dengan cat air oleh",
       open_button: "Buka Undangan",
       skip_button: "Lewati",
       couple_title: "Mempelai",
