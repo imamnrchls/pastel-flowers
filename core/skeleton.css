@@ -1778,6 +1778,29 @@ a {
   border-bottom: 1px solid var(--line, rgba(176, 139, 106, 0.4));
 }
 
+.lk-footer .lk-footer-credit {
+  margin: 0;
+}
+
+.lk-footer .lk-brand {
+  display: inline-block;
+  margin-top: 14px;
+  border: 0;
+  color: inherit;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+
+.lk-footer .lk-brand:hover {
+  opacity: 1;
+}
+
+.lk-footer .lk-logo {
+  display: block;
+  width: 120px;
+  height: auto;
+}
+
 /* ---------- Persistent Floating Music Control ---------- */
 .lk-music-btn {
   position: fixed;
