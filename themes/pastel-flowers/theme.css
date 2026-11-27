@@ -138,12 +138,6 @@
     box-shadow: -16px 0 48px rgba(16, 22, 10, 0.38);
   }
 
-  [data-theme="pastel-flowers"] .lk-cover {
-    inset: 0;
-    width: 100%;
-    padding: clamp(20px, 3.5svh, 36px) 24px;
-  }
-
   [data-theme="pastel-flowers"] .lk-music-btn {
     right: 22px;
   }
@@ -567,20 +561,37 @@ body.lk-opened .pf-botanical-scene--hero .pf-scene-piece {
   animation: pf-mote-rise var(--dur, 8s) ease-in-out var(--delay, 0s) infinite;
 }
 
-/* ---------- Cover Overlay (#lk-cover) ---------- */
+/* ---------- Cover Overlay (#lk-cover) ----------
+   Composition: the stationery card owns the screen. On portrait screens it
+   fills the viewport edge-to-edge (thin moss gutter only); on landscape it is
+   a full-height 2:3 card flanked by large botanicals so flowers, not the
+   moss backdrop, carry the frame. All card-internal sizes use cqw so the
+   whole composition scales with the card. */
 [data-theme="pastel-flowers"] .lk-cover {
+  --cover-gap: 10px;
   position: fixed;
   inset: 0;
   z-index: 60;
   display: grid;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
   place-items: center;
-  padding: max(16px, env(safe-area-inset-top, 0px)) 16px max(20px, env(safe-area-inset-bottom, 0px));
+  padding:
+    max(var(--cover-gap), env(safe-area-inset-top, 0px))
+    max(var(--cover-gap), env(safe-area-inset-right, 0px))
+    max(var(--cover-gap), env(safe-area-inset-bottom, 0px))
+    max(var(--cover-gap), env(safe-area-inset-left, 0px));
   background-color: var(--bg-moss);
   background-image:
     var(--pf-paper-grain),
     radial-gradient(circle at 50% 42%, rgba(79, 93, 58, 0.58) 0%, rgba(53, 67, 40, 0.96) 58%, #242E1B 100%);
-  overflow-y: auto;
+  overflow: hidden auto;
   will-change: transform, opacity;
+}
+
+@media (min-aspect-ratio: 3/4) {
+  [data-theme="pastel-flowers"] .lk-cover {
+    --cover-gap: clamp(14px, 2.4svh, 26px);
+  }
 }
 
 [data-theme="pastel-flowers"] .lk-cover.is-opening {
@@ -599,45 +610,84 @@ body.lk-opened .pf-botanical-scene--hero .pf-scene-piece {
   inset: 0;
   pointer-events: none;
   z-index: 0;
+  overflow: hidden;
 }
 
-.pf-cover-backdrop::before {
-  content: "";
+/* Backdrop flora: only where the moss backdrop is visible beside the card */
+.pf-cover-flora {
+  display: none;
   position: absolute;
-  inset: 14px;
-  border: 1px solid rgba(217, 192, 140, 0.24);
-  border-radius: 18px;
   pointer-events: none;
 }
 
-.pf-cover-filigree {
-  position: absolute;
-  width: 44px;
-  height: 44px;
-  pointer-events: none;
+.pf-cover-flora-art {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 10px 18px rgba(12, 18, 8, 0.45));
+  transform-origin: var(--origin, top left);
+  animation: pf-orchid-drift var(--duration, 11s) var(--phase, 0s) ease-in-out infinite alternate;
 }
 
-.pf-cover-filigree--tl { top: 18px; left: 18px; }
-.pf-cover-filigree--tr { top: 18px; right: 18px; transform: scaleX(-1); }
-.pf-cover-filigree--bl { bottom: 18px; left: 18px; transform: scaleY(-1); }
-.pf-cover-filigree--br { bottom: 18px; right: 18px; transform: scale(-1); }
+@media (min-aspect-ratio: 3/4) {
+  .pf-cover-flora { display: block; }
+
+  /* Card width in this mode ≈ (100svh - 2·gap)·2/3; anchor flora to its edges */
+  .pf-cover-backdrop { --card-half: calc((100svh - 2 * var(--cover-gap)) / 3); }
+
+  .pf-cover-flora--tl,
+  .pf-cover-flora--tr {
+    top: -2svh;
+    width: clamp(220px, 34svh, 420px);
+    opacity: .96;
+  }
+  .pf-cover-flora--tl { left: -1.5vw; --phase: -3s; }
+  .pf-cover-flora--tr { right: -1.5vw; scale: -1 1; --phase: -6s; }
+
+  .pf-cover-flora--hang-l,
+  .pf-cover-flora--hang-r {
+    top: 0;
+    width: clamp(90px, 15svh, 170px);
+    --origin: top center;
+    --duration: 9s;
+  }
+  .pf-cover-flora--hang-l { right: calc(50% + var(--card-half) + 2vw); --phase: -2s; }
+  .pf-cover-flora--hang-r { left: calc(50% + var(--card-half) + 2vw); --phase: -5s; }
+  .pf-cover-flora--hang-r .pf-cover-flora-art { scale: -1 1; }
+
+  .pf-cover-flora--bl,
+  .pf-cover-flora--br {
+    bottom: -3svh;
+    width: clamp(220px, 40svh, 460px);
+    --origin: bottom center;
+    --duration: 12s;
+  }
+  .pf-cover-flora--bl { right: calc(50% + var(--card-half) - 7svh); --phase: -4s; }
+  .pf-cover-flora--br { left: calc(50% + var(--card-half) - 7svh); --phase: -8s; }
+  .pf-cover-flora--bl .pf-cover-flora-art { scale: -1 1; }
+}
 
 .pf-cover-card {
   position: relative;
   z-index: 1;
-  width: min(100%, 416px, calc((100svh - 48px) * 2 / 3));
-  aspect-ratio: 2 / 3;
-  max-height: calc(100svh - 48px);
-  padding: clamp(46px, 8vw, 66px) clamp(24px, 6vw, 40px) clamp(36px, 7vw, 50px);
+  container-type: size;
+  width: 100%;
+  height: 100%;
+  min-height: 560px;
+  padding: 0;
+  /* --u: type unit, shrinks on squat (2:3) cards so copy fits between caps.
+     --bq: bottom bouquet width, grows on tall phone cards. */
+  --u: min(1cqw, 0.45cqh);
+  --bq: clamp(34cqw, 23cqh, 46cqw);
   background-color: var(--bg-parchment);
   background-image:
     var(--pf-paper-grain),
-    radial-gradient(ellipse 78% 58% at 50% 42%, rgba(250, 246, 238, 0.94), transparent 76%);
-  border-radius: 22px;
+    radial-gradient(ellipse 78% 58% at 50% 46%, rgba(250, 246, 238, 0.96), transparent 76%);
+  border-radius: 18px;
   border: 1px solid rgba(217, 192, 140, 0.8);
   box-shadow:
-    inset 0 0 0 6px var(--bg-parchment),
-    inset 0 0 0 7px rgba(181, 148, 91, 0.44),
+    inset 0 0 0 5px var(--bg-parchment),
+    inset 0 0 0 6px rgba(181, 148, 91, 0.44),
     0 30px 76px rgba(10, 15, 6, 0.52),
     0 0 0 1px rgba(217, 192, 140, 0.14);
   display: flex;
@@ -648,15 +698,65 @@ body.lk-opened .pf-botanical-scene--hero .pf-scene-piece {
   overflow: hidden;
 }
 
+@media (min-aspect-ratio: 3/4) {
+  .pf-cover-card {
+    width: min(100%, max(400px, (100svh - 2 * var(--cover-gap)) * 2 / 3));
+    min-height: 600px;
+    border-radius: 22px;
+  }
+}
+
+/* 9-slice botanical frame (asset 800×1200; slices 360/140/300 px).
+   Frame box = 100cqw − 2·1.6cqw = 96.8cqw → 1 asset px = 0.121cqw. */
+.pf-botanical-scene--cover .pf-scene-frame--slice {
+  position: absolute;
+  inset: 1.6cqw;
+  width: auto;
+  height: auto;
+  box-sizing: border-box;
+  border-style: solid;
+  border-color: transparent;
+  border-width: 43.56cqw 16.94cqw 36.3cqw;
+  border-image: url("../../assets/botanical-frame.webp") 360 140 300 stretch;
+}
+
+/* Card florals — larger than before so blooms, not paper, frame the text */
+.pf-botanical-scene--cover .pf-scene-piece {
+  opacity: 1;
+}
+.pf-botanical-scene--cover .pf-scene-piece--vine-left,
+.pf-botanical-scene--cover .pf-scene-piece--vine-right {
+  width: clamp(26cqw, 15cqh, 32cqw);
+}
+.pf-botanical-scene--cover .pf-scene-piece--vine-left { top: 0; left: -1cqw; }
+.pf-botanical-scene--cover .pf-scene-piece--vine-right { top: 0; right: -1cqw; }
+.pf-botanical-scene--cover .pf-scene-piece--flowers-left,
+.pf-botanical-scene--cover .pf-scene-piece--flowers-right {
+  width: var(--bq);
+}
+.pf-botanical-scene--cover .pf-scene-piece--flowers-left { left: -3cqw; bottom: -2cqw; }
+.pf-botanical-scene--cover .pf-scene-piece--flowers-right { right: -3cqw; bottom: -1cqw; width: calc(var(--bq) * 0.93); }
+
+.pf-botanical-scene--cover .pf-scene-butterfly {
+  top: 3.2cqw;
+}
+.pf-botanical-scene--cover .pf-butterfly-art {
+  width: 11cqw;
+}
+
+/* cq units only resolve inside the card (its own padding would resolve
+   against the viewport), so the safe area lives on the content box. */
 .pf-cover-content {
   position: relative;
   z-index: 2;
+  box-sizing: border-box;
   width: 100%;
-  max-width: min(85%, 270px);
-  padding-top: 42px;
+  height: 100%;
+  padding: 31cqw 13cqw calc(var(--bq) * 1.25);
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .pf-cover-content > * {
@@ -670,9 +770,9 @@ body.lk-opened .pf-botanical-scene--hero .pf-scene-piece {
 .pf-cover-content > :nth-child(6) { animation-delay: 520ms; }
 
 .pf-cover-eyebrow {
-  margin: 0 0 6px;
+  margin: 0 0 calc(1.6 * var(--u));
   font-family: var(--font-body);
-  font-size: 9.5px;
+  font-size: clamp(9.5px, calc(2.75 * var(--u)), 14px);
   font-weight: 600;
   letter-spacing: 0.36em;
   padding-left: 0.36em;
@@ -684,11 +784,15 @@ body.lk-opened .pf-botanical-scene--hero .pf-scene-piece {
   margin: 0;
   font-family: var(--font-script);
   font-weight: 400;
-  font-size: clamp(42px, 11vw, 55px);
-  line-height: 1.04;
+  font-size: calc(18 * var(--u));
+  line-height: 1.02;
   text-wrap: balance;
   color: var(--ink-primary);
   text-shadow: 0 1px 12px rgba(245, 239, 228, 0.96);
+}
+
+.pf-cover-names .pf-name-first {
+  display: block;
 }
 
 .pf-cover-names .pf-name-amp {
@@ -704,21 +808,22 @@ body.lk-opened .pf-botanical-scene--hero .pf-scene-piece {
 }
 
 .pf-cover-date {
-  margin: 8px 0 18px;
+  margin: calc(2.6 * var(--u)) 0 calc(5 * var(--u));
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: calc(2.6 * var(--u));
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 13.5px;
+  font-size: clamp(13px, calc(3.9 * var(--u)), 20px);
   letter-spacing: 0.12em;
+  white-space: nowrap;
   color: var(--ink-muted);
 }
 
 .pf-cover-date::before,
 .pf-cover-date::after {
   content: "";
-  width: 22px;
+  width: calc(6 * var(--u));
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--accent-gold));
 }
@@ -729,9 +834,9 @@ body.lk-opened .pf-botanical-scene--hero .pf-scene-piece {
 
 .pf-cover-guest {
   position: relative;
-  width: 100%;
-  margin: 0 0 20px;
-  padding: 13px 18px 14px;
+  width: min(100%, calc(80 * var(--u)));
+  margin: 0 0 calc(5 * var(--u));
+  padding: calc(3.4 * var(--u)) calc(6 * var(--u)) calc(3.6 * var(--u));
   background: rgba(250, 246, 238, 0.86);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
@@ -752,12 +857,12 @@ body.lk-opened .pf-botanical-scene--hero .pf-scene-piece {
   color: rgba(181, 148, 91, 0.72);
 }
 
-.pf-cover-guest::before { left: 9px; }
-.pf-cover-guest::after { right: 9px; }
+.pf-cover-guest::before { left: calc(2.4 * var(--u)); }
+.pf-cover-guest::after { right: calc(2.4 * var(--u)); }
 
 .pf-cover-to {
-  margin: 0 0 4px;
-  font-size: 9.5px;
+  margin: 0 0 calc(1 * var(--u));
+  font-size: clamp(9px, calc(2.6 * var(--u)), 13px);
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -768,7 +873,7 @@ body.lk-opened .pf-botanical-scene--hero .pf-scene-piece {
   margin: 0;
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(20px, 5vw, 23px);
+  font-size: clamp(19px, calc(6 * var(--u)), 30px);
   line-height: 1.24;
   color: var(--bg-moss);
   overflow-wrap: anywhere;
@@ -806,6 +911,18 @@ body.lk-opened .pf-botanical-scene--hero .pf-scene-piece {
     0 0 0 3px rgba(217, 192, 140, 0.18),
     inset 0 1px 0 rgba(250, 246, 238, 0.28);
   transition: transform 240ms var(--ease), box-shadow 240ms var(--ease);
+}
+
+/* Cover CTA follows the card's type unit so it stays proportional */
+.pf-cover-actions .pf-open-btn {
+  min-height: clamp(48px, calc(14 * var(--u)), 64px);
+  padding-right: clamp(18px, calc(6 * var(--u)), 30px);
+  font-size: clamp(10.5px, calc(3.1 * var(--u)), 14px);
+}
+
+.pf-cover-actions .pf-open-seal {
+  width: clamp(38px, calc(11 * var(--u)), 52px);
+  height: clamp(38px, calc(11 * var(--u)), 52px);
 }
 
 .pf-open-btn:hover {
@@ -869,20 +986,6 @@ body.lk-opened .pf-botanical-scene--hero .pf-scene-piece {
 
 .pf-skip-btn:hover {
   color: var(--ink-primary);
-}
-
-@media (max-height: 690px) {
-  .pf-cover-card {
-    padding-top: 42px;
-    padding-bottom: 28px;
-  }
-  .pf-cover-date {
-    margin-bottom: 10px;
-  }
-  .pf-cover-guest {
-    margin-bottom: 12px;
-    padding: 10px 12px;
-  }
 }
 
 /* ---------- Common Section & Card Primitives ---------- */
