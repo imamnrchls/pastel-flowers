@@ -38,20 +38,16 @@
 
   // Kredit Lembar Kabar: kalimat dari label tema, domain, lalu logo di bawahnya
   function buildStudioCredit(lineLabel) {
-    const url = "https://lembarkabar.web.id/";
-    const credit = el("p", "lk-footer-credit");
-    credit.append(document.createTextNode(`${lineLabel} Lembar Kabar · `));
-    const domain = el("a", "lk-domain", "lembarkabar.web.id");
-    domain.href = url;
-    domain.target = "_blank";
-    domain.rel = "noopener noreferrer";
-    credit.append(domain);
+    const theme = document.documentElement.getAttribute("data-theme") || "pastel-flowers";
+    const url = "https://lembarkabar.web.id/?utm_source=undangan&utm_medium=footer&utm_content=" + encodeURIComponent(theme);
+    const credit = el("p", "lk-footer-credit", lineLabel);
     const brand = el("a", "lk-brand");
     brand.href = url;
     brand.target = "_blank";
-    brand.rel = "noopener noreferrer";
+    brand.rel = "noopener";
     brand.setAttribute("aria-label", "Lembar Kabar, lembarkabar.web.id");
     brand.innerHTML = LK_LOGO_SVG;
+    brand.append(el("span", "lk-url", "lembarkabar.web.id"));
     return [credit, brand];
   }
 
