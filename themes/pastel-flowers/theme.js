@@ -182,9 +182,15 @@
       var scene = el("div", "pf-botanical-scene pf-botanical-scene--" + placement);
       scene.setAttribute("aria-hidden", "true");
 
-      var frame = imgEl(ASSETS.botanicalFrame, "pf-scene-frame", "");
-      frame.loading = "eager";
-      scene.appendChild(frame);
+      if (placement === "cover") {
+        /* 9-slice frame: top & bottom caps keep their proportions while the
+           side vines stretch, so the frame can fill any portrait viewport. */
+        scene.appendChild(el("span", "pf-scene-frame pf-scene-frame--slice"));
+      } else {
+        var frame = imgEl(ASSETS.botanicalFrame, "pf-scene-frame", "");
+        frame.loading = "eager";
+        scene.appendChild(frame);
+      }
 
       [
         { name: "vine-left", asset: ASSETS.hangingOrchid, depth: "0.08" },
@@ -346,12 +352,21 @@
 
       var backdrop = el("div", "pf-cover-backdrop");
       backdrop.setAttribute("aria-hidden", "true");
-      var coverFiligreeSvg =
-        '<path d="M4 44 C4 18, 18 4, 44 4" fill="none" stroke="#D9C08C" stroke-width="1" opacity="0.52"/>' +
-        '<path d="M10 32 C10 17, 17 10, 32 10" fill="none" stroke="#D9C08C" stroke-width="0.7" opacity="0.35"/>' +
-        '<circle cx="14" cy="14" r="2" fill="#D9C08C" opacity="0.58"/>';
-      ["tl", "tr", "bl", "br"].forEach(function (pos) {
-        backdrop.appendChild(svgEl("0 0 48 48", coverFiligreeSvg, "pf-cover-filigree pf-cover-filigree--" + pos));
+      /* Flora that frames the card on wide screens (hidden on phones, where
+         the card itself fills the viewport). */
+      [
+        { name: "tl", asset: ASSETS.botanicalCorner },
+        { name: "tr", asset: ASSETS.botanicalCorner },
+        { name: "hang-l", asset: ASSETS.hangingOrchid },
+        { name: "hang-r", asset: ASSETS.hangingOrchid },
+        { name: "bl", asset: ASSETS.orchidBouquet },
+        { name: "br", asset: ASSETS.orchidBouquet }
+      ].forEach(function (piece) {
+        var wrap = el("span", "pf-cover-flora pf-cover-flora--" + piece.name);
+        var art = imgEl(piece.asset, "pf-cover-flora-art", "");
+        art.loading = "eager";
+        wrap.appendChild(art);
+        backdrop.appendChild(wrap);
       });
       backdrop.appendChild(createMotes(14, "pf-cover-motes"));
 
